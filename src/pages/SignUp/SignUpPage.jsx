@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { useRegisterUserMutation } from '../../services/authApi';
+
 import SignupForm from '../../components/Forms/SignUpForm';
-import { ROUTES } from '../../constants/routerPaths';
 import SharedTypography from '../../components/shared/Text/SharedText';
 import { AUTH_ERRORS } from '../../constants/auth.constants';
+import { ROUTES } from '../../constants/routerPaths';
+import { useRegisterUserMutation } from '../../services/authApi';
+import { extractApiError } from '../../utils/authErrors.js';
 
-export default function SignupPage() {
+export default function SignUpPage() {
   const navigate = useNavigate();
   const [registerUser, { isLoading, error }] = useRegisterUserMutation();
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate(ROUTES.HOME);
+    }
+  }, [isLoggedIn, navigate]);
 
   const handleSignup = async (formData) => {
     try {
@@ -19,16 +29,14 @@ export default function SignupPage() {
     }
   };
 
-  const errorMessage =
-    error?.data?.error ||
-    error?.data?.message ||
-    error?.message ||
-    AUTH_ERRORS.GENERAL_REGISTER_ERROR;
-
   return (
     <div>
       <SignupForm onSubmit={handleSignup} isLoading={isLoading} />
-      {error && <SharedTypography>{errorMessage}</SharedTypography>}
+      {error && (
+        <SharedTypography variant="body2" color="error">
+          {extractApiError(error, AUTH_ERRORS.GENERAL_REGISTER_ERROR)}
+        </SharedTypography>
+      )}
     </div>
   );
 }

@@ -2,6 +2,9 @@ export const UI_TEXT = {
   SECOND_HAND_STORE: 'SecondHand Store',
   HOME: 'Home',
   ABOUT: 'About',
+  LOGIN: 'Login',
+  SIGNUP: 'Sign Up',
+  LOGOUT: 'Logout',
   GO_HOME: 'Go Home',
   NEXT: 'Next',
   FINISH: 'Finish',
@@ -35,6 +38,7 @@ export const UI_TEXT = {
   ADD_PRODUCT: 'Add Product.',
   UPLOAD_PRODUCT: 'Upload a new product to Locker It.',
   VIEW_ANALYTICS: 'View your products, orders, and analytics.',
+  HELLO_USER: 'Hello, ',
 };
 
 export const LOGIN_TEXT = {
