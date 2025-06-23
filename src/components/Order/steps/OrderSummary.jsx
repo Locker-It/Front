@@ -1,8 +1,9 @@
 import React from 'react';
-import OrderCard from '../../OrderSummary/OrderCard';
-import { useGetCartQuery } from '../../../services/cartApi';
+
 import { UI_TEXT } from '../../../constants/text';
-import SharedTypography from '../../shared/Text/SharedText';
+import { useGetCartQuery } from '../../../services/cartApi';
+import OrderCard from '../../OrderSummary/OrderCard';
+import SharedTypography from '../../shared/Text/SharedTypography.jsx';
 
 const OrderSummary = () => {
   const { data, error, isLoading } = useGetCartQuery();

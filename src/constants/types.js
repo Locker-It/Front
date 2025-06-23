@@ -9,3 +9,10 @@ export const LOGO_VARIANTS = {
   HERO: 'HERO',
   DEFAULT: 'DEFAULT',
 };
+
+export const TEXT_VARIANTS = {
+  NAV_TITLE: 'NAV_TITLE',
+  WHITE_TITLE: 'WHITE_TITLE',
+  GREY_TITLE: 'GREY_TITLE',
+  DEFAULT: 'DEFAULT',
+};

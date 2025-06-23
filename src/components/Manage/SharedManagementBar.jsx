@@ -1,21 +1,22 @@
-import * as React from 'react';
 import { Box, Tabs, Tab } from '@mui/material';
+import * as React from 'react';
 import { useState } from 'react';
+
 import {
   tabPanelStyle,
   containerOuterBox,
   StyledAppBar,
 } from './SharedManagementBar.styled';
-import SharedTypography from '../shared/Text/SharedText';
 import ManagerCustomers from './Tabs/ManagerCustomers';
 import ManagerDashboard from './Tabs/ManagerDashboard';
+import ManagerLockers from './Tabs/ManagerLockers';
 import ManagerOrders from './Tabs/ManagerOrders';
 import ManagerProducts from './Tabs/ManagerProducts';
-import ManagerLockers from './Tabs/ManagerLockers';
 import UserOrders from './Tabs/UserOrders';
 import UserProducts from './Tabs/UserProducts';
 import UserProfile from './Tabs/UserProfile';
 import { UI_TEXT } from '../../constants/text';
+import SharedTypography from '../shared/Text/SharedTypography.jsx';
 
 function TabPanel({ children, value, index, ...other }) {
   const isHidden = value !== index;
