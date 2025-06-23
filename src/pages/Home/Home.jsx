@@ -1,5 +1,4 @@
-import { Container, Box } from '@mui/material';
-import { CircularProgress } from '@mui/material';
+import { Container, Box , CircularProgress } from '@mui/material';
 import React from 'react';
 
 import { StyledContainer, HeroBox, NewestProductsBox } from './Home.styled';
@@ -7,11 +6,9 @@ import Hero from '../../components/Hero/Hero.jsx';
 import ProductCarousel from '../../components/ProductCarousel/ProductCarousel.jsx';
 import SharedTypography from '../../components/shared/Text/SharedTypography.jsx';
 import { UI_TEXT } from '../../constants/text.js';
-import useScrollToTop from '../../hooks/useScrollToTop.js';
 import { useGetNewestProductsQuery } from '../../services/productApi.js';
 
 function Home() {
-  useScrollToTop();
   const {
     data: newestProducts,
     isLoading,

@@ -12,7 +12,6 @@ const ProductCard = ({
   images,
   name,
   price,
-  rating,
   onSelect,
   ...props
 }) => {

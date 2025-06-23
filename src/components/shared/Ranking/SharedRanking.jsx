@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import { StyledRating, RatingWrapper } from './Ranking.styles';
 
 const DEFAULT_INITIAL_RANKING = 0;
@@ -10,7 +11,6 @@ export default function SharedRanking({
   initialValue = DEFAULT_INITIAL_RANKING,
   max = DEFAULT_MAX_RANKING,
   onChange = () => {},
-  readOnly = false,
 }) {
   const [value, setValue] = useState(initialValue);
 

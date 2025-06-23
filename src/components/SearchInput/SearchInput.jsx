@@ -1,5 +1,6 @@
-import React from "react";
 import TextField from "@mui/material/TextField";
+import React from "react";
+
 import { inputStyles } from "./SearchInput.styled";
 import { PLACEHOLDERS } from "../../constants/text";
 

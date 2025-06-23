@@ -1,13 +1,14 @@
-import React from 'react';
-import { TextField, Stack } from '@mui/material';
-import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { TextField, Stack } from '@mui/material';
+import React from 'react';
+import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
-import ActionButton from '../shared/Button/ActionButton';
-import { LOGIN_TEXT } from '../../constants/text';
+
 import { StyledPaper, TitleWrapper, FormWrapper } from './Form.styled';
-import { ROUTES } from "../../constants/routerPaths.js";
 import { BUTTON_VARIANTS } from '../../constants/buttonTypes.js';
+import { ROUTES } from "../../constants/routerPaths.js";
+import { LOGIN_TEXT } from '../../constants/text';
+import ActionButton from '../shared/Button/ActionButton';
 
 const loginSchema = yup.object({
   username: yup.string().required(LOGIN_TEXT.usernameRequired),

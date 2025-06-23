@@ -1,4 +1,5 @@
 import React from 'react';
+
 import StyledImg from './Image.styles';
 
 export const SharedImage = ({ src, alt, style = {}, ...rest }) => {

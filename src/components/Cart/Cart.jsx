@@ -1,7 +1,5 @@
 import React from 'react';
-import ProductCard from '../Product/ProductCard';
-import SharedGrid from '../shared/Grid/SharedGrid';
-import { CART_TEXT, UI_TEXT } from '../../constants/text';
+
 import {
   CartContainer,
   CartTitle,
@@ -10,9 +8,12 @@ import {
   RemoveButtonWrapper,
   CartItemWrapper,
 } from './Cart.styles';
+import { BUTTON_VARIANTS } from '../../constants/buttonTypes.js';
+import { CART_TEXT, UI_TEXT } from '../../constants/text';
+import ProductCard from '../Product/ProductCard';
 import ActionButton from '../shared/Button/ActionButton.jsx';
 import CustomDivider from '../shared/Divider/CustomDivider.jsx';
-import { BUTTON_VARIANTS } from '../../constants/buttonTypes.js';
+import SharedGrid from '../shared/Grid/SharedGrid';
 
 const Cart = ({
   items,

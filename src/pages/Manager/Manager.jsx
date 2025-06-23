@@ -1,7 +1,9 @@
 import React from 'react';
+
 import { managementContainerStyle } from './Manager.styled.js';
 import FloatingActionButtonZoom from '../../components/Manage/SharedManagementBar.jsx';
 import { UI_TEXT } from '../../constants/text.js';
+
 function Manager_bar() {
   return (
     <div style={managementContainerStyle}>

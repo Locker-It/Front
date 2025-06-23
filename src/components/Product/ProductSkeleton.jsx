@@ -1,5 +1,6 @@
-import React from 'react';
 import { CardContent, CardActions, Stack } from '@mui/material';
+import React from 'react';
+
 import { BigStyledCard } from './Product.styled';
 import {
   SkeletonCardImage,     
