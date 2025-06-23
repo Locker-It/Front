@@ -12,6 +12,10 @@ const theme = createTheme({
   },
   spacing: 8,
   palette: {
+    navbar: {
+      main: '#232F3E',
+      contrastText: '#ffffff',
+    },
     background: {
       default: '#f5f5f5',
       paper: '#ffffff',
@@ -47,6 +51,7 @@ const theme = createTheme({
       xl: 1536,
     },
   },
+
 });
 
 export default theme;
