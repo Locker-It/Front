@@ -1,5 +1,6 @@
-import { styled } from '@mui/material/styles';
 import { Skeleton } from '@mui/material';
+import { styled } from '@mui/material/styles';
+
 import { pxToRem } from '../../utils/converting';
 
 const createSkeletonVariant = (widthPx, heightPx) =>

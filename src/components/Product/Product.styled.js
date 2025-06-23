@@ -1,9 +1,11 @@
-import { styled } from '@mui/material/styles';
 import { Card, Typography } from '@mui/material';
-import theme from '../../theme/theme.js';
-import { display } from '@mui/system';
+import { styled } from '@mui/material/styles';
 
-export const StyledCard = styled(Card)(({ theme }) => ({
+
+import theme from '../../theme/theme.js';
+
+
+export const StyledCard = styled(Card)(() => ({
   width: '15rem',
   height: '17rem',
   transition: 'transform 0.3s ease, box-shadow 0.3s ease',
@@ -32,14 +34,10 @@ export const StyledSharedTypography = styled(Typography)(({ theme, variant }) =>
   }),
 }));
 
-export const BigStyledCard = styled(Card)(({ theme }) => ({
+export const BigStyledCard = styled(Card)(() => ({
   maxWidth: 600,
   margin: '0 auto',
   borderRadius: 12,
 }));
 
-export const ratingWrapperStyle = {
-  display: 'flex',
-  alignItems: 'center',
-  gap: 10,
-};
+

@@ -1,23 +1,23 @@
-import React from 'react';
 import Box from '@mui/material/Box';
-import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
-import useStep from './useStep';
+import Stepper from '@mui/material/Stepper';
+import React from 'react';
+
 import {
   containerStyle,
   StyledStepContentBox,
   buttonContainerStyle,
   spacerStyle,
 } from './Stepper.styles';
-import { UI_TEXT } from '../../constants/text';
-
+import OrderComplete from './steps/OrderComplete';
 import OrderSummary from './steps/OrderSummary';
 import PaymentDetails from './steps/PaymentDetails';
-import OrderComplete from './steps/OrderComplete';
-import ActionButton from '../shared/Button/ActionButton';
-import { ROUTES as ROUTER_PATHS } from '../../constants/routerPaths.js';
+import useStep from './useStep';
 import { BUTTON_VARIANTS } from '../../constants/buttonTypes.js';
+import { ROUTES as ROUTER_PATHS } from '../../constants/routerPaths.js';
+import { UI_TEXT } from '../../constants/text';
+import ActionButton from '../shared/Button/ActionButton';
 
 const stepComponents = [
   <OrderSummary />,

@@ -13,7 +13,7 @@ import { SharedImage } from '../../components/shared/Image/SharedImage.jsx';
 import SharedTypography from '../../components/shared/Text/SharedTypography.jsx';
 import { BUTTON_VARIANTS } from '../../constants/buttonTypes.js';
 import { ABOUT_TEXT } from '../../constants/text.js';
-import useScrollToTop from '../../hooks/useScrollToTop.js';
+
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -21,7 +21,7 @@ const fadeInUp = {
 };
 
 function About() {
-  useScrollToTop();
+
 
   return (
     <Box maxWidth="lg" sx={{ mx: 'auto' }}>

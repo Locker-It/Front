@@ -23,6 +23,9 @@ export default [
       'react-refresh': reactRefresh,
       import: importPlugin,
     },
+      settings: {
+        'import/internal-regex': '^src/',
+       },
     rules: {
       ...js.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
@@ -44,6 +47,8 @@ export default [
           alphabetize: { order: 'asc', caseInsensitive: true },
         },
       ],
+      'import/newline-after-import': 'error',
+      'import/no-duplicates': 'error',
     },
   },
   eslintConfigPrettier,

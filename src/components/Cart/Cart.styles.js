@@ -36,7 +36,7 @@ export const CartItemWrapper = styled(Box)(({ theme }) => ({
   gap: theme.spacing(2),
 }));
 
-export const RemoveButtonWrapper = styled(Box)(({ theme }) => ({
+export const RemoveButtonWrapper = styled(Box)(() => ({
   display: 'flex',
   justifyContent: 'flex-end',
 }));

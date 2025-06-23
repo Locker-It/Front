@@ -1,17 +1,15 @@
-import React from 'react';
-import { TextField, Stack } from '@mui/material';
-import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { TextField, Stack } from '@mui/material';
+import React from 'react';
+import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
-
-import { SIGNUP_TEXT } from '../../constants/text';
-import { SIGN_UP_CONSTANTS } from '../../constants/signUp.constant.js';
-import { ROUTES } from '../../constants/routerPaths';
-
-import ActionButton from '../shared/Button/ActionButton.jsx';
 
 import { StyledPaper, TitleWrapper, FormWrapper } from './Form.styled';
 import { BUTTON_VARIANTS } from '../../constants/buttonTypes.js';
+import { ROUTES } from '../../constants/routerPaths';
+import { SIGN_UP_CONSTANTS } from '../../constants/signUp.constant.js';
+import { SIGNUP_TEXT } from '../../constants/text';
+import ActionButton from '../shared/Button/ActionButton.jsx';
 
 const signupSchema = yup.object({
   [SIGN_UP_CONSTANTS.NAME]: yup.string().required(SIGNUP_TEXT.nameRequired),

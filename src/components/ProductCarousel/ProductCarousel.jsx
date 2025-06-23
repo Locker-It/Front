@@ -1,6 +1,7 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
-import ProductCard from '../Product/ProductCard';
+
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { CarouselWrapper } from './ProductCarousel.styled';
@@ -9,8 +10,8 @@ import {
   AUTOPLAY_SPEED_MS,
   RESPONSIVE_BREAKPOINTS,
 } from '../../constants/carousel';
-import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../constants/routerPaths.js';
+import ProductCard from '../Product/ProductCard';
 
 const ProductCarousel = ({ products }) => {
   const settings = {
