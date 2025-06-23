@@ -3,12 +3,12 @@ import logoLight from '../../../assets/logo-light.png';
 
 export const getLogoStyles = () => ({
   NAVBAR: {
-    content: `url(${logoDark})`,
+    src: logoDark,
     height: '2.5rem',
     objectFit: 'contain',
   },
   HERO: {
-    content: `url(${logoLight})`,
+    src: logoLight,
     width: '100%',
     maxWidth: '500px',
     margin: '0 auto',
@@ -16,7 +16,7 @@ export const getLogoStyles = () => ({
     display: 'block',
   },
   DEFAULT: {
-    content: `url(${logoLight})`,
+    src: logoLight,
     height: '40px',
     objectFit: 'contain',
   },

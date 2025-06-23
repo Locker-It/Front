@@ -7,7 +7,7 @@ import Logo from '../shared/Logo/Logo.jsx';
 const Hero = () => {
     return (
         <>
-          <Logo variant="HERO" />
+          <Logo variant="HERO" alt="Hero logo"  />
         </>
     );
 };

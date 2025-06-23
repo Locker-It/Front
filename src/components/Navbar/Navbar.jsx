@@ -40,7 +40,7 @@ function Navbar() {
     <CustomAppBar position="static">
       <CustomToolbar>
         <LeftSection>
-          <Logo variant="NAVBAR" />
+          <Logo variant="NAVBAR" alt="Company Logo" />
           <UserGreeting />
         </LeftSection>
 
