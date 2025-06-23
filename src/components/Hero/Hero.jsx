@@ -1,18 +1,13 @@
 import React from 'react';
 
-import { HeroImgBox } from './Hero.styled.js';
-import heroPhoto from '../../assets/hero-photo.png';
+import Logo from '../shared/Logo/Logo.jsx';
 
 
 
 const Hero = () => {
     return (
         <>
-            <HeroImgBox
-                component="img"
-                src={heroPhoto}
-                alt="Hero img"
-            />
+          <Logo variant="HERO" alt="Hero logo"  />
         </>
     );
 };

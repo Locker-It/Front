@@ -18,7 +18,7 @@ import { useLogoutUserMutation } from '../../services/authApi.js';
 import { logout } from '../../store/authSlice.js';
 import UserGreeting from '../Auth/UserGreeting.jsx';
 import ActionButton from '../shared/Button/ActionButton.jsx';
-import SharedTypography from '../shared/Text/SharedText.jsx';
+import Logo from '../shared/Logo/Logo.jsx';
 
 function Navbar() {
   const dispatch = useDispatch();
@@ -40,7 +40,7 @@ function Navbar() {
     <CustomAppBar position="static">
       <CustomToolbar>
         <LeftSection>
-          <SharedTypography variant="h6">SecondHand Store</SharedTypography>
+          <Logo variant="NAVBAR" alt="Company Logo" />
           <UserGreeting />
         </LeftSection>
 
