@@ -1,10 +1,11 @@
+import { CircularProgress, Grid } from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CircularProgress, Grid } from '@mui/material';
-import ProductCard from '../../components/Product/ProductCard.jsx';
-import { ROUTES } from '../../constants/routerPaths.js';
-import SharedTypography from '../../components/shared/Text/SharedText.jsx';
+
 import { containerStyle, spinnerStyle } from './ProductListPage.styled.js';
+import ProductCard from '../../components/Product/ProductCard.jsx';
+import SharedTypography from '../../components/shared/Text/SharedTypography.jsx';
+import { ROUTES } from '../../constants/routerPaths.js';
 import { UI_TEXT } from '../../constants/text.js';
 import { useGetProductsQuery } from '../../services/productApi.js';
 

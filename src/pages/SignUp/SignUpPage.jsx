@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import SignupForm from '../../components/Forms/SignUpForm';
-import SharedTypography from '../../components/shared/Text/SharedText';
+import SharedTypography from '../../components/shared/Text/SharedTypography.jsx';
 import { AUTH_ERRORS } from '../../constants/auth.constants';
 import { ROUTES } from '../../constants/routerPaths';
 import { useRegisterUserMutation } from '../../services/authApi';

@@ -1,16 +1,17 @@
-import React from 'react';
 import { Grid, Divider } from '@mui/material';
-import { SharedImage } from '../shared/Image/SharedImage';
-import SharedTypography from '../shared/Text/SharedText';
+import React from 'react';
+
 import {
   OrderCardContainer,
   ItemCard,
   SharedFlexBox,
   dividerStyle,
 } from './OrderCard.styled';
-import SharedGrid from '../shared/Grid/SharedGrid';
 import { UI_TEXT } from '../../constants/text';
 import { addSignShekel } from '../../utils/converting';
+import SharedGrid from '../shared/Grid/SharedGrid';
+import { SharedImage } from '../shared/Image/SharedImage';
+import SharedTypography from '../shared/Text/SharedTypography.jsx';
 
 const OrderCard = ({ items = [], total = 0 }) => {
   if (items.length === 0) {

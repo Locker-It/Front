@@ -1,10 +1,11 @@
-import React from 'react';
 import { Grid } from '@mui/material';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ROUTES } from '../../constants/routerPaths';
+
 import { DashboardContainer, ActionCard, sharedGridProps } from './DashboardCards.styled';
 import SharedGrid from '../../components/shared/Grid/SharedGrid';
-import SharedTypography from '../../components/shared/Text/SharedText';
+import SharedTypography from '../../components/shared/Text/SharedTypography.jsx';
+import { ROUTES } from '../../constants/routerPaths';
 import { UI_TEXT } from '../../constants/text';
 
 const DashboardCards = () => {
