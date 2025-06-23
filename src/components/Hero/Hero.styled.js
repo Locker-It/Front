@@ -1,12 +1,15 @@
-import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import theme from '../../theme/theme';
+import { styled } from '@mui/material/styles';
 
 
-export const HeroImgBox = styled(Box)(({ theme }) => ({
-  width: '50rem',
-  height: '20rem',
-  borderRadius:'10rem',
-  objectFit: 'cover',
-  boxShadow: theme.customShadows.main,
+
+export const HeroImgBox = styled(Box)(() => ({
+  width: '100%',
+  maxWidth: '500px',
+  height: 'auto',
+  margin: '0 auto',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  overflow: 'hidden',
 }));
