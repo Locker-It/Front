@@ -12,6 +12,7 @@ export const AUTH_RESPONSE_KEYS = {
 export const AUTH_ERRORS = {
   INVALID_LOGIN_RESPONSE: 'Invalid login response structure',
   LOGOUT_FAILED: 'Logout failed',
+  LOGIN_FAILED: 'Login failed',
   GENERAL_LOGIN_ERROR: 'General login error',
   GENERAL_LOGOUT_ERROR: 'General logout error',
   UNAUTHORIZED_LOGIN: 'Invalid username or password',
@@ -20,6 +21,9 @@ export const AUTH_ERRORS = {
   REGISTER_FAILED: 'Registration failed',
   GENERAL_REGISTER_ERROR: 'General registration error',
   DUPLICATE_EMAIL: 'Email already exists',
+  FAILED_DECODE_JWT: 'Failed to decode JWT',
+  INVALID_TOKEN: 'Invalid token. Auth not restored.',
+
 };
 
 export const STORAGE_KEYS = {

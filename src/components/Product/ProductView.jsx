@@ -1,13 +1,14 @@
-import React from 'react';
-import { CardActions, CardContent, Divider } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { CardActions, CardContent, Divider } from '@mui/material';
+import React from 'react';
+
 import { BigStyledCard } from './Product.styled.js';
-import { SharedImage } from '../shared/Image/SharedImage';
-import SharedTypography from '../shared/Text/SharedText.jsx';
-import ActionButton from '../shared/Button/ActionButton.jsx';
+import { BUTTON_VARIANTS } from '../../constants/buttonTypes.js';
 import { UI_TEXT } from '../../constants/text.js';
 import { addSignShekel } from '../../utils/converting.js';
-import { BUTTON_VARIANTS } from '../../constants/buttonTypes.js';
+import ActionButton from '../shared/Button/ActionButton.jsx';
+import { SharedImage } from '../shared/Image/SharedImage';
+import SharedTypography from '../shared/Text/SharedTypography.jsx';
 
 const ProductView = ({
   images,

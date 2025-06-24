@@ -1,6 +1,6 @@
-import { styled } from '@mui/system';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
+import { styled } from '@mui/system';
 
 export const OrderCardContainer = styled(Box)(({ theme }) => ({
   maxWidth: 800,

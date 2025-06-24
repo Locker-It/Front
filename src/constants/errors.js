@@ -5,4 +5,6 @@ export const ERROR_MESSAGES = {
   PRODUCT_NOT_FOUND: 'Product not found.',
   REMOVE_FAILED: 'Remove failed',
   ADD_TO_CART_FAILED: 'Add to Cart failed:',
+  LOGOUT_FAILED: 'Failed to log out. Please try again later.',
+
 };

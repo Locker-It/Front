@@ -1,12 +1,12 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
-import { baseQueryWithReauth } from './baseQueryWithReauth';
-import { ROUTES } from '../constants/routerPaths';
+import { baseQueryWithSession } from './baseQueryWithSession';
 import { HTTP_METHODS } from '../constants/httpMethods';
-import { TAG_TYPES } from '../constants/tagTypes';
+import { TAG_TYPES } from '../constants/types';
+import { BASE_URL, ROUTES } from '../constants/routerPaths';
 
 export const cartApi = createApi({
   reducerPath: 'cartApi',
-  baseQuery: baseQueryWithReauth,
+  baseQuery: baseQueryWithSession,
   tagTypes: [TAG_TYPES.CART],
   endpoints: (builder) => ({
     addToCart: builder.mutation({

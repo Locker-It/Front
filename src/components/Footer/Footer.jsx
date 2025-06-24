@@ -1,14 +1,15 @@
-import React from 'react';
 import { Link } from '@mui/material';
+import React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
+
 import {
   FooterContainer,
   FooterLinks,
   footerTextStyle,
 } from './Footer.styled.js';
-import { Link as RouterLink } from 'react-router-dom';
 import { ROUTES as ROUTER_PATHS } from '../../constants/routerPaths.js';
-import SharedTypography from '../shared/Text/SharedText.jsx';
 import { UI_TEXT } from '../../constants/text';
+import SharedTypography from '../shared/Text/SharedTypography.jsx';
 
 function Footer() {
   return (

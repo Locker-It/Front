@@ -1,14 +1,15 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
-import { HTTP_METHODS } from '../constants/httpMethods';
-import { loginSuccess } from '../store/authSlice';
-import { ROUTES } from '../constants/routerPaths';
+
+import { baseQueryWithSession } from './baseQueryWithSession.js';
 import { AUTH_ERRORS } from '../constants/auth.constants';
-import { decodeJWT } from '../utils/jwt';
-import { baseQueryWithReauth } from './baseQueryWithReauth';
+import { HTTP_METHODS } from '../constants/httpMethods';
+import { ROUTES } from '../constants/routerPaths';
+import { loginSuccess } from '../store/authSlice';
+
 
 export const authApi = createApi({
   reducerPath: 'authApi',
-  baseQuery: baseQueryWithReauth,
+  baseQuery: baseQueryWithSession,
   endpoints: (builder) => ({
     loginUser: builder.mutation({
       query: (credentials) => ({
@@ -19,13 +20,9 @@ export const authApi = createApi({
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
-          const { accessToken } = data;
-
-          const payload = decodeJWT(accessToken);
-          if (!payload) throw new Error(AUTH_ERRORS.INVALID_TOKEN);
-
-          const user = { id: payload.userId, username: payload.username };
-          dispatch(loginSuccess({ user, accessToken }));
+          const { user } = data;
+          if (!user) throw new Error(AUTH_ERRORS.INVALID_TOKEN);
+          dispatch(loginSuccess({ user }));
         } catch (err) {
           console.error(AUTH_ERRORS.LOGIN_FAILED, err);
         }
@@ -45,6 +42,12 @@ export const authApi = createApi({
         body: newUser,
       }),
     }),
+    getCurrentUser: builder.query({
+      query: () => ({
+        url: ROUTES.CURRENT_USER,
+        method: HTTP_METHODS.GET,
+      }),
+    }),
   }),
 });
 
@@ -52,4 +55,5 @@ export const {
   useLoginUserMutation,
   useLogoutUserMutation,
   useRegisterUserMutation,
+  useGetCurrentUserQuery,
 } = authApi;

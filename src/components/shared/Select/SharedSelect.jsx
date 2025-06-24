@@ -1,7 +1,8 @@
-import React from 'react';
-import { StyledSelect } from './Select.styles';
-import { MenuItem } from '@mui/material';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
+import { MenuItem } from '@mui/material';
+import React from 'react';
+
+import { StyledSelect } from './Select.styles';
 import { useSelect } from './useSelect';
 import { UI_TEXT } from '../../../constants/text';
 
@@ -23,10 +24,7 @@ export const SharedSelect = ({
   onChange,
 }) => {
   const {
-    value: selectedValue,
     handleChange,
-    currentOptions: optionsFromHook,
-    currentPlaceholder: placeholderFromHook,
   } = useSelect(value, currentOptions, currentPlaceholder);
 
   const handleSelectChange = (event) => {

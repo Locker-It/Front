@@ -1,6 +1,7 @@
-import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import SharedText from '../shared/Text/SharedText';
+import { styled } from '@mui/material/styles';
+
+import SharedText from '../shared/Text/SharedTypography.jsx';
 
 export const CartContainer = styled(Box)(({ theme }) => ({
   maxWidth: 480,
@@ -35,7 +36,7 @@ export const CartItemWrapper = styled(Box)(({ theme }) => ({
   gap: theme.spacing(2),
 }));
 
-export const RemoveButtonWrapper = styled(Box)(({ theme }) => ({
+export const RemoveButtonWrapper = styled(Box)(() => ({
   display: 'flex',
   justifyContent: 'flex-end',
 }));

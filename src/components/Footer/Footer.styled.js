@@ -1,5 +1,6 @@
 import { Box } from '@mui/material';
 import { styled } from '@mui/system';
+
 import theme from '../../theme/theme.js';
 
 export const FooterContainer = styled(Box)({

@@ -1,17 +1,17 @@
-import React from 'react';
 import { CardContent, CardActionArea } from '@mui/material';
+import React from 'react';
+
 import { StyledCard } from './Product.styled.js';
 import { UI_TEXT } from '../../constants/text';
-import SharedTypography from '../shared/Text/SharedText.jsx';
-import { SharedImage } from '../shared/Image/SharedImage.jsx';
 import { addSignShekel  } from '../../utils/converting.js';
+import { SharedImage } from '../shared/Image/SharedImage.jsx';
+import SharedTypography from '../shared/Text/SharedTypography.jsx';
 
 const ProductCard = ({
   id,
   images,
   name,
   price,
-  rating,
   onSelect,
   ...props
 }) => {

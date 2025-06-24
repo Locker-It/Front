@@ -1,5 +1,6 @@
-import { styled } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
+import { styled } from '@mui/material/styles';
+
 import theme from '../../theme/theme';
 
 export const containerOuterBox = {

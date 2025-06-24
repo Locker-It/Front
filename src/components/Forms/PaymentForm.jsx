@@ -1,18 +1,19 @@
-import React from 'react';
-import { TextField, Stack } from '@mui/material';
-import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { TextField, Stack } from '@mui/material';
+import React from 'react';
+import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
-import { PAYMENT_TEXT } from '../../constants/text.js';
+
 import { StyledPaper, FormWrapper } from './Form.styled.js';
-import ActionButton from '../shared/Button/ActionButton.jsx';
+import { BUTTON_VARIANTS } from '../../constants/buttonTypes.js';
 import {
   CARD_NUMBER_REGEX,
   EXPIRY_REGEX,
   CVV_REGEX,
 } from '../../constants/regex.js';
-import SharedTypography from '../shared/Text/SharedText.jsx';
-import { BUTTON_VARIANTS } from '../../constants/buttonTypes.js';
+import { PAYMENT_TEXT } from '../../constants/text.js';
+import ActionButton from '../shared/Button/ActionButton.jsx';
+import SharedTypography from '../shared/Text/SharedTypography.jsx';
 
 const paymentSchema = yup.object({
   cardNumber: yup

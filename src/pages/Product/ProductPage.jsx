@@ -1,14 +1,15 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import ProductView from '../../components/Product/ProductView.jsx';
-import ProductSkeleton from '../../components/Product/ProductSkeleton.jsx';
-import { useGetProductByIdQuery } from '../../services/productApi.js';
-import { useAddToCartMutation } from '../../services/cartApi.js';
+
 import { StyledSharedTypography } from '../../components/Product/Product.styled.js';
+import ProductSkeleton from '../../components/Product/ProductSkeleton.jsx';
+import ProductView from '../../components/Product/ProductView.jsx';
 import { ERROR_MESSAGES } from '../../constants/errors.js';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../constants/routerPaths.js';
 import { CART_TEXT } from '../../constants/text.js';
+import { useAddToCartMutation } from '../../services/cartApi.js';
+import { useGetProductByIdQuery } from '../../services/productApi.js';
 
 const ProductPage = () => {
   const navigate = useNavigate();
