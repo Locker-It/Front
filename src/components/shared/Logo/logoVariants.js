@@ -10,14 +10,14 @@ export const getLogoStyles = () => ({
   HERO: {
     src: logoLight,
     width: '100%',
-    maxWidth: '500px',
+    maxWidth: '31.25rem',
     margin: '0 auto',
     objectFit: 'contain',
     display: 'block',
   },
   DEFAULT: {
     src: logoLight,
-    height: '40px',
+    height: '2.5rem',  
     objectFit: 'contain',
   },
 });
