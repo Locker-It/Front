@@ -8,7 +8,7 @@ import {
   RemoveButtonWrapper,
   CartItemWrapper,
 } from './Cart.styles';
-import { CART_TEXT, UI_TEXT } from '../../constants/hardText.js';
+import { CART_TEXT} from '../../constants/hardText.js';
 import { BUTTON_VARIANTS } from '../../constants/types.js';
 import ProductCard from '../Product/ProductCard';
 import ActionButton from '../shared/Button/ActionButton.jsx';
