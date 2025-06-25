@@ -4,7 +4,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { CardActions, CardContent, Divider } from '@mui/material';
 
 import { BigStyledCard } from './Product.styled.js';
-import { CART_TEXT, UI_TEXT } from '../../constants/hardText.js';
+import { CART_TEXT } from '../../constants/hardText.js';
 import { BUTTON_VARIANTS } from '../../constants/types.js';
 import { addSignShekel } from '../../utils/converting.js';
 import ActionButton from '../shared/Button/ActionButton.jsx';
