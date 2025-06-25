@@ -12,6 +12,8 @@ export const ROUTES = {
   CUSTOMER_PAGE: '/customerPage',
   PRODUCT_DETAILS: '/products/:id',
   CART: '/cart',
+  ADD_TO_CART: '/add-to-cart',
+  REMOVE_FROM_CART: '/remove-from-cart',
   DASHBOARD_CARDS: '/dashboardCards',
   ADD_PRODUCT: '/dashboardCards/newproduct',
   AUTH_REFRESH: '/auth/refresh',

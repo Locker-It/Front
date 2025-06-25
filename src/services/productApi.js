@@ -7,12 +7,13 @@ import { TAG_TYPES } from '../constants/types.js';
 export const productApi = createApi({
   reducerPath: 'productApi',
   baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_BASE_SERVER_URL }),
-  tagTypes: [TAG_TYPES.PRODUCT],
+  tagTypes: [TAG_TYPES.PRODUCT, TAG_TYPES.CART],
   endpoints: (builder) => ({
     getProducts: builder.query({
-      query: () => ROUTES.PRODUCTS,
+      query: () => `${ROUTES.PRODUCTS}?status=AVAILABLE`,
       providesTags: [TAG_TYPES.PRODUCT],
     }),
+
     getNewestProducts: builder.query({
       query: () => `${ROUTES.PRODUCTS}?limit=8&sort=newest`,
       providesTags: [TAG_TYPES.PRODUCT],

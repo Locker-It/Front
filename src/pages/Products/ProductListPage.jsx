@@ -11,7 +11,15 @@ import { useGetProductsQuery } from '../../services/productApi.js';
 
 const ProductListPage = () => {
   const navigate = useNavigate();
-  const { data: products, isLoading, error } = useGetProductsQuery();
+  const {
+    data: products,
+    isLoading,
+    error,
+  } = useGetProductsQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+    refetchOnFocus: true,
+    refetchOnReconnect: true,
+  });
 
   const handleSelect = (id) => navigate(`${ROUTES.PRODUCTS}/${id}`);
 

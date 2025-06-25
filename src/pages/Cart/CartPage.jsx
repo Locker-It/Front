@@ -1,19 +1,37 @@
 import React from 'react';
 
 import Cart from '../../components/Cart/Cart.jsx';
-import { useCart } from '../../hooks/useCart.js';
+import {
+  useGetCartQuery,
+  useRemoveFromCartMutation,
+} from '../../services/cartApi';
+import { ERROR_MESSAGES } from '../../constants/errors.js';
 
 const CartPage = () => {
-  const { cart, setCart } = useCart();
+  const {
+    data: cart = [],
+    isLoading,
+    isError,
+  } = useGetCartQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+    refetchOnReconnect: true,
+    refetchOnFocus: true,
+  });
+
+  const [removeFromCart] = useRemoveFromCartMutation();
+
   const total = cart.reduce((acc, item) => acc + item.price, 0);
 
   const handleContinue = () => {
-    // TODO: Implement continue to checkout functionality
+    // TODO: Go to payment page or checkout flow
   };
 
-  const handleRemove = (id) => {
-    const newCart = cart.filter((item) => item.id !== id);
-    setCart(newCart);
+  const handleRemove = async (productId) => {
+    try {
+      await removeFromCart(productId).unwrap();
+    } catch (error) {
+      console.error(ERROR_MESSAGES.REMOVE_FAILED, error);
+    }
   };
 
   return (
@@ -22,6 +40,8 @@ const CartPage = () => {
       total={total}
       onContinue={handleContinue}
       handleItemRemove={handleRemove}
+      isLoading={isLoading}
+      isError={isError}
     />
   );
 };
