@@ -1,10 +1,11 @@
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { CardActions, CardContent, Divider } from '@mui/material';
 import React from 'react';
 
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { CardActions, CardContent, Divider } from '@mui/material';
+
 import { BigStyledCard } from './Product.styled.js';
-import { BUTTON_VARIANTS } from '../../constants/buttonTypes.js';
-import { UI_TEXT } from '../../constants/text.js';
+import { CART_TEXT, UI_TEXT } from '../../constants/hardText.js';
+import { BUTTON_VARIANTS } from '../../constants/types.js';
 import { addSignShekel } from '../../utils/converting.js';
 import ActionButton from '../shared/Button/ActionButton.jsx';
 import { SharedImage } from '../shared/Image/SharedImage';
@@ -38,7 +39,7 @@ const ProductView = ({
         onClick={handleAddToCart}
         styleType={BUTTON_VARIANTS.FILLED}
       >
-        {UI_TEXT.ADD_TO_CART}
+        {CART_TEXT.ADD_TO_CART}
       </ActionButton>
     </CardActions>
 

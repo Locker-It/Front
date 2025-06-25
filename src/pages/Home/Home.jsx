@@ -1,11 +1,13 @@
-import { Container, Box , CircularProgress } from '@mui/material';
 import React from 'react';
+
+import { CircularProgress } from '@mui/material';
 
 import { StyledContainer, HeroBox, NewestProductsBox } from './Home.styled';
 import Hero from '../../components/Hero/Hero.jsx';
 import ProductCarousel from '../../components/ProductCarousel/ProductCarousel.jsx';
 import SharedTypography from '../../components/shared/Text/SharedTypography.jsx';
-import { UI_TEXT } from '../../constants/text.js';
+import { ERROR_MESSAGES } from '../../constants/errorMessages.js';
+import { UI_TEXT } from '../../constants/hardText.js';
 import { useGetNewestProductsQuery } from '../../services/productApi.js';
 
 function Home() {
@@ -27,7 +29,7 @@ function Home() {
         </SharedTypography>
         {isLoading && <CircularProgress />}
         {error && (
-          <SharedTypography>{UI_TEXT.FAILED_TO_LOAD_PRODUCTS}</SharedTypography>
+          <SharedTypography>{ERROR_MESSAGES.FAILED_TO_LOAD_PRODUCTS}</SharedTypography>
         )}
         {newestProducts && (
           <ProductCarousel products={newestProducts.slice(0, 8)} />

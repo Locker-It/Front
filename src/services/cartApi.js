@@ -1,8 +1,9 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
+
 import { baseQueryWithSession } from './baseQueryWithSession';
 import { HTTP_METHODS } from '../constants/httpMethods';
+import { BASE_URL, ROUTES } from '../constants/routes.constants.js';
 import { TAG_TYPES } from '../constants/types';
-import { BASE_URL, ROUTES } from '../constants/routerPaths';
 
 export const cartApi = createApi({
   reducerPath: 'cartApi',

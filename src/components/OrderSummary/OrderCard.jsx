@@ -1,5 +1,6 @@
-import { Grid, Divider } from '@mui/material';
 import React from 'react';
+
+import { Grid, Divider } from '@mui/material';
 
 import {
   OrderCardContainer,
@@ -7,7 +8,8 @@ import {
   SharedFlexBox,
   dividerStyle,
 } from './OrderCard.styled';
-import { UI_TEXT } from '../../constants/text';
+import { ERROR_MESSAGES } from '../../constants/errorMessages.js';
+import { CART_TEXT} from '../../constants/hardText.js';
 import { addSignShekel } from '../../utils/converting';
 import SharedGrid from '../shared/Grid/SharedGrid';
 import { SharedImage } from '../shared/Image/SharedImage';
@@ -18,7 +20,7 @@ const OrderCard = ({ items = [], total = 0 }) => {
     return (
       <OrderCardContainer>
         <SharedTypography variant="body1">
-          {UI_TEXT.NO_ITEMS_IN_CART}
+          {ERROR_MESSAGES.NO_ITEMS_IN_CART}
         </SharedTypography>
       </OrderCardContainer>
     );
@@ -49,7 +51,7 @@ const OrderCard = ({ items = [], total = 0 }) => {
 
       <SharedGrid container justifyContent="space-between" alignItems="center">
         <SharedTypography variant="h6" fontWeight="bold">
-          {UI_TEXT.CART_TOTAL}
+          {CART_TEXT.CART_TOTAL}
         </SharedTypography>
         <SharedTypography variant="h6" fontWeight="bold">
           {addSignShekel(total.toFixed(2))}

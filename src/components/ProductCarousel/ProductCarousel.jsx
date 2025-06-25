@@ -1,16 +1,17 @@
 import React from 'react';
+
 import { useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { CarouselWrapper } from './ProductCarousel.styled';
 import {
   SLIDES_TO_SHOW_DEFAULT,
   AUTOPLAY_SPEED_MS,
   RESPONSIVE_BREAKPOINTS,
-} from '../../constants/carousel';
-import { ROUTES } from '../../constants/routerPaths.js';
+} from './Carousel.constants.js';
+import { CarouselWrapper } from './ProductCarousel.styled';
+import { ROUTES } from '../../constants/routes.constants.js';
 import ProductCard from '../Product/ProductCard';
 
 const ProductCarousel = ({ products }) => {

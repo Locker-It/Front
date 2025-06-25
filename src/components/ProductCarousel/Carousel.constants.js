@@ -1,4 +1,4 @@
-import theme from '../theme/theme';
+import theme from '../../theme/theme.js';
 
 export const SLIDES_TO_SHOW_DEFAULT = 4;
 export const AUTOPLAY_SPEED_MS = 2000;

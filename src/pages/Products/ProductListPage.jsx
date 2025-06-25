@@ -1,12 +1,15 @@
-import { CircularProgress, Grid } from '@mui/material';
 import React from 'react';
+
 import { useNavigate } from 'react-router-dom';
+
+import { CircularProgress, Grid } from '@mui/material';
 
 import { containerStyle, spinnerStyle } from './ProductListPage.styled.js';
 import ProductCard from '../../components/Product/ProductCard.jsx';
 import SharedTypography from '../../components/shared/Text/SharedTypography.jsx';
-import { ROUTES } from '../../constants/routerPaths.js';
-import { UI_TEXT } from '../../constants/text.js';
+import { ERROR_MESSAGES } from '../../constants/errorMessages.js';
+import { UI_TEXT } from '../../constants/hardText.js';
+import { ROUTES } from '../../constants/routes.constants.js';
 import { useGetProductsQuery } from '../../services/productApi.js';
 
 const ProductListPage = () => {
@@ -27,7 +30,7 @@ const ProductListPage = () => {
   if (error)
     return (
       <SharedTypography color="error">
-        {UI_TEXT.FAILED_TO_LOAD_PRODUCTS}
+        {ERROR_MESSAGES.FAILED_TO_LOAD_PRODUCTS}
       </SharedTypography>
     );
 

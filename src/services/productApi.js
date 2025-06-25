@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import { HTTP_METHODS } from '../constants/httpMethods';
-import { ROUTES } from '../constants/routerPaths';
+import { ROUTES } from '../constants/routes.constants.js';
 import { TAG_TYPES } from '../constants/types.js';
 
 export const productApi = createApi({

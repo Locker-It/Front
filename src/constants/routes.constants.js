@@ -4,7 +4,6 @@ export const ROUTES = {
   HOME: '/',
   ABOUT: '/about',
   PRODUCTS: '/products',
-  USERS: '/users',
   LOGIN: '/auth/login',
   REGISTER: '/auth/register',
   ORDER_PROCESS: '/orderProcess',
@@ -19,5 +18,6 @@ export const ROUTES = {
   AUTH_REFRESH: '/auth/refresh',
   PRODUCT_ID_PARAM: ':id',
   LOGOUT: '/auth/logout',
-  CURRENT_USER: '/auth/me'
+  CURRENT_USER: '/auth/me',
+  DASHBOARD: '/dashboard',
 };

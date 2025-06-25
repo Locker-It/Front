@@ -1,9 +1,11 @@
-import { CssBaseline } from '@mui/material';
-import { ThemeProvider } from '@mui/system';
 import React from 'react';
+
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { RouterProvider } from 'react-router-dom';
+
+import { CssBaseline } from '@mui/material';
+import { ThemeProvider } from '@mui/system';
 
 import { router } from './Router';
 import { store } from './store/store';

@@ -1,8 +1,8 @@
-import { ROUTES as ROUTER_PATHS } from '../../constants/routerPaths.js';
-import { UI_TEXT } from '../../constants/text.js';
+import { BUTTON_TEXT } from '../../constants/buttons.constants.js';
+import { ROUTES as ROUTER_PATHS } from '../../constants/routes.constants.js';
 
 export const mainNavItems = [
-  { to: ROUTER_PATHS.HOME, label: UI_TEXT.HOME },
-  { to: ROUTER_PATHS.ABOUT, label: UI_TEXT.ABOUT },
-  { to: ROUTER_PATHS.PRODUCTS, label: UI_TEXT.PRODUCTS },
+  { to: ROUTER_PATHS.HOME, label: BUTTON_TEXT.HOME },
+  { to: ROUTER_PATHS.ABOUT, label: BUTTON_TEXT.ABOUT },
+  { to: ROUTER_PATHS.PRODUCTS, label: BUTTON_TEXT.PRODUCTS },
 ];

@@ -1,8 +1,9 @@
 import React from 'react';
+
 import { Link as RouterLink } from 'react-router-dom';
 
 import { StyledButton } from './ActionButton.styles';
-import { BUTTON_VARIANTS } from '../../../constants/buttonTypes.js';
+import { BUTTON_VARIANTS } from '../../../constants/types.js';
 
 const ActionButton = ({
   children,

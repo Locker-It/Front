@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -11,9 +12,9 @@ import {
   CenterSection,
   RightSection,
 } from './Navbar.styled';
-import { BUTTON_VARIANTS } from '../../constants/buttonTypes.js';
-import { ERROR_MESSAGES } from '../../constants/errors.js';
-import { ROUTES as ROUTER_PATHS } from '../../constants/routerPaths.js';
+import { ERROR_MESSAGES } from '../../constants/errorMessages.js';
+import { ROUTES as ROUTER_PATHS } from '../../constants/routes.constants.js';
+import { BUTTON_VARIANTS } from '../../constants/types.js';
 import { useLogoutUserMutation } from '../../services/authApi.js';
 import { logout } from '../../store/authSlice.js';
 import UserGreeting from '../Auth/UserGreeting.jsx';

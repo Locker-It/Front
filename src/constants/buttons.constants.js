@@ -1,0 +1,16 @@
+export const BUTTON_TEXT = {
+  HOME: 'Home',
+  ABOUT: 'About',
+  PRODUCTS: 'Products',
+  LOGIN: 'Login',
+  LOGOUT: 'Logout',
+  GO_HOME: 'Go Home',
+  NEXT: 'Next',
+  FINISH: 'Finish',
+  BACK: 'Back',
+  ORDER: 'Orders',
+  CUSTOMERS: 'Customers',
+  DASHBOARD: 'Dashboard',
+  LOCKERS: 'Lockers',
+  PROFILE: 'Profile',
+};

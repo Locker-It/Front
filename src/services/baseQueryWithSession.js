@@ -1,6 +1,6 @@
 import { fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-import { ROUTES } from '../constants/routerPaths';
+import { ROUTES } from '../constants/routes.constants.js';
 import { loginSuccess, logout } from '../store/authSlice';
 
 const baseQuery = fetchBaseQuery({

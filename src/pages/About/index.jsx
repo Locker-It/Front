@@ -1,18 +1,20 @@
+import React from 'react';
+
+import { motion } from 'framer-motion';
+
 import InfoIcon from '@mui/icons-material/Info';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import SecurityIcon from '@mui/icons-material/Security';
 import WatchLaterIcon from '@mui/icons-material/WatchLater';
 import { Box, List, ListItem } from '@mui/material';
-import { motion } from 'framer-motion';
-import React from 'react';
 
 import styles from './About.styled.js';
 import ActionButton from '../../components/shared/Button/ActionButton.jsx';
 import SharedGrid from '../../components/shared/Grid/SharedGrid.jsx';
 import { SharedImage } from '../../components/shared/Image/SharedImage.jsx';
 import SharedTypography from '../../components/shared/Text/SharedTypography.jsx';
-import { BUTTON_VARIANTS } from '../../constants/buttonTypes.js';
-import { ABOUT_TEXT } from '../../constants/text.js';
+import { ABOUT_TEXT } from '../../constants/hardText.js';
+import { BUTTON_VARIANTS } from '../../constants/types.js';
 
 
 const fadeInUp = {

@@ -1,8 +1,8 @@
 export const TAG_TYPES = {
-    PRODUCT: 'Product',
-    CART: 'Cart',
-    USER: 'User',
-  };
+  PRODUCT: 'Product',
+  CART: 'Cart',
+  USER: 'User',
+};
 
 export const LOGO_VARIANTS = {
   NAVBAR: 'NAVBAR',
@@ -15,4 +15,11 @@ export const TEXT_VARIANTS = {
   WHITE_TITLE: 'WHITE_TITLE',
   GREY_TITLE: 'GREY_TITLE',
   DEFAULT: 'DEFAULT',
+};
+export const BUTTON_VARIANTS = {
+  FILLED: 'filled',
+  OUTLINED: 'outlined',
+  TEXT: 'text',
+  NAVBAR: 'navbar',
+  DEFAULT: 'default',
 };

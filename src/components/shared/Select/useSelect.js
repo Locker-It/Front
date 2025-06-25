@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import {UI_TEXT} from '../../../constants/text'
+import {UI_TEXT} from '../../../constants/hardText.js'
 
 export const useSelect = (initialValue = '', initialOptions = [], initialPlaceholder = UI_TEXT.SELECT_AN_OPTION) => {
   const [value, setValue] = useState(initialValue);

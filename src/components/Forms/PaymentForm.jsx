@@ -1,17 +1,19 @@
-import { yupResolver } from '@hookform/resolvers/yup';
-import { TextField, Stack } from '@mui/material';
 import React from 'react';
+
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
+import { TextField, Stack } from '@mui/material';
+
 import { StyledPaper, FormWrapper } from './Form.styled.js';
-import { BUTTON_VARIANTS } from '../../constants/buttonTypes.js';
+import { PAYMENT_TEXT } from '../../constants/hardText.js';
 import {
   CARD_NUMBER_REGEX,
   EXPIRY_REGEX,
   CVV_REGEX,
 } from '../../constants/regex.js';
-import { PAYMENT_TEXT } from '../../constants/text.js';
+import { BUTTON_VARIANTS } from '../../constants/types.js';
 import ActionButton from '../shared/Button/ActionButton.jsx';
 import SharedTypography from '../shared/Text/SharedTypography.jsx';
 

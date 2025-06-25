@@ -2,7 +2,7 @@ import React from 'react';
 
 import { managementContainerStyle } from './Customer.styled.js';
 import FloatingActionButtonZoom from '../../components/Manage/SharedManagementBar.jsx';
-import { UI_TEXT } from '../../constants/text.js';
+import { UI_TEXT } from '../../constants/hardText.js';
 
 function Customer_Bar() {
   return (
