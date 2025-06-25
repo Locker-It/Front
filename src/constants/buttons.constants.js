@@ -13,4 +13,5 @@ export const BUTTON_TEXT = {
   DASHBOARD: 'Dashboard',
   LOCKERS: 'Lockers',
   PROFILE: 'Profile',
+  SUBMIT: 'Pay Now',
 };

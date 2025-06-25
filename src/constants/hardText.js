@@ -34,19 +34,18 @@ export const ABOUT_TEXT = {
 };
 
 export const PAYMENT_TEXT = {
-  title: 'Payment Details',
-  cardNumberLabel: 'Card Number',
-  cardNumberRequired: 'Card number is required',
-  cardNumberInvalid: 'Card number must be 16 digits',
-  expiryLabel: 'Expiry (MM/YY)',
-  expiryRequired: 'Expiry date is required',
-  expiryInvalid: 'Expiry must be in MM/YY format',
-  cvvLabel: 'CVV',
-  cvvRequired: 'CVV is required',
-  cvvInvalid: 'CVV must be 3 or 4 digits',
-  cardHolderLabel: 'Cardholder Name',
-  cardHolderRequired: 'Cardholder name is required',
-  submit: 'Pay Now',
+  TITLE: 'Payment Details',
+  CARD_NUMBER_LABEL: 'Card Number',
+  CARD_NUMBER_REQUIRED: 'Card number is required',
+  CARD_NUMBER_INVALID: 'Card number must be 16 digits',
+  EXPIRY_LABEL: 'Expiry Date (MM/YY)',
+  EXPIRY_REQUIRED: 'Expiry date is required',
+  EXPIRY_INVALID: 'Expiry must be in MM/YY format',
+  CVV_LABEL: 'CVV',
+  CVV_REQUIRED: 'CVV is required',
+  CVV_INVALID: 'CVV must be 3 or 4 digits',
+  CARD_HOLDER_LABEL: 'Cardholder Name',
+  CARD_HOLDER_REQUIRED: 'Cardholder name is required',
 };
 
 export const CART_TEXT = {

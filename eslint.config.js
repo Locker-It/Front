@@ -36,7 +36,6 @@ export default [
         'warn',
         { allowConstantExport: true },
       ],
-      'unused-imports/no-unused-imports': 'error',
       'unused-imports/no-unused-vars': [
         'warn',
         {
