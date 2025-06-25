@@ -6,3 +6,5 @@ export const mainNavItems = [
   { to: ROUTER_PATHS.ABOUT, label: UI_TEXT.ABOUT },
   { to: ROUTER_PATHS.PRODUCTS, label: UI_TEXT.PRODUCTS },
 ];
+
+export const cartNavItem = { to: ROUTER_PATHS.CART, label: UI_TEXT.CART };

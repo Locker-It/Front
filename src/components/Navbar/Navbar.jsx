@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import AuthButton from './AuthButton.jsx';
-import { mainNavItems } from './Navbar.helpers.jsx';
+import { mainNavItems, cartNavItem } from './Navbar.helpers.jsx';
 import {
   CustomAppBar,
   CustomToolbar,
@@ -25,6 +25,11 @@ function Navbar() {
   const navigate = useNavigate();
   const { isLoggedIn } = useSelector((state) => state.auth);
   const [logoutUser] = useLogoutUserMutation();
+  const navItems = [...mainNavItems];
+
+  if (isLoggedIn) {
+    navItems.push(cartNavItem);
+  }
 
   const handleLogout = async () => {
     try {
@@ -45,7 +50,7 @@ function Navbar() {
         </LeftSection>
 
         <CenterSection>
-          {mainNavItems.map(({ to, label }) => (
+          {navItems.map(({ to, label }) => (
             <ActionButton key={to} styleType={BUTTON_VARIANTS.NAVBAR} to={to}>
               {label}
             </ActionButton>

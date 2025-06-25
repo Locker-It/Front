@@ -6,6 +6,7 @@ export const UI_TEXT = {
   SIGNUP: 'Sign Up',
   LOGOUT: 'Logout',
   GO_HOME: 'Go Home',
+  CART: 'Your Cart',
   NEXT: 'Next',
   FINISH: 'Finish',
   BACK: 'Back',
