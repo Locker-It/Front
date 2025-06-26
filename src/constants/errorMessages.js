@@ -14,4 +14,6 @@ export const AUTH_ERRORS = {
   REGISTER_FAILED: 'Registration failed',
   GENERAL_REGISTER_ERROR: 'General registration error',
   INVALID_TOKEN: 'Invalid token. Auth not restored.',
+  PRODUCT_CREATE_FAILED: 'Failed to add product',
+  GENERAL_PRODUCT_ERROR: 'Could not add product. Please try again later.',
 };
