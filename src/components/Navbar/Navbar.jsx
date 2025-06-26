@@ -26,11 +26,14 @@ function Navbar() {
   const navigate = useNavigate();
   const { isLoggedIn } = useSelector((state) => state.auth);
   const [logoutUser] = useLogoutUserMutation();
-  const navItems = [...mainNavItems];
 
-  if (isLoggedIn) {
-    navItems.push(cartNavItem);
-  }
+  const navItems = React.useMemo(() => {
+    const items = [...mainNavItems];
+    if (isLoggedIn) {
+      items.push(cartNavItem);
+    }
+    return items;
+  }, [isLoggedIn]);
 
   const handleLogout = async () => {
     try {
