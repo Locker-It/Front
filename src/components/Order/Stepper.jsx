@@ -16,7 +16,6 @@ import OrderSummary from './steps/OrderSummary';
 import PaymentDetails from './steps/PaymentDetails';
 import useStep from './useStep';
 import { BUTTON_TEXT } from '../../constants/buttons.constants.js';
-import { UI_TEXT } from '../../constants/hardText.js';
 import { ROUTES as ROUTER_PATHS } from '../../constants/routes.constants.js';
 import { BUTTON_VARIANTS } from '../../constants/types.js';
 import ActionButton from '../shared/Button/ActionButton';

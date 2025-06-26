@@ -8,7 +8,6 @@ import { containerStyle, spinnerStyle } from './ProductListPage.styled.js';
 import ProductCard from '../../components/Product/ProductCard.jsx';
 import SharedTypography from '../../components/shared/Text/SharedTypography.jsx';
 import { ERROR_MESSAGES } from '../../constants/errorMessages.js';
-import { UI_TEXT } from '../../constants/hardText.js';
 import { ROUTES } from '../../constants/routes.constants.js';
 import { useGetProductsQuery } from '../../services/productApi.js';
 
