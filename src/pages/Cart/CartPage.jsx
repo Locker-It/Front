@@ -1,11 +1,11 @@
 import React from 'react';
 
 import Cart from '../../components/Cart/Cart.jsx';
+import { ERROR_MESSAGES } from '../../constants/errorMessages.js';
 import {
   useGetCartQuery,
   useRemoveFromCartMutation,
 } from '../../services/cartApi';
-import { ERROR_MESSAGES } from '../../constants/errors.js';
 
 const CartPage = () => {
   const {

@@ -1,10 +1,11 @@
+import React from 'react';
+
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 import { MenuItem } from '@mui/material';
-import React from 'react';
 
 import { StyledSelect } from './Select.styles';
 import { useSelect } from './useSelect';
-import { UI_TEXT } from '../../../constants/text';
+import { UI_TEXT } from '../../../constants/hardText.js';
 
 const renderSelectValue = (selected, currentOptions, currentPlaceholder) => {
   if (selected === '' || selected === undefined) {

@@ -1,0 +1,35 @@
+export const SIGN_UP_CONSTANTS = {
+  USERNAME: 'username',
+  EMAIL: 'email',
+  PASSWORD: 'password',
+  NAME: 'name',
+  CONFIRM_PASSWORD: 'confirmPassword',
+  PASSWORD_MIN_LENGTH: 6,
+};
+export const LOGIN_TEXT = {
+  title: 'Login',
+  passwordLabel: 'Password',
+  submit: 'Login',
+  passwordRequired: 'Password is required',
+  usernameLabel: 'Username',
+  usernameRequired: 'Username is required',
+  signupLinkText: "Don't have an account? Sign up",
+};
+export const SIGNUP_TEXT = {
+  title: 'Sign Up',
+  nameLabel: 'Full Name',
+  usernameLabel: 'Username',
+  emailLabel: 'Email',
+  passwordLabel: 'Password',
+  confirmPasswordLabel: 'Confirm Password',
+  submit: 'Create Account',
+  nameRequired: 'Name is required',
+  usernameRequired: 'Username is required',
+  emailRequired: 'Email is required',
+  invalidEmail: 'Please enter a valid email',
+  passwordMin: 'Password must be at least 6 characters',
+  passwordRequired: 'Password is required',
+  confirmPasswordRequired: 'Please confirm your password',
+  passwordMismatch: 'Passwords do not match',
+  loginLinkText: 'Already have an account? Login here',
+};

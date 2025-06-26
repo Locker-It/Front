@@ -1,7 +1,8 @@
 import React from 'react';
+
 import { useSelector } from 'react-redux';
 
-import { UI_TEXT } from '../../constants/text.js';
+import { NAVBAR_TEXT } from '../../constants/hardText.js';
 import { TEXT_VARIANTS } from '../../constants/types.js';
 import SharedTypography from '../shared/Text/SharedTypography.jsx';
 
@@ -13,7 +14,7 @@ function UserGreeting() {
 
   return (
     <SharedTypography variant={TEXT_VARIANTS.NAV_TITLE}>
-      {UI_TEXT.HELLO_USER}{username}
+      {NAVBAR_TEXT.HELLO_USER}{username}
     </SharedTypography>
   );
 }

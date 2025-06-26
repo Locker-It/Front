@@ -1,4 +1,4 @@
-import { BUTTON_VARIANTS } from '../../../constants/buttonTypes.js';
+import { BUTTON_VARIANTS } from '../../../constants/types.js';
 
 export const getButtonStyles = (theme) => ({
   [BUTTON_VARIANTS.FILLED]: {

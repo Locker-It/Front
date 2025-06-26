@@ -1,9 +1,9 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 
 import { baseQueryWithSession } from './baseQueryWithSession.js';
-import { AUTH_ERRORS } from '../constants/auth.constants';
+import { AUTH_ERRORS } from '../constants/errorMessages.js';
 import { HTTP_METHODS } from '../constants/httpMethods';
-import { ROUTES } from '../constants/routerPaths';
+import { ROUTES } from '../constants/routes.constants.js';
 import { loginSuccess } from '../store/authSlice';
 
 

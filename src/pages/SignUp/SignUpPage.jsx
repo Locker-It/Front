@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
+
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import SignupForm from '../../components/Forms/SignUpForm';
 import SharedTypography from '../../components/shared/Text/SharedTypography.jsx';
-import { AUTH_ERRORS } from '../../constants/auth.constants';
-import { ROUTES } from '../../constants/routerPaths';
+import { AUTH_ERRORS } from '../../constants/errorMessages.js';
+import { ROUTES } from '../../constants/routes.constants.js';
 import { useRegisterUserMutation } from '../../services/authApi';
 import { extractApiError } from '../../utils/authErrors.js';
 

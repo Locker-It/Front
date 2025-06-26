@@ -1,21 +1,23 @@
-import { Link } from '@mui/material';
 import React from 'react';
+
 import { Link as RouterLink } from 'react-router-dom';
+
+import { Link } from '@mui/material';
 
 import {
   FooterContainer,
   FooterLinks,
   footerTextStyle,
 } from './Footer.styled.js';
-import { ROUTES as ROUTER_PATHS } from '../../constants/routerPaths.js';
-import { UI_TEXT } from '../../constants/text';
+import { UI_TEXT } from '../../constants/hardText.js';
+import { ROUTES as ROUTER_PATHS } from '../../constants/routes.constants.js';
 import SharedTypography from '../shared/Text/SharedTypography.jsx';
 
 function Footer() {
   return (
     <FooterContainer component="footer">
       <SharedTypography variant="body2" style={footerTextStyle}>
-        © {new Date().getFullYear()} {UI_TEXT.SECOND_HAND_STORE}
+        © {new Date().getFullYear()} {UI_TEXT.LOCKER_IT}
       </SharedTypography>
 
       <FooterLinks>

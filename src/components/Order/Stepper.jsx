@@ -1,8 +1,9 @@
+import React from 'react';
+
 import Box from '@mui/material/Box';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Stepper from '@mui/material/Stepper';
-import React from 'react';
 
 import {
   containerStyle,
@@ -14,9 +15,9 @@ import OrderComplete from './steps/OrderComplete';
 import OrderSummary from './steps/OrderSummary';
 import PaymentDetails from './steps/PaymentDetails';
 import useStep from './useStep';
-import { BUTTON_VARIANTS } from '../../constants/buttonTypes.js';
-import { ROUTES as ROUTER_PATHS } from '../../constants/routerPaths.js';
-import { UI_TEXT } from '../../constants/text';
+import { BUTTON_TEXT } from '../../constants/buttons.constants.js';
+import { ROUTES as ROUTER_PATHS } from '../../constants/routes.constants.js';
+import { BUTTON_VARIANTS } from '../../constants/types.js';
 import ActionButton from '../shared/Button/ActionButton';
 
 const stepComponents = [
@@ -31,7 +32,7 @@ export default function HorizontalLinearStepper() {
   const { activeStep, handleNext, handleBack } = useStep(steps.length);
   const isFinalStep = activeStep === steps.length - 1;
   const nextButtonLabel =
-    activeStep === steps.length - 2 ? UI_TEXT.FINISH : UI_TEXT.NEXT;
+    activeStep === steps.length - 2 ? BUTTON_TEXT.FINISH : BUTTON_TEXT.NEXT;
 
   return (
     <Box sx={containerStyle}>
@@ -52,7 +53,7 @@ export default function HorizontalLinearStepper() {
             to={ROUTER_PATHS.HOME}
             styleType={BUTTON_VARIANTS.FILLED}
           >
-            {UI_TEXT.GO_HOME}
+            {BUTTON_TEXT.GO_HOME}
           </ActionButton>
         </Box>
       ) : (
@@ -62,7 +63,7 @@ export default function HorizontalLinearStepper() {
             onClick={handleBack}
             styleType={BUTTON_VARIANTS.FILLED}
           >
-            {UI_TEXT.BACK}
+            {BUTTON_TEXT.BACK}
           </ActionButton>
           <Box sx={spacerStyle} />
           <ActionButton onClick={handleNext} styleType={BUTTON_VARIANTS.FILLED}>

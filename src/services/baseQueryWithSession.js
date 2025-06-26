@@ -1,6 +1,7 @@
 import { fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-import { ROUTES } from '../constants/routerPaths';
+import { HTTP_METHODS } from '../constants/httpMethods.js';
+import { ROUTES } from '../constants/routes.constants.js';
 import { loginSuccess, logout } from '../store/authSlice';
 
 const baseQuery = fetchBaseQuery({
@@ -13,7 +14,7 @@ export const baseQueryWithSession = async (args, api, extraOptions) => {
 
   if (result?.error?.status === 401) {
     const refreshResult = await baseQuery(
-      { url: ROUTES.AUTH_REFRESH, method: 'POST' },
+      { url: ROUTES.AUTH_REFRESH, method: HTTP_METHODS.POST },
       api,
       extraOptions
     );

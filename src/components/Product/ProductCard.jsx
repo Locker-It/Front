@@ -1,8 +1,9 @@
-import { CardContent, CardActionArea } from '@mui/material';
 import React from 'react';
 
+import { CardContent, CardActionArea } from '@mui/material';
+
 import { StyledCard } from './Product.styled.js';
-import { UI_TEXT } from '../../constants/text';
+import { UI_TEXT } from '../../constants/hardText.js';
 import { addSignShekel  } from '../../utils/converting.js';
 import { SharedImage } from '../shared/Image/SharedImage.jsx';
 import SharedTypography from '../shared/Text/SharedTypography.jsx';
@@ -21,7 +22,7 @@ const ProductCard = ({
         <SharedImage src={images} alt={name} />
 
         <CardContent>
-          <SharedTypography variant={UI_TEXT.SUBTITLE1_VARIANT}>
+          <SharedTypography variant="h5">
             {name}
           </SharedTypography>
 

@@ -1,6 +1,7 @@
-import { Box, Tabs, Tab } from '@mui/material';
 import * as React from 'react';
 import { useState } from 'react';
+
+import { Box, Tabs, Tab } from '@mui/material';
 
 import {
   tabPanelStyle,
@@ -15,7 +16,8 @@ import ManagerProducts from './Tabs/ManagerProducts';
 import UserOrders from './Tabs/UserOrders';
 import UserProducts from './Tabs/UserProducts';
 import UserProfile from './Tabs/UserProfile';
-import { UI_TEXT } from '../../constants/text';
+import { BUTTON_TEXT } from '../../constants/buttons.constants.js';
+import { UI_TEXT } from '../../constants/hardText.js';
 import SharedTypography from '../shared/Text/SharedTypography.jsx';
 
 function TabPanel({ children, value, index, ...other }) {
@@ -49,17 +51,17 @@ export default function FloatingActionButtonZoom({ role }) {
   const isManager = role === UI_TEXT.MANAGER;
 
   const managerTabs = [
-    { label: UI_TEXT.ORDER, component: <ManagerOrders /> },
-    { label: UI_TEXT.PRODUCTS, component: <ManagerProducts /> },
-    { label: UI_TEXT.CUSTOMERS, component: <ManagerCustomers /> },
-    { label: UI_TEXT.LOCKERS, component: <ManagerLockers /> },
-    { label: UI_TEXT.DASHBOARD, component: <ManagerDashboard /> },
+    { label: BUTTON_TEXT.ORDER, component: <ManagerOrders /> },
+    { label: BUTTON_TEXT.PRODUCTS, component: <ManagerProducts /> },
+    { label: BUTTON_TEXT.CUSTOMERS, component: <ManagerCustomers /> },
+    { label: BUTTON_TEXT.LOCKERS, component: <ManagerLockers /> },
+    { label: BUTTON_TEXT.DASHBOARD, component: <ManagerDashboard /> },
   ];
 
   const customerTabs = [
-    { label: UI_TEXT.ORDER, component: <UserOrders /> },
-    { label: UI_TEXT.PRODUCTS, component: <UserProducts /> },
-    { label: UI_TEXT.PROFILE, component: <UserProfile /> },
+    { label: BUTTON_TEXT.ORDER, component: <UserOrders /> },
+    { label: BUTTON_TEXT.PRODUCTS, component: <UserProducts /> },
+    { label: BUTTON_TEXT.PROFILE, component: <UserProfile /> },
   ];
   const tabs = isManager ? managerTabs : customerTabs;
 

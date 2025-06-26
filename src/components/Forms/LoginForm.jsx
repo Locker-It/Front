@@ -1,13 +1,15 @@
-import { yupResolver } from '@hookform/resolvers/yup';
-import { TextField, Stack } from '@mui/material';
 import React from 'react';
+
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
+import { TextField, Stack } from '@mui/material';
+
 import { StyledPaper, TitleWrapper, FormWrapper } from './Form.styled';
-import { BUTTON_VARIANTS } from '../../constants/buttonTypes.js';
-import { ROUTES } from "../../constants/routerPaths.js";
-import { LOGIN_TEXT } from '../../constants/text';
+import { LOGIN_TEXT } from './forms.constants.js';
+import { ROUTES } from "../../constants/routes.constants.js";
+import { BUTTON_VARIANTS } from '../../constants/types.js';
 import ActionButton from '../shared/Button/ActionButton';
 
 const loginSchema = yup.object({

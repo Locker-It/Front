@@ -1,13 +1,13 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+
+import { useParams , useNavigate } from 'react-router-dom';
 
 import { StyledSharedTypography } from '../../components/Product/Product.styled.js';
 import ProductSkeleton from '../../components/Product/ProductSkeleton.jsx';
 import ProductView from '../../components/Product/ProductView.jsx';
-import { ERROR_MESSAGES } from '../../constants/errors.js';
-import { useNavigate } from 'react-router-dom';
-import { ROUTES } from '../../constants/routerPaths.js';
-import { CART_TEXT } from '../../constants/text.js';
+import { ERROR_MESSAGES } from '../../constants/errorMessages.js';
+import { CART_TEXT } from '../../constants/hardText.js';
+import { ROUTES } from '../../constants/routes.constants.js';
 import { useAddToCartMutation } from '../../services/cartApi.js';
 import { useGetProductByIdQuery } from '../../services/productApi.js';
 
@@ -29,7 +29,7 @@ const ProductPage = () => {
     if (!product || isAdding) return;
 
     try {
-      await addToCart(product.id).unwrap(); 
+      await addToCart(product.id).unwrap();
     } catch (err) {
       console.error(ERROR_MESSAGES.ADD_TO_CART_FAILED, err);
       if (err?.status === 401) {
@@ -60,7 +60,7 @@ const ProductPage = () => {
     <ProductView
       {...product}
       handleAddToCart={handleAddToCart}
-      addToCartLoading={isAdding} 
+      addToCartLoading={isAdding}
       addToCartError={addError}
     />
   );

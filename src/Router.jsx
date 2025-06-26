@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import App from './App';
 import AuthBootstrap from './components/Auth/AuthBootstrap.jsx';
-import { ROUTES } from './constants/routerPaths';
+import { ROUTES } from './constants/routes.constants.js';
 import About from './pages/About';
 import CartPage from './pages/Cart/CartPage.jsx';
 import Customer_Bar from './pages/Customer/Customer.jsx';

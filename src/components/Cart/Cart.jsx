@@ -8,8 +8,8 @@ import {
   RemoveButtonWrapper,
   CartItemWrapper,
 } from './Cart.styles';
-import { BUTTON_VARIANTS } from '../../constants/buttonTypes.js';
-import { CART_TEXT, UI_TEXT } from '../../constants/text';
+import { CART_TEXT} from '../../constants/hardText.js';
+import { BUTTON_VARIANTS } from '../../constants/types.js';
 import ProductCard from '../Product/ProductCard';
 import ActionButton from '../shared/Button/ActionButton.jsx';
 import CustomDivider from '../shared/Divider/CustomDivider.jsx';
@@ -29,15 +29,15 @@ const Cart = ({
   const canPurchase = !isCartEmpty && total > 0;
 
   const statusText = isLoading
-    ? UI_TEXT.CART_LOADING
+    ? CART_TEXT.CART_LOADING
     : isError
-      ? UI_TEXT.CART_ERROR
+      ? CART_TEXT.CART_ERROR
       : null;
 
   if (statusText) {
     return (
       <CartContainer>
-        <CartTitle variant="h6">{UI_TEXT.CART_TITLE}</CartTitle>
+        <CartTitle variant="h6">{CART_TEXT.CART_TITLE}</CartTitle>
         <EmptyCartText>{statusText}</EmptyCartText>
       </CartContainer>
     );
@@ -45,9 +45,9 @@ const Cart = ({
 
   return (
     <CartContainer>
-      <CartTitle variant="h6">{UI_TEXT.CART_TITLE}</CartTitle>
+      <CartTitle variant="h6">{CART_TEXT.CART_TITLE}</CartTitle>
       {isCartEmpty ? (
-        <EmptyCartText>{UI_TEXT.CART_EMPTY}</EmptyCartText>
+        <EmptyCartText>{CART_TEXT.CART_EMPTY}</EmptyCartText>
       ) : (
         <>
           <SharedGrid
@@ -90,17 +90,17 @@ const Cart = ({
           <CustomDivider />
           <CartRow>
             <CartTitle as="span" variant="body1">
-              {UI_TEXT.CART_TOTAL}
+              {CART_TEXT.CART_TOTAL}
             </CartTitle>
             <CartTitle as="span" variant="body1">
               {total} ₪
             </CartTitle>
           </CartRow>
           {!isLoggedIn && (
-            <EmptyCartText>{UI_TEXT.CART_LOGIN_REQUIRED}</EmptyCartText>
+            <EmptyCartText>{CART_TEXT.CART_LOGIN_REQUIRED}</EmptyCartText>
           )}
           <ActionButton onClick={onContinue} disabled={!canPurchase} styleType={BUTTON_VARIANTS.FILLED}>
-            {UI_TEXT.CART_CONTINUE}
+            {CART_TEXT.CART_CONTINUE}
           </ActionButton>
         </>
       )}
