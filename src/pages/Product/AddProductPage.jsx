@@ -8,6 +8,7 @@ import { AUTH_ERRORS } from '../../constants/errorMessages.js';
 import { ROUTES } from '../../constants/routes.constants.js';
 import { useAddProductMutation } from '../../services/productApi';
 import { extractApiError } from '../../utils/authErrors.js';
+import { getPresignedUrl } from '../../utils/s3Uploader.js';
 
 export default function AddProductPage() {
   const navigate = useNavigate();
@@ -15,7 +16,25 @@ export default function AddProductPage() {
 
   const handleAddProduct = async (formData) => {
     try {
-      await addProduct(formData).unwrap();
+      const imageFile = formData.image[0];
+
+      // 1. Get presigned URL from backend
+      const { url, key } = await getPresignedUrl(imageFile.name, imageFile.type);
+
+      // 2. Upload image to S3
+      await fetch(url, {
+        method: 'PUT',
+        headers: { 'Content-Type': imageFile.type },
+        body: imageFile,
+      });
+
+      // 3. Send product data to backend (with image URL)
+      const productToSubmit = {
+        ...formData,
+        imageUrl: key, // Assuming your backend expects the S3 key as the image URL
+      };
+
+      await addProduct(productToSubmit).unwrap();
       navigate(ROUTES.PRODUCTS);
     } catch (err) {
       console.error(AUTH_ERRORS.PRODUCT_CREATE_FAILED || 'Failed to add product', err);

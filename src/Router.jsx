@@ -11,7 +11,7 @@ import Home from './pages/Home/Home.jsx';
 import LoginPage from './pages/Login/LoginPage.jsx';
 import Manager_bar from './pages/Manager/Manager.jsx';
 import OrderProcess from './pages/OrderProcess/OrderProcess.jsx';
-import AddProductPage from './pages/Product/AddProductPage..jsx';
+import AddProductPage from './pages/Product/AddProductPage.jsx';
 import ProductPage from './pages/Product/ProductPage.jsx';
 import ProductListPage from './pages/Products/ProductListPage.jsx';
 import SignUpPage from './pages/SignUp/SignUpPage.jsx';
