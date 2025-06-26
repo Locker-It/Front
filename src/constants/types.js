@@ -23,3 +23,13 @@ export const BUTTON_VARIANTS = {
   NAVBAR: 'navbar',
   DEFAULT: 'default',
 };
+
+export const MODAL_TYPES = {
+  SUCCESS: 'success',
+  ERROR: 'error',
+  CONFIRM_TEXT: 'OK',
+  ACCOUNT_CREATED: 'Account Created',
+  ACCOUNT_HAS_CREATED_SUCCESSFULLY:
+    'Your account has been created successfully!',
+  REGISTRATION_FAILED: 'Registration Failed',
+};
