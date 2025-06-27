@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 
 import { PRODUCT_FORM_TEXT } from '../components/Forms/forms.constants.js';
-import { ADD_PRODUCT_CONSTANTS } from '../components/Forms/PoductForm/productForm.constant.js';
+import { ADD_PRODUCT_CONSTANTS, PRODUCT_CATEGORIES } from '../components/Forms/PoductForm/productForm.constant.js';
 import { IMAGE_VALIDATION, SUPPORTED_IMAGE_TYPES } from '../constants/upload.constants.js';
 
 export const addProductSchema = yup.object({
@@ -18,6 +18,11 @@ export const addProductSchema = yup.object({
   [ADD_PRODUCT_CONSTANTS.DESCRIPTION]: yup
     .string()
     .required(PRODUCT_FORM_TEXT.DESCRIPTION_REQUIRED),
+
+  [ADD_PRODUCT_CONSTANTS.CATEGORY]: yup
+    .string()
+    .oneOf(PRODUCT_CATEGORIES, PRODUCT_FORM_TEXT.CATEGORY_INVALID)
+    .required(PRODUCT_FORM_TEXT.CATEGORY_REQUIRED),
 
   image: yup
     .mixed()

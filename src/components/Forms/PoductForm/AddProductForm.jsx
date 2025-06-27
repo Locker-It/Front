@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useDropzone } from 'react-dropzone';
 import { useForm } from 'react-hook-form';
 
-import { TextField, Stack } from '@mui/material';
+import { TextField, Stack, MenuItem } from '@mui/material';
 
 import { BUTTON_VARIANTS } from '../../../constants/types';
 import { useImageUpload } from '../../../hooks/useImageUpload';
@@ -15,7 +15,10 @@ import {
   TitleWrapper,
   FormWrapper,
 } from '../Form.styled';
-import { ADD_PRODUCT_CONSTANTS } from './productForm.constant';
+import {
+  ADD_PRODUCT_CONSTANTS,
+  PRODUCT_CATEGORIES,
+} from './productForm.constant';
 import SharedTypography from '../../shared/Text/SharedTypography';
 import { PRODUCT_FORM_TEXT } from '../forms.constants';
 import ImageDropzone from './ImageDropzone.jsx';
@@ -28,8 +31,12 @@ export default function AddProductForm({ onSubmit, isLoading }) {
     formState: { errors, isSubmitting },
   } = useForm({
     resolver: yupResolver(addProductSchema),
+    defaultValues: {
+      [ADD_PRODUCT_CONSTANTS.CATEGORY]: '', // 🛠️ חובה כדי למנוע undefined
+    },
   });
-// TODO: In future, image upload will be handled by microservice – update accordingly
+
+  // TODO: When image microservice is ready, update this logic
   const { preview, onDrop } = useImageUpload(setValue);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -51,20 +58,35 @@ export default function AddProductForm({ onSubmit, isLoading }) {
           <TextField
             label={PRODUCT_FORM_TEXT.PRODUCT_NAME_LABEL}
             fullWidth
+            defaultValue=""
             {...register(ADD_PRODUCT_CONSTANTS.PRODUCT_NAME)}
             error={!!errors[ADD_PRODUCT_CONSTANTS.PRODUCT_NAME]}
             helperText={errors[ADD_PRODUCT_CONSTANTS.PRODUCT_NAME]?.message}
           />
 
           <TextField
+            label={PRODUCT_FORM_TEXT.CATEGORY_LABEL}
+            select
+            fullWidth
+            defaultValue=""
+            {...register(ADD_PRODUCT_CONSTANTS.CATEGORY)}
+            error={!!errors[ADD_PRODUCT_CONSTANTS.CATEGORY]}
+            helperText={errors[ADD_PRODUCT_CONSTANTS.CATEGORY]?.message}
+          >
+            <MenuItem value="">Select a category</MenuItem>
+            {PRODUCT_CATEGORIES.map((category) => (
+              <MenuItem key={category} value={category}>
+                {category}
+              </MenuItem>
+            ))}
+          </TextField>
+
+          <TextField
             label={PRODUCT_FORM_TEXT.PRICE_LABEL}
             type="number"
             fullWidth
-            inputProps={{
-              inputMode: 'decimal',
-              step: 'any',
-              min: 0,
-            }}
+            defaultValue=""
+            inputProps={{ inputMode: 'decimal', step: 'any', min: 0 }}
             {...register(ADD_PRODUCT_CONSTANTS.PRICE)}
             error={!!errors[ADD_PRODUCT_CONSTANTS.PRICE]}
             helperText={errors[ADD_PRODUCT_CONSTANTS.PRICE]?.message}
@@ -75,6 +97,7 @@ export default function AddProductForm({ onSubmit, isLoading }) {
             fullWidth
             multiline
             rows={4}
+            defaultValue=""
             {...register(ADD_PRODUCT_CONSTANTS.DESCRIPTION)}
             error={!!errors[ADD_PRODUCT_CONSTANTS.DESCRIPTION]}
             helperText={errors[ADD_PRODUCT_CONSTANTS.DESCRIPTION]?.message}

@@ -50,6 +50,7 @@ export const PRODUCT_FORM_TEXT = {
   PRICE_INVALID: 'Price must be a valid number',
   CATEGORY_REQUIRED: 'Category is required',
   IMAGE_URL_INVALID: 'Please enter a valid URL',
+  CATEGORY_INVALID: 'Invalid category selected',
 };
 
 export const IMAGE_DROPZONE_TEXT = {

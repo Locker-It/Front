@@ -17,6 +17,7 @@ export const uploadProductWithImage = async (formData, addProduct) => {
 
   const productToSubmit = {
     ...rest,
+    category: formData.category,
     ...(imageUrl ? { images: [imageUrl] } : {}),
   };
 
