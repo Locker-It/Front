@@ -2,6 +2,8 @@ export const TAG_TYPES = {
   PRODUCT: 'Product',
   CART: 'Cart',
   USER: 'User',
+  LOCKER: 'Locker',
+  AVAILABLE_LOCKER: 'Available_Locker',
 };
 
 export const LOGO_VARIANTS = {

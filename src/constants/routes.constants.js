@@ -20,4 +20,7 @@ export const ROUTES = {
   LOGOUT: '/auth/logout',
   CURRENT_USER: '/auth/me',
   DASHBOARD: '/dashboard',
+  LOCKERS: '/lockers',
+  AVAILABLE_LOCKERS: '/available-lockers',
+
 };

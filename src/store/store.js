@@ -4,6 +4,8 @@ import authReducer from './authSlice';
 import { authApi } from '../services/authApi';
 import { cartApi } from '../services/cartApi';
 import { productApi } from '../services/productApi';
+import { availableLockerApi } from '../services/availableLockerApi';
+import { lockerApi } from '../services/lockerApi';
 
 export const store = configureStore({
   reducer: {
@@ -11,11 +13,15 @@ export const store = configureStore({
     [authApi.reducerPath]: authApi.reducer,
     [cartApi.reducerPath]: cartApi.reducer,
     [productApi.reducerPath]: productApi.reducer,
+    [availableLockerApi.reducerPath]: availableLockerApi.reducer,
+    [lockerApi.reducerPath]: lockerApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
       authApi.middleware,
       cartApi.middleware,
       productApi.middleware,
+      availableLockerApi.middleware,
+      lockerApi.middleware,
     ),
 });
