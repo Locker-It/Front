@@ -17,6 +17,11 @@ export const ItemCard = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(5),
   borderRadius: theme.shape.borderRadius,
   boxShadow: theme.customShadows,
+  transition: theme.transitions.card,
+  '&:hover': {
+    transform: 'translateY(-0.3125rem)', 
+    boxShadow: theme.customShadows.cardHover,
+  },
 }));
 
 export const ImageStyle = {
