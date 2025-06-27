@@ -29,7 +29,7 @@ export default function AddProductForm({ onSubmit, isLoading }) {
   } = useForm({
     resolver: yupResolver(addProductSchema),
   });
-
+// TODO: In future, image upload will be handled by microservice – update accordingly
   const { preview, onDrop } = useImageUpload(setValue);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({

@@ -20,6 +20,7 @@ export const addProductSchema = yup.object({
 
   image: yup
     .mixed()
+    // TODO: When using image upload microservice, consider removing this validation
     .test('fileType', 'Unsupported File Format', (value) => {
       if (!value || value.length === 0) return true; // optional
       return ['image/jpeg', 'image/png', 'image/webp'].includes(value[0].type);

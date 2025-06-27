@@ -9,7 +9,7 @@ import { ERROR_MESSAGES } from '../../constants/errorMessages.js';
 import { CART_TEXT } from '../../constants/hardText.js';
 import { ROUTES } from '../../constants/routes.constants.js';
 import { useAddToCartMutation } from '../../services/cartApi.js';
-import { useGetProductByIdQuery } from '../../services/productApi.js';
+import { useGetProductByIdQuery } from '../../services/product/productApi.js';
 
 const ProductPage = () => {
   const navigate = useNavigate();

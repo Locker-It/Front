@@ -14,7 +14,7 @@ export const ROUTES = {
   ADD_TO_CART: '/add-to-cart',
   REMOVE_FROM_CART: '/remove-from-cart',
   DASHBOARD_CARDS: '/dashboardCards',
-  ADD_PRODUCT: '/product/new',
+  ADD_PRODUCT: '/add-new-product',
   AUTH_REFRESH: '/auth/refresh',
   PRODUCT_ID_PARAM: ':id',
   LOGOUT: '/auth/logout',
