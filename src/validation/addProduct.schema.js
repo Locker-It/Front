@@ -2,6 +2,7 @@ import * as yup from 'yup';
 
 import { PRODUCT_FORM_TEXT } from '../components/Forms/forms.constants.js';
 import { ADD_PRODUCT_CONSTANTS } from '../components/Forms/PoductForm/productForm.constant.js';
+import { IMAGE_VALIDATION, SUPPORTED_IMAGE_TYPES } from '../constants/upload.constants.js';
 
 export const addProductSchema = yup.object({
   [ADD_PRODUCT_CONSTANTS.PRODUCT_NAME]: yup
@@ -21,8 +22,8 @@ export const addProductSchema = yup.object({
   image: yup
     .mixed()
     // TODO: When using image upload microservice, consider removing this validation
-    .test('fileType', 'Unsupported File Format', (value) => {
-      if (!value || value.length === 0) return true; // optional
-      return ['image/jpeg', 'image/png', 'image/webp'].includes(value[0].type);
+    .test(IMAGE_VALIDATION.TEST_NAME, IMAGE_VALIDATION.ERROR_MESSAGE, (value) => {
+      if (!value || value.length === 0) return true;
+      return SUPPORTED_IMAGE_TYPES.includes(value[0].type);
     }),
 });
