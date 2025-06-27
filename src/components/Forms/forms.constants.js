@@ -51,3 +51,8 @@ export const PRODUCT_FORM_TEXT = {
   CATEGORY_REQUIRED: 'Category is required',
   IMAGE_URL_INVALID: 'Please enter a valid URL',
 };
+
+export const IMAGE_DROPZONE_TEXT = {
+  DROP_ACTIVE: 'Drop the image here...',
+  DROP_DEFAULT: 'Drag & drop an image here, or click to select',
+};

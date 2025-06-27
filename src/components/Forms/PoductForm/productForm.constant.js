@@ -1,10 +1,9 @@
 export const ADD_PRODUCT_CONSTANTS = {
-  PRODUCT_NAME: 'PRODUCT_NAME',
-  DESCRIPTION: 'DESCRIPTION',
-  PRICE: 'PRICE',
-  CATEGORY: 'CATEGORY',
-  IMAGE_URL: 'IMAGE_URL',
-  PRICE_MIN: 0.01,
+  PRODUCT_NAME: 'name',
+  DESCRIPTION: 'description',
+  PRICE: 'price',
+  CATEGORY: 'category',
+  IMAGE_URL: 'images',
 };
 
 export const PRODUCT_CATEGORIES = ['ELECTRONICS', 'CLOTHING', 'BOOKS', 'FOOD'];

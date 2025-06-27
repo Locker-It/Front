@@ -1,45 +1,24 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDropzone } from 'react-dropzone';
 import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
 
-import { TextField, Stack, MenuItem } from '@mui/material';
+import { TextField, Stack } from '@mui/material';
 
-import { StyledPaper, TitleWrapper, FormWrapper, DropzoneContainer, PreviewImage} from '../Form.styled.js';
-import { ADD_PRODUCT_CONSTANTS, PRODUCT_CATEGORIES } from './productForm.constant.js';
-import { BUTTON_VARIANTS } from '../../../constants/types.js';
-import ActionButton from '../../shared/Button/ActionButton.jsx';
-import SharedTypography from '../../shared/Text/SharedTypography.jsx';
-import { PRODUCT_FORM_TEXT } from '../forms.constants.js';
-
-const schema = yup.object({
-  [ADD_PRODUCT_CONSTANTS.PRODUCT_NAME.toLowerCase()]: yup
-    .string()
-    .required(PRODUCT_FORM_TEXT.PRODUCT_NAME_REQUIRED),
-  [ADD_PRODUCT_CONSTANTS.DESCRIPTION.toLowerCase()]: yup
-    .string()
-    .required(PRODUCT_FORM_TEXT.DESCRIPTION_REQUIRED),
-  [ADD_PRODUCT_CONSTANTS.PRICE.toLowerCase()]: yup
-    .number()
-    .typeError(PRODUCT_FORM_TEXT.PRICE_INVALID)
-    .positive(PRODUCT_FORM_TEXT.PRICE_POSITIVE)
-    .required(PRODUCT_FORM_TEXT.PRICE_REQUIRED),
-  [ADD_PRODUCT_CONSTANTS.CATEGORY.toLowerCase()]: yup
-    .string()
-    .required(PRODUCT_FORM_TEXT.CATEGORY_REQUIRED),
-  image: yup
-    .mixed()
-    .required('Image is required')
-    .test('fileType', 'Unsupported File Format', (value) => {
-      return (
-        value &&
-        value[0] &&
-        ['image/jpeg', 'image/png', 'image/webp'].includes(value[0].type)
-      );
-    }),
-});
+import { BUTTON_VARIANTS } from '../../../constants/types';
+import { useImageUpload } from '../../../hooks/useImageUpload';
+import { addProductSchema } from '../../../validation/addProduct.schema';
+import ActionButton from '../../shared/Button/ActionButton';
+import {
+  StyledPaper,
+  TitleWrapper,
+  FormWrapper,
+} from '../Form.styled';
+import { ADD_PRODUCT_CONSTANTS } from './productForm.constant';
+import SharedTypography from '../../shared/Text/SharedTypography';
+import { PRODUCT_FORM_TEXT } from '../forms.constants';
+import ImageDropzone from './ImageDropzone.jsx';
 
 export default function AddProductForm({ onSubmit, isLoading }) {
   const {
@@ -48,21 +27,10 @@ export default function AddProductForm({ onSubmit, isLoading }) {
     setValue,
     formState: { errors, isSubmitting },
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(addProductSchema),
   });
 
-  const [preview, setPreview] = useState(null);
-
-  const onDrop = useCallback(
-    (acceptedFiles) => {
-      if (acceptedFiles?.length > 0) {
-        const file = acceptedFiles[0];
-        setValue('image', [file]);
-        setPreview(URL.createObjectURL(file));
-      }
-    },
-    [setValue]
-  );
+  const { preview, onDrop } = useImageUpload(setValue);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
@@ -73,7 +41,9 @@ export default function AddProductForm({ onSubmit, isLoading }) {
   return (
     <StyledPaper elevation={3}>
       <TitleWrapper>
-        <h2>{PRODUCT_FORM_TEXT.TITLE}</h2>
+        <SharedTypography variant="GREY_TITLE">
+          {PRODUCT_FORM_TEXT.TITLE}
+        </SharedTypography>
       </TitleWrapper>
 
       <FormWrapper onSubmit={handleSubmit(onSubmit)} noValidate component="form">
@@ -81,19 +51,9 @@ export default function AddProductForm({ onSubmit, isLoading }) {
           <TextField
             label={PRODUCT_FORM_TEXT.PRODUCT_NAME_LABEL}
             fullWidth
-            {...register(ADD_PRODUCT_CONSTANTS.PRODUCT_NAME.toLowerCase())}
-            error={!!errors[ADD_PRODUCT_CONSTANTS.PRODUCT_NAME.toLowerCase()]}
-            helperText={errors[ADD_PRODUCT_CONSTANTS.PRODUCT_NAME.toLowerCase()]?.message}
-          />
-
-          <TextField
-            label={PRODUCT_FORM_TEXT.DESCRIPTION_LABEL}
-            fullWidth
-            multiline
-            rows={4}
-            {...register(ADD_PRODUCT_CONSTANTS.DESCRIPTION.toLowerCase())}
-            error={!!errors[ADD_PRODUCT_CONSTANTS.DESCRIPTION.toLowerCase()]}
-            helperText={errors[ADD_PRODUCT_CONSTANTS.DESCRIPTION.toLowerCase()]?.message}
+            {...register(ADD_PRODUCT_CONSTANTS.PRODUCT_NAME)}
+            error={!!errors[ADD_PRODUCT_CONSTANTS.PRODUCT_NAME]}
+            helperText={errors[ADD_PRODUCT_CONSTANTS.PRODUCT_NAME]?.message}
           />
 
           <TextField
@@ -104,37 +64,28 @@ export default function AddProductForm({ onSubmit, isLoading }) {
               inputMode: 'decimal',
               step: 'any',
               min: 0,
-              style: { MozAppearance: 'textfield' },
             }}
-            {...register(ADD_PRODUCT_CONSTANTS.PRICE.toLowerCase())}
-            error={!!errors[ADD_PRODUCT_CONSTANTS.PRICE.toLowerCase()]}
-            helperText={errors[ADD_PRODUCT_CONSTANTS.PRICE.toLowerCase()]?.message}
+            {...register(ADD_PRODUCT_CONSTANTS.PRICE)}
+            error={!!errors[ADD_PRODUCT_CONSTANTS.PRICE]}
+            helperText={errors[ADD_PRODUCT_CONSTANTS.PRICE]?.message}
           />
 
           <TextField
-            label={PRODUCT_FORM_TEXT.CATEGORY_LABEL}
-            select
+            label={PRODUCT_FORM_TEXT.DESCRIPTION_LABEL}
             fullWidth
-            {...register(ADD_PRODUCT_CONSTANTS.CATEGORY.toLowerCase())}
-            error={!!errors[ADD_PRODUCT_CONSTANTS.CATEGORY.toLowerCase()]}
-            helperText={errors[ADD_PRODUCT_CONSTANTS.CATEGORY.toLowerCase()]?.message}
-          >
-            {PRODUCT_CATEGORIES.map((category) => (
-              <MenuItem key={category} value={category}>
-                {category}
-              </MenuItem>
-            ))}
-          </TextField>
+            multiline
+            rows={4}
+            {...register(ADD_PRODUCT_CONSTANTS.DESCRIPTION)}
+            error={!!errors[ADD_PRODUCT_CONSTANTS.DESCRIPTION]}
+            helperText={errors[ADD_PRODUCT_CONSTANTS.DESCRIPTION]?.message}
+          />
 
-          <DropzoneContainer {...getRootProps()} className={isDragActive ? 'active' : ''}>
-            <input {...getInputProps()} />
-            <p>
-              {isDragActive
-                ? 'Drop the image here...'
-                : 'Drag & drop an image here, or click to select'}
-            </p>
-            {preview && <PreviewImage src={preview} alt="Preview" />}
-          </DropzoneContainer>
+          <ImageDropzone
+            getRootProps={getRootProps}
+            getInputProps={getInputProps}
+            isDragActive={isDragActive}
+            preview={preview}
+          />
 
           {errors.image && (
             <SharedTypography variant="body2" color="error">
