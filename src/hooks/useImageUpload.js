@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 
 export const useImageUpload = (setValue) => {
   const [preview, setPreview] = useState(null);
@@ -8,11 +8,25 @@ export const useImageUpload = (setValue) => {
       if (acceptedFiles?.length > 0) {
         const file = acceptedFiles[0];
         setValue('image', [file]);
-        setPreview(URL.createObjectURL(file));
+
+        if (preview) {
+          URL.revokeObjectURL(preview);
+        }
+
+        const objectUrl = URL.createObjectURL(file);
+        setPreview(objectUrl);
       }
     },
-    [setValue]
+    [setValue, preview]
   );
+
+  useEffect(() => {
+    return () => {
+      if (preview) {
+        URL.revokeObjectURL(preview);
+      }
+    };
+  }, [preview]);
 
   return { preview, onDrop };
 };

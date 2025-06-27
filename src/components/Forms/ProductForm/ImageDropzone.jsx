@@ -1,7 +1,5 @@
 import React from 'react';
 
-import PropTypes from 'prop-types';
-
 import SharedTypography from '../../shared/Text/SharedTypography.jsx';
 import { DropzoneContainer, PreviewImage } from '../Form.styled.js';
 import { IMAGE_DROPZONE_TEXT } from '../forms.constants.js';
@@ -25,13 +23,6 @@ const ImageDropzone = (props) => {
       {preview && <PreviewImage src={preview} alt="Preview" />}
     </DropzoneContainer>
   );
-};
-
-ImageDropzone.propTypes = {
-  getRootProps: PropTypes.func.isRequired,
-  getInputProps: PropTypes.func.isRequired,
-  isDragActive: PropTypes.bool.isRequired,
-  preview: PropTypes.string,
 };
 
 export default ImageDropzone;

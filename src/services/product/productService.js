@@ -11,13 +11,13 @@ export const uploadProductWithImage = async (formData, addProduct) => {
 
   const {
     image: _ignoredImage,
-    category: _ignoredCategory,
+    category,
     ...rest
   } = formData;
 
   const productToSubmit = {
     ...rest,
-    category: formData.category,
+    category,
     ...(imageUrl ? { images: [imageUrl] } : {}),
   };
 

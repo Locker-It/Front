@@ -32,5 +32,5 @@ export const DropzoneContainer = styled(Box)(({ theme }) => ({
 export const PreviewImage = styled('img')({
   marginTop: '10px',
   maxWidth: '100%',
-  maxHeight: '200px',
+  maxHeight: '13rem',
 });

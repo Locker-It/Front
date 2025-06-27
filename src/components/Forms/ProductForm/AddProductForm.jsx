@@ -32,7 +32,7 @@ export default function AddProductForm({ onSubmit, isLoading }) {
   } = useForm({
     resolver: yupResolver(addProductSchema),
     defaultValues: {
-      [ADD_PRODUCT_CONSTANTS.CATEGORY]: '', // 🛠️ חובה כדי למנוע undefined
+      [ADD_PRODUCT_CONSTANTS.CATEGORY]: '',
     },
   });
 
