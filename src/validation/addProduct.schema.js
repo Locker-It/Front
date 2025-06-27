@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 
 import { PRODUCT_FORM_TEXT } from '../components/Forms/forms.constants.js';
-import { ADD_PRODUCT_CONSTANTS, PRODUCT_CATEGORIES } from '../components/Forms/PoductForm/productForm.constant.js';
+import { ADD_PRODUCT_CONSTANTS, PRODUCT_CATEGORIES } from '../components/Forms/ProductForm/productForm.constant.js';
 import { IMAGE_VALIDATION, SUPPORTED_IMAGE_TYPES } from '../constants/upload.constants.js';
 
 export const addProductSchema = yup.object({

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import AddProductForm from '../../components/Forms/PoductForm/AddProductForm';
+import AddProductForm from '../../components/Forms/ProductForm/AddProductForm';
 import SharedTypography from '../../components/shared/Text/SharedTypography.jsx';
 import { AUTH_ERRORS } from '../../constants/errorMessages.js';
 import { ROUTES } from '../../constants/routes.constants.js';
