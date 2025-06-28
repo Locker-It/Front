@@ -40,7 +40,7 @@ const LoginPage = () => {
 
       {modalData && (
         <StatusModal
-          open={!!modalData}
+          open
           title={modalData.title}
           message={modalData.message}
           onClose={modalData.onClose}

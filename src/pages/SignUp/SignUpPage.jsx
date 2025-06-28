@@ -51,7 +51,7 @@ const SignUpPage = () => {
 
       {modalData && (
         <StatusModal
-          open={!!modalData}
+          open
           type={modalData.type}
           title={modalData.title}
           message={modalData.message}

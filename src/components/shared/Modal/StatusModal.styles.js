@@ -9,7 +9,7 @@ export const iconStyle = {
   fontSize: '2.5rem',
 };
 
-export const ModalHeaderStack = styled(Stack)(({}) => ({
+export const ModalHeaderStack = styled(Stack)(() => ({
   flexDirection: 'row',
   alignItems: 'center',
   gap: '0.5rem',
