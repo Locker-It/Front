@@ -33,3 +33,27 @@ export const SIGNUP_TEXT = {
   passwordMismatch: 'Passwords do not match',
   loginLinkText: 'Already have an account? Login here',
 };
+
+export const PRODUCT_FORM_TEXT = {
+  TITLE: 'Add New Product',
+  PRODUCT_NAME_LABEL: 'Product Name',
+  DESCRIPTION_LABEL: 'Description',
+  PRICE_LABEL: 'Price',
+  CATEGORY_LABEL: 'Category',
+  IMAGE_URL_LABEL: 'Image URL (optional)',
+  SUBMIT: 'Add Product',
+
+  PRODUCT_NAME_REQUIRED: 'Product name is required',
+  DESCRIPTION_REQUIRED: 'Description is required',
+  PRICE_REQUIRED: 'Price is required',
+  PRICE_POSITIVE: 'Price must be a positive number',
+  PRICE_INVALID: 'Price must be a valid number',
+  CATEGORY_REQUIRED: 'Category is required',
+  IMAGE_URL_INVALID: 'Please enter a valid URL',
+  CATEGORY_INVALID: 'Invalid category selected',
+};
+
+export const IMAGE_DROPZONE_TEXT = {
+  DROP_ACTIVE: 'Drop the image here...',
+  DROP_DEFAULT: 'Drag & drop an image here, or click to select',
+};
