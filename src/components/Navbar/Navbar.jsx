@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import AuthButton from './AuthButton.jsx';
-import { mainNavItems } from './Navbar.helpers.jsx';
+import { cartNavItem, mainNavItems } from './Navbar.helpers.jsx';
 import {
   CustomAppBar,
   CustomToolbar,
@@ -24,8 +24,16 @@ import Logo from '../shared/Logo/Logo.jsx';
 function Navbar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isLoggedIn } = useSelector((state) => state.auth);
+  const { isLoggedIn, user } = useSelector((state) => state.auth);
   const [logoutUser] = useLogoutUserMutation();
+
+  const navItems = React.useMemo(() => {
+    const items = [...mainNavItems];
+    if (isLoggedIn) {
+      items.push(cartNavItem);
+    }
+    return items;
+  }, [isLoggedIn]);
 
   const handleLogout = async () => {
     try {
@@ -42,11 +50,13 @@ function Navbar() {
       <CustomToolbar>
         <LeftSection>
           <Logo variant="NAVBAR" alt="Company Logo" />
-          <UserGreeting />
+          {isLoggedIn && user?.username && (
+            <UserGreeting username={user.username} />
+          )}
         </LeftSection>
 
         <CenterSection>
-          {mainNavItems.map(({ to, label }) => (
+          {navItems.map(({ to, label }) => (
             <ActionButton key={to} styleType={BUTTON_VARIANTS.NAVBAR} to={to}>
               {label}
             </ActionButton>
