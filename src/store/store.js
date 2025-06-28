@@ -3,9 +3,9 @@ import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './authSlice';
 import { authApi } from '../services/authApi';
 import { cartApi } from '../services/cartApi';
-import { productApi } from '../services/productApi';
 import { availableLockerApi } from '../services/availableLockerApi';
 import { lockerApi } from '../services/lockerApi';
+import { productApi } from '../services/product/productApi.js';
 
 export const store = configureStore({
   reducer: {

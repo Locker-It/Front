@@ -16,3 +16,21 @@ export const TitleWrapper = styled(Box)(({ theme }) => ({
 export const FormWrapper = styled(Box)({
   width: '100%',
 });
+
+export const DropzoneContainer = styled(Box)(({ theme }) => ({
+  border: '2px dashed #ccc',
+  borderRadius: '8px',
+  padding: theme.spacing(2),
+  textAlign: 'center',
+  cursor: 'pointer',
+  backgroundColor: '#fff',
+  '&.active': {
+    backgroundColor: '#f9f9f9',
+  },
+}));
+
+export const PreviewImage = styled('img')({
+  marginTop: '10px',
+  maxWidth: '100%',
+  maxHeight: '13rem',
+});

@@ -9,7 +9,7 @@ import ProductCard from '../../components/Product/ProductCard.jsx';
 import SharedTypography from '../../components/shared/Text/SharedTypography.jsx';
 import { ERROR_MESSAGES } from '../../constants/errorMessages.js';
 import { ROUTES } from '../../constants/routes.constants.js';
-import { useGetProductsQuery } from '../../services/productApi.js';
+import { useGetProductsQuery } from '../../services/product/productApi.js';
 
 const ProductListPage = () => {
   const navigate = useNavigate();
