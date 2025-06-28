@@ -49,13 +49,13 @@ const theme = createTheme({
     card: 'transform 0.3s ease, box-shadow 0.3s ease',
   },
   customStyles: {
-    cardHover: {
-      transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+    cardHover: (theme) => ({
+      transition: theme.transitions.card,
       '&:hover': {
-        transform: 'translateY(-0.3125rem)', 
-        boxShadow: '0 0.625rem 1.25rem rgba(0, 0, 0, 0.2)', 
+        transform: 'translateY(-0.3125rem)',
+        boxShadow: theme.customShadows.cardHover,
       },
-    },
+    }),
   },
   
   breakpoints: {
