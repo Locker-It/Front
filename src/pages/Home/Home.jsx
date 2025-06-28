@@ -8,7 +8,7 @@ import ProductCarousel from '../../components/ProductCarousel/ProductCarousel.js
 import SharedTypography from '../../components/shared/Text/SharedTypography.jsx';
 import { ERROR_MESSAGES } from '../../constants/errorMessages.js';
 import { UI_TEXT } from '../../constants/hardText.js';
-import { useGetNewestProductsQuery } from '../../services/productApi.js';
+import { useGetNewestProductsQuery } from '../../services/product/productApi.js';
 
 function Home() {
   const {
