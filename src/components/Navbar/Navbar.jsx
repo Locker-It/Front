@@ -24,7 +24,7 @@ import Logo from '../shared/Logo/Logo.jsx';
 function Navbar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isLoggedIn } = useSelector((state) => state.auth);
+  const { isLoggedIn, user } = useSelector((state) => state.auth);
   const [logoutUser] = useLogoutUserMutation();
 
   const navItems = React.useMemo(() => {
@@ -50,7 +50,9 @@ function Navbar() {
       <CustomToolbar>
         <LeftSection>
           <Logo variant="NAVBAR" alt="Company Logo" />
-          <UserGreeting />
+          {isLoggedIn && user?.username && (
+            <UserGreeting username={user.username} />
+          )}
         </LeftSection>
 
         <CenterSection>
