@@ -2,6 +2,7 @@ export const TAG_TYPES = {
   PRODUCT: 'Product',
   CART: 'Cart',
   USER: 'User',
+  IMAGE: 'Image',
 };
 
 export const LOGO_VARIANTS = {

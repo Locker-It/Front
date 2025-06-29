@@ -15,4 +15,5 @@ export const BUTTON_TEXT = {
   PROFILE: 'Profile',
   SUBMIT: 'Pay Now',
   CART: 'Your Cart',
+  SELL_PRODUCT: 'Sell Now',
 };

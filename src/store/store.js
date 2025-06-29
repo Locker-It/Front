@@ -3,6 +3,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './authSlice';
 import { authApi } from '../services/authApi';
 import { cartApi } from '../services/cartApi';
+import { imageUploadApi } from '../services/imageUploadApi.js';
 import { productApi } from '../services/product/productApi.js';
 
 export const store = configureStore({
@@ -11,11 +12,13 @@ export const store = configureStore({
     [authApi.reducerPath]: authApi.reducer,
     [cartApi.reducerPath]: cartApi.reducer,
     [productApi.reducerPath]: productApi.reducer,
+    [imageUploadApi.reducerPath]: imageUploadApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
       authApi.middleware,
       cartApi.middleware,
       productApi.middleware,
+      imageUploadApi.middleware,
     ),
 });

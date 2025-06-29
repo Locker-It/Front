@@ -1,20 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useDropzone } from 'react-dropzone';
 import { useForm } from 'react-hook-form';
 
 import { TextField, Stack, MenuItem } from '@mui/material';
 
 import { BUTTON_VARIANTS } from '../../../constants/types';
-import { useImageUpload } from '../../../hooks/useImageUpload';
 import { addProductSchema } from '../../../validation/addProduct.schema';
 import ActionButton from '../../shared/Button/ActionButton';
-import {
-  StyledPaper,
-  TitleWrapper,
-  FormWrapper,
-} from '../Form.styled';
+import { StyledPaper, TitleWrapper, FormWrapper } from '../Form.styled';
 import {
   ADD_PRODUCT_CONSTANTS,
   PRODUCT_CATEGORIES,
@@ -22,12 +16,17 @@ import {
 import SharedTypography from '../../shared/Text/SharedTypography';
 import { PRODUCT_FORM_TEXT } from '../forms.constants';
 import ImageDropzone from './ImageDropzone.jsx';
+import { useGetPresignedUrlMutation } from '../../../services/imageUploadApi';
+
 
 export default function AddProductForm({ onSubmit, isLoading }) {
+  const [preview, setPreview] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [getPresignedUrl] = useGetPresignedUrlMutation();
+
   const {
     register,
     handleSubmit,
-    setValue,
     formState: { errors, isSubmitting },
   } = useForm({
     resolver: yupResolver(addProductSchema),
@@ -36,14 +35,37 @@ export default function AddProductForm({ onSubmit, isLoading }) {
     },
   });
 
-  // TODO: When image microservice is ready, update this logic
-  const { preview, onDrop } = useImageUpload(setValue);
+  const handleFileSelect = (file) => {
+    const objectUrl = URL.createObjectURL(file);
+    setPreview(objectUrl);
+    setSelectedFile(file);
+  };
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    onDrop,
-    accept: { 'image/*': [] },
-    multiple: false,
-  });
+  const handleFormSubmit = async (data) => {
+    try {
+      if (selectedFile) {
+        const { uploadUrl, publicUrl } = await getPresignedUrl({
+          filename: selectedFile.name,
+          mimetype: selectedFile.type,
+        }).unwrap();
+
+        const res = await fetch(uploadUrl, {
+          method: 'PUT',
+          body: selectedFile,
+          headers: { 'Content-Type': selectedFile.type },
+        });
+
+        if (!res.ok) throw new Error('Upload to S3 failed');
+
+        data.images = [publicUrl]; // ← הוספת הקישור לשדה images
+      }
+
+      console.log('📦 Product payload to backend:', data);
+      await onSubmit(data);
+    } catch (error) {
+      console.error('🛑 Failed to submit product:', error);
+    }
+  };
 
   return (
     <StyledPaper elevation={3}>
@@ -53,7 +75,11 @@ export default function AddProductForm({ onSubmit, isLoading }) {
         </SharedTypography>
       </TitleWrapper>
 
-      <FormWrapper onSubmit={handleSubmit(onSubmit)} noValidate component="form">
+      <FormWrapper
+        onSubmit={handleSubmit(handleFormSubmit)}
+        noValidate
+        component="form"
+      >
         <Stack spacing={2}>
           <TextField
             label={PRODUCT_FORM_TEXT.PRODUCT_NAME_LABEL}
@@ -103,12 +129,7 @@ export default function AddProductForm({ onSubmit, isLoading }) {
             helperText={errors[ADD_PRODUCT_CONSTANTS.DESCRIPTION]?.message}
           />
 
-          <ImageDropzone
-            getRootProps={getRootProps}
-            getInputProps={getInputProps}
-            isDragActive={isDragActive}
-            preview={preview}
-          />
+          <ImageDropzone preview={preview} onFileSelect={handleFileSelect} />
 
           {errors.image && (
             <SharedTypography variant="body2" color="error">

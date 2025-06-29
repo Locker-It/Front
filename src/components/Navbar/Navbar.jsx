@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import AuthButton from './AuthButton.jsx';
-import { cartNavItem, mainNavItems } from './Navbar.helpers.jsx';
+import { loggedInItems, mainNavItems } from './Navbar.helpers.jsx';
 import {
   CustomAppBar,
   CustomToolbar,
@@ -28,11 +28,7 @@ function Navbar() {
   const [logoutUser] = useLogoutUserMutation();
 
   const navItems = React.useMemo(() => {
-    const items = [...mainNavItems];
-    if (isLoggedIn) {
-      items.push(cartNavItem);
-    }
-    return items;
+    return isLoggedIn ? [...mainNavItems, ...loggedInItems] : [...mainNavItems];
   }, [isLoggedIn]);
 
   const handleLogout = async () => {

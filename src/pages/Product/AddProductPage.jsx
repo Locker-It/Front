@@ -16,7 +16,6 @@ export default function AddProductPage() {
 
   const handleAddProduct = async (formData) => {
     try {
-      // TODO: When image upload service is available, upload image before calling backend
       await uploadProductWithImage(formData, addProduct);
       navigate(ROUTES.PRODUCTS);
     } catch (err) {
