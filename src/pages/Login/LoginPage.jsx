@@ -1,30 +1,36 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import LoginForm from '../../components/Forms/LoginForm.jsx';
+import { StatusModal } from '../../components/shared/Modal/StatusModal.jsx';
 import { AUTH_ERRORS } from '../../constants/errorMessages.js';
 import { ROUTES } from '../../constants/routes.constants.js';
+import { MODAL_TYPES } from '../../constants/types.js';
 import { useLoginUserMutation } from '../../services/authApi.js';
 import { extractApiError } from '../../utils/authErrors.js';
-import { StatusModal } from '../../components/shared/Modal/StatusModal.jsx';
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const [loginUser, { isLoading, error }] = useLoginUserMutation();
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  useSelector((state) => state.auth.isLoggedIn);
   const [modalData, setModalData] = useState(null);
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      navigate(ROUTES.HOME);
-    }
-  }, [isLoggedIn, navigate]);
 
   const handleLogin = async (credentials) => {
     try {
       await loginUser(credentials).unwrap();
-      navigate(ROUTES.HOME);
+
+      setModalData({
+        type: MODAL_TYPES.SUCCESS,
+        title: MODAL_TYPES.LOGIN_SUCCESS,
+        message: MODAL_TYPES.LOGIN_SUCCESS_MESSAGE,
+      });
+
+      setTimeout(() => {
+        setModalData(null);
+        navigate(ROUTES.HOME);
+      }, 2000);
     } catch (err) {
       setModalData({
         title: AUTH_ERRORS.LOGIN_FAILED,
@@ -44,6 +50,7 @@ const LoginPage = () => {
           title={modalData.title}
           message={modalData.message}
           onClose={modalData.onClose}
+          type={modalData.type}
         />
       )}
     </div>

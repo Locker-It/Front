@@ -1,18 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { useParams , useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import { StyledSharedTypography } from '../../components/Product/Product.styled.js';
 import ProductSkeleton from '../../components/Product/ProductSkeleton.jsx';
 import ProductView from '../../components/Product/ProductView.jsx';
+import { StatusModal } from '../../components/shared/Modal/StatusModal.jsx';
 import { ERROR_MESSAGES } from '../../constants/errorMessages.js';
 import { CART_TEXT } from '../../constants/hardText.js';
 import { ROUTES } from '../../constants/routes.constants.js';
+import { MODAL_TYPES } from '../../constants/types.js';
 import { useAddToCartMutation } from '../../services/cartApi.js';
 import { useGetProductByIdQuery } from '../../services/product/productApi.js';
 
 const ProductPage = () => {
   const navigate = useNavigate();
+  const [modalData, setModalData] = useState(null);
 
   const { id } = useParams();
 
@@ -30,12 +33,36 @@ const ProductPage = () => {
 
     try {
       await addToCart(product.id).unwrap();
+
+      setModalData({
+        type: MODAL_TYPES.SUCCESS,
+        title: MODAL_TYPES.ITEM_ADDED_TO_CART,
+        message: MODAL_TYPES.ITEM_ADDED_TO_CART_MESSAGE,
+        onClose: () => {
+          setModalData(null);
+          navigate(ROUTES.PRODUCTS);
+        },
+        onConfirm: () => {
+          setModalData(null);
+          navigate(ROUTES.CART);
+        },
+        cancelText: MODAL_TYPES.CONTINUE_SHOPPING,
+        confirmText: MODAL_TYPES.GO_TO_CART,
+      });
+
     } catch (err) {
       console.error(ERROR_MESSAGES.ADD_TO_CART_FAILED, err);
+
       if (err?.status === 401) {
-        // TODO: use the modal
-        alert(CART_TEXT.SIGN_IN_TO_ADD_ITEMS);
-        navigate(ROUTES.LOGIN);
+        setModalData({
+          type: MODAL_TYPES.ERROR,
+          title: MODAL_TYPES.ADD_TO_CART_FAILED,
+          message: CART_TEXT.SIGN_IN_TO_ADD_ITEMS,
+          onClose: () => {
+            setModalData(null);
+            navigate(ROUTES.LOGIN);
+          },
+        });
       }
     }
   };
@@ -57,12 +84,27 @@ const ProductPage = () => {
     );
 
   return (
-    <ProductView
-      {...product}
-      handleAddToCart={handleAddToCart}
-      addToCartLoading={isAdding}
-      addToCartError={addError}
-    />
+    <>
+      <ProductView
+        {...product}
+        handleAddToCart={handleAddToCart}
+        addToCartLoading={isAdding}
+        addToCartError={addError}
+      />
+
+      {modalData && (
+        <StatusModal
+          open
+          type={modalData.type}
+          title={modalData.title}
+          message={modalData.message}
+          onClose={modalData.onClose}
+          onConfirm={modalData.onConfirm}
+          cancelText={modalData.cancelText}
+          confirmText={modalData.confirmText}
+        />
+      )}
+    </>
   );
 };
 
