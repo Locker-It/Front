@@ -14,7 +14,7 @@ export const imageUploadApi = createApi({
   endpoints: (builder) => ({
     getPresignedUrl: builder.mutation({
       query: ({ filename, mimetype }) => ({
-        url: ROUTES.PRESIGNED_URL, // כלומר: '/images/presigned-url'
+        url: ROUTES.PRESIGNED_URL,
         method: HTTP_METHODS.POST,
         body: { filename, mimetype },
       }),

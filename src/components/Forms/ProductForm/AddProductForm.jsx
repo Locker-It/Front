@@ -57,13 +57,11 @@ export default function AddProductForm({ onSubmit, isLoading }) {
 
         if (!res.ok) throw new Error('Upload to S3 failed');
 
-        data.images = [publicUrl]; // ← הוספת הקישור לשדה images
+        data.images = [publicUrl];
       }
-
-      console.log('📦 Product payload to backend:', data);
       await onSubmit(data);
     } catch (error) {
-      console.error('🛑 Failed to submit product:', error);
+      console.error(' Failed to submit product:', error);
     }
   };
 
