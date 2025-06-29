@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Cart from '../../components/Cart/Cart.jsx';
 import { ERROR_MESSAGES } from '../../constants/errorMessages.js';
@@ -6,8 +7,11 @@ import {
   useGetCartQuery,
   useRemoveFromCartMutation,
 } from '../../services/cartApi';
+import { ROUTES as ROUTER_PATHS } from '../../constants/routes.constants.js';
 
 const CartPage = () => {
+  const navigate = useNavigate();
+
   const {
     data: cart = [],
     isLoading,
@@ -23,7 +27,7 @@ const CartPage = () => {
   const total = cart.reduce((acc, item) => acc + item.price, 0);
 
   const handleContinue = () => {
-    // TODO: Go to payment page or checkout flow
+    navigate(ROUTER_PATHS.ORDER_PROCESS);
   };
 
   const handleRemove = async (productId) => {

@@ -1,6 +1,7 @@
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/system';
+import theme from '../../theme/theme';
 
 export const OrderCardContainer = styled(Box)(({ theme }) => ({
   maxWidth: 800,
@@ -16,7 +17,11 @@ export const ItemCard = styled(Paper)(({ theme }) => ({
   justifyContent: 'space-between',
   padding: theme.spacing(5),
   borderRadius: theme.shape.borderRadius,
-  boxShadow: theme.customShadows,
+  transition: theme.transitions.card,
+  '&:hover': {
+    transform: 'translateY(-0.3125rem)',
+    boxShadow: theme.customShadows.cardHover,
+  },
 }));
 
 export const ImageStyle = {

@@ -42,8 +42,22 @@ const theme = createTheme({
     },
   },
   customShadows: {
-    main: '0 0.625rem 1.25rem rgba(0, 0, 0, 0.2)',
+    main: '0 1rem 2rem rgba(0, 0, 0, 0.2)',
+    cardHover: '0 1.25rem 2.5rem rgba(0, 0, 0, 0.2)', 
   },
+  transitions: {
+    card: 'transform 0.3s ease, box-shadow 0.3s ease',
+  },
+  customStyles: {
+    cardHover: (theme) => ({
+      transition: theme.transitions.card,
+      '&:hover': {
+        transform: 'translateY(-0.3125rem)',
+        boxShadow: theme.customShadows.cardHover,
+      },
+    }),
+  },
+  
   breakpoints: {
     values: {
       xs: 0,
@@ -53,7 +67,6 @@ const theme = createTheme({
       xl: 1536,
     },
   },
-
 });
 
 export default theme;
