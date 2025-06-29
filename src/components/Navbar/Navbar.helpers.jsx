@@ -6,3 +6,5 @@ export const mainNavItems = [
   { to: ROUTER_PATHS.ABOUT, label: BUTTON_TEXT.ABOUT },
   { to: ROUTER_PATHS.PRODUCTS, label: BUTTON_TEXT.PRODUCTS },
 ];
+
+export const cartNavItem = { to: ROUTER_PATHS.CART, label: BUTTON_TEXT.CART };

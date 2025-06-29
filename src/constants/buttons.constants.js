@@ -14,4 +14,5 @@ export const BUTTON_TEXT = {
   LOCKERS: 'Lockers',
   PROFILE: 'Profile',
   SUBMIT: 'Pay Now',
+  CART: 'Your Cart',
 };

@@ -1,19 +1,20 @@
-import React, { useEffect } from 'react';
-
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import SignupForm from '../../components/Forms/SignUpForm';
-import SharedTypography from '../../components/shared/Text/SharedTypography.jsx';
 import { AUTH_ERRORS } from '../../constants/errorMessages.js';
 import { ROUTES } from '../../constants/routes.constants.js';
 import { useRegisterUserMutation } from '../../services/authApi';
 import { extractApiError } from '../../utils/authErrors.js';
+import { StatusModal } from '../../components/shared/Modal/StatusModal.jsx';
+import { MODAL_TYPES } from '../../constants/types.js';
 
-export default function SignUpPage() {
+const SignUpPage = () => {
   const navigate = useNavigate();
   const [registerUser, { isLoading, error }] = useRegisterUserMutation();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const [modalData, setModalData] = useState(null);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -24,20 +25,41 @@ export default function SignUpPage() {
   const handleSignup = async (formData) => {
     try {
       await registerUser(formData).unwrap();
-      navigate(ROUTES.LOGIN);
+
+      setModalData({
+        type: MODAL_TYPES.SUCCESS,
+        title: MODAL_TYPES.ACCOUNT_CREATED,
+        message: MODAL_TYPES.ACCOUNT_HAS_CREATED_SUCCESSFULLY,
+        onClose: () => {
+          setModalData(null);
+          navigate(ROUTES.LOGIN);
+        },
+      });
     } catch (err) {
-      console.error(AUTH_ERRORS.REGISTER_FAILED, err);
+      setModalData({
+        type: MODAL_TYPES.ERROR,
+        title: MODAL_TYPES.REGISTRATION_FAILED,
+        message: extractApiError(err, AUTH_ERRORS.GENERAL_REGISTER_ERROR),
+        onClose: () => setModalData(null),
+      });
     }
   };
 
   return (
     <div>
       <SignupForm onSubmit={handleSignup} isLoading={isLoading} />
-      {error && (
-        <SharedTypography variant="body2" color="error">
-          {extractApiError(error, AUTH_ERRORS.GENERAL_REGISTER_ERROR)}
-        </SharedTypography>
+
+      {modalData && (
+        <StatusModal
+          open
+          type={modalData.type}
+          title={modalData.title}
+          message={modalData.message}
+          onClose={modalData.onClose}
+        />
       )}
     </div>
   );
-}
+};
+
+export default SignUpPage;
