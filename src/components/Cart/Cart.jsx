@@ -8,7 +8,7 @@ import {
   RemoveButtonWrapper,
   CartItemWrapper,
 } from './Cart.styles';
-import { CART_TEXT} from '../../constants/hardText.js';
+import { CART_TEXT } from '../../constants/hardText.js';
 import { BUTTON_VARIANTS } from '../../constants/types.js';
 import ProductCard from '../Product/ProductCard';
 import ActionButton from '../shared/Button/ActionButton.jsx';
@@ -70,6 +70,10 @@ const Cart = ({
                       onSelect={() => {}}
                       disabled
                     />
+                    <p>
+                      Locker #{rest.lockerId?.lockerNumber} –{' '}
+                      {rest.lockerId?.location}
+                    </p>
                     <RemoveButtonWrapper>
                       <ActionButton
                         onClick={() => handleItemRemove(id)}
@@ -99,7 +103,11 @@ const Cart = ({
           {!isLoggedIn && (
             <EmptyCartText>{CART_TEXT.CART_LOGIN_REQUIRED}</EmptyCartText>
           )}
-          <ActionButton onClick={onContinue} disabled={!canPurchase} styleType={BUTTON_VARIANTS.FILLED}>
+          <ActionButton
+            onClick={onContinue}
+            disabled={!canPurchase}
+            styleType={BUTTON_VARIANTS.FILLED}
+          >
             {CART_TEXT.CART_CONTINUE}
           </ActionButton>
         </>

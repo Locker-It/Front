@@ -25,9 +25,8 @@ export const ItemCard = styled(Paper)(({ theme }) => ({
 }));
 
 export const ImageStyle = {
-  width: 200,
-  height: 200,
-  borderRadius: 8,
+  width: 100,
+  height: 100,
   objectFit: 'cover',
 };
 
@@ -40,3 +39,9 @@ export const SharedFlexBox = styled(Box)(({ theme }) => ({
 export const dividerStyle = {
   margin: '1rem 0',
 };
+
+export const InfoBox = styled(Box)(() => ({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'flex-start',
+}));

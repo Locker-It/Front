@@ -22,5 +22,6 @@ export const ROUTES = {
   DASHBOARD: '/dashboard',
   LOCKERS: '/lockers',
   AVAILABLE_LOCKERS: '/available-lockers',
-
+  PURCHASES: '/purchases',
+  LOCKER_AVAILABLE: '/available',
 };

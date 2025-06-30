@@ -14,6 +14,10 @@ export const lockerApi = createApi({
       query: () => `${ROUTES.LOCKERS}`,
       providesTags: [TAG_TYPES.LOCKER],
     }),
+    getFreeLockers: builder.query({
+      query: () => `${ROUTES.LOCKERS}${ROUTES.LOCKER_AVAILABLE}`, 
+      providesTags: [TAG_TYPES.LOCKER],
+    }),
 
     getLockerById: builder.query({
       query: (id) => `${ROUTES.LOCKERS}/${id}`,
@@ -50,6 +54,7 @@ export const lockerApi = createApi({
 
 export const {
   useGetAllLockersQuery,
+  useGetFreeLockersQuery,
   useGetLockerByIdQuery,
   useAddLockerMutation,
   useUpdateLockerMutation,

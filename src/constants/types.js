@@ -4,6 +4,7 @@ export const TAG_TYPES = {
   USER: 'User',
   LOCKER: 'Locker',
   AVAILABLE_LOCKER: 'Available_Locker',
+  PURCHASE: 'Purchase',
 };
 
 export const LOGO_VARIANTS = {

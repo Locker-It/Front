@@ -36,4 +36,20 @@ export const BigStyledCard = styled(Card)(() => ({
   borderRadius: 12,
 }));
 
+export const chipStyles = (selectedLockerId, currentId) => ({
+  minWidth: 300,
+  justifyContent: 'flex-start',
+  borderColor: selectedLockerId === currentId ? '#1976d2' : '#ccc',
+  color: selectedLockerId === currentId ? '#1976d2' : 'inherit',
+  fontWeight: selectedLockerId === currentId ? 'bold' : 'normal',
+  borderWidth: selectedLockerId === currentId ? 2 : 1,
+  '&:hover': {
+    borderColor: '#1565c0',
+  },
+});
+
+export const lockerStackStyle = {
+  mt: 1,
+  gap: 1,
+};
 

@@ -5,7 +5,8 @@ export const ERROR_MESSAGES = {
   ADD_TO_CART_FAILED: 'Add to Cart failed:',
   LOGOUT_FAILED: 'Failed to log out. Please try again later.',
   NO_ITEMS_IN_CART: 'No items in your cart',
-
+  MISSING_PRODUCTID_OR_LOCKERID: 'Missing productId or lockerId for item:',
+  AT_LEAST_ONE_PRODUCT_FAILED: 'At least one purchase failed:',
 };
 export const AUTH_ERRORS = {
   LOGIN_FAILED: 'Login failed',

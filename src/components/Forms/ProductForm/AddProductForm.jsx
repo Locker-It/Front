@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import { TextField, Stack, MenuItem, Autocomplete, Chip } from '@mui/material';
 
 import { BUTTON_VARIANTS } from '../../../constants/types';
+import { LOCKER_TEXT } from '../../../constants/hardText.js';
 import { useImageUpload } from '../../../hooks/useImageUpload';
 import { addProductSchema } from '../../../validation/addProduct.schema';
 import ActionButton from '../../shared/Button/ActionButton';
@@ -18,6 +19,7 @@ import {
 import SharedTypography from '../../shared/Text/SharedTypography';
 import { PRODUCT_FORM_TEXT } from '../forms.constants';
 import ImageDropzone from './ImageDropzone.jsx';
+import { LOCKER_LOCATION } from '../../../utils/textTemplates.js';
 
 export default function AddProductForm({ onSubmit, isLoading, lockers = [] }) {
   const {
@@ -76,7 +78,7 @@ export default function AddProductForm({ onSubmit, isLoading, lockers = [] }) {
             error={!!errors[ADD_PRODUCT_CONSTANTS.CATEGORY]}
             helperText={errors[ADD_PRODUCT_CONSTANTS.CATEGORY]?.message}
           >
-            <MenuItem value="">Select a category</MenuItem>
+            <MenuItem value="">{PRODUCT_FORM_TEXT.SELECT_A_CATEGORY} </MenuItem>
             {PRODUCT_CATEGORIES.map((category) => (
               <MenuItem key={category} value={category}>
                 {category}
@@ -110,14 +112,14 @@ export default function AddProductForm({ onSubmit, isLoading, lockers = [] }) {
             multiple
             options={lockers}
             getOptionLabel={(locker) =>
-              `#${locker.lockerNumber} — ${locker.location}`
+              LOCKER_LOCATION.LOCKER_LABEL(locker.lockerNumber, locker.location)
             }
             value={lockers.filter((locker) =>
               selectedLockerIds.includes(locker.id),
             )}
             onChange={(event, newValue) => {
               setValue(
-                'selectedLockerIds',
+                LOCKER_TEXT.SELECTED_LOCKER_IDS,
                 newValue.map((locker) => locker.id),
               );
             }}
@@ -133,7 +135,7 @@ export default function AddProductForm({ onSubmit, isLoading, lockers = [] }) {
             renderInput={(params) => (
               <TextField
                 {...params}
-                label="Select Lockers"
+                label={LOCKER_TEXT.SELECT_LOCKERS}
                 error={!!errors.selectedLockerIds}
                 helperText={errors.selectedLockerIds?.message}
               />

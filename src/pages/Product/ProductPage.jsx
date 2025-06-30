@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useParams , useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import { StyledSharedTypography } from '../../components/Product/Product.styled.js';
 import ProductSkeleton from '../../components/Product/ProductSkeleton.jsx';
@@ -25,11 +25,11 @@ const ProductPage = () => {
   const [addToCart, { isLoading: isAdding, error: addError }] =
     useAddToCartMutation();
 
-  const handleAddToCart = async () => {
-    if (!product || isAdding) return;
+  const handleAddToCart = async (lockerId) => {
+    if (!product || isAdding || !lockerId) return;
 
     try {
-      await addToCart(product.id).unwrap();
+      await addToCart({ productId: product.id, lockerId }).unwrap();
     } catch (err) {
       console.error(ERROR_MESSAGES.ADD_TO_CART_FAILED, err);
       if (err?.status === 401) {

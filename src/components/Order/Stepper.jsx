@@ -11,9 +11,9 @@ import {
   buttonContainerStyle,
   spacerStyle,
 } from './Stepper.styles';
-import OrderComplete from './steps/OrderComplete';
-import OrderSummary from './steps/OrderSummary';
-import PaymentDetails from './steps/PaymentDetails';
+import OrderComplete from '../../pages/OrderComplete.jsx';
+import OrderSummary from '../../pages/OrderSummary.jsx';
+import PaymentDetails from '../../pages/PaymentDetails.jsx';
 import useStep from './useStep';
 import { BUTTON_TEXT } from '../../constants/buttons.constants.js';
 import { ROUTES as ROUTER_PATHS } from '../../constants/routes.constants.js';

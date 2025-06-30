@@ -22,6 +22,13 @@ export const availableLockerApi = createApi({
       ],
     }),
 
+    getAvailableLockersByProductId: builder.query({
+      query: (productId) => `${ROUTES.AVAILABLE_LOCKERS}/product/${productId}`, 
+      providesTags: (_r, _e, productId) => [
+        { type: TAG_TYPES.AVAILABLE_LOCKER, id: productId },
+      ],
+    }),
+
     addAvailableLocker: builder.mutation({
       query: (data) => ({
         url: ROUTES.AVAILABLE_LOCKERS,
@@ -53,6 +60,7 @@ export const availableLockerApi = createApi({
 export const {
   useGetAvailableLockersQuery,
   useGetAvailableLockerByIdQuery,
+  useGetAvailableLockersByProductIdQuery,
   useAddAvailableLockerMutation,
   useDeleteAvailableLockerMutation,
   useUpdateAvailableLockerMutation,

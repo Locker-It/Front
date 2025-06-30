@@ -8,14 +8,14 @@ import { ROUTES } from '../../constants/routes.constants.js';
 import { useAddProductMutation } from '../../services/product/productApi.js';
 import { uploadProductWithImage } from '../../services/product/productService.js';
 import { extractApiError } from '../../utils/authErrors.js';
-import { useGetAllLockersQuery } from '../../services/lockerApi';
+import { useGetFreeLockersQuery } from '../../services/lockerApi';
 import { Box } from '@mui/material';
 
 export default function AddProductPage() {
   const navigate = useNavigate();
   const [addProduct, { isLoading, error }] = useAddProductMutation();
 
-  const { data: lockers = [], isLoading: isLockersLoading } = useGetAllLockersQuery();
+  const { data: lockers = [], isLoading: isLockersLoading } = useGetFreeLockersQuery();
 
   const handleAddProduct = async (formData) => {
     try {
