@@ -95,13 +95,7 @@ const ProductPage = () => {
       {modalData && (
         <StatusModal
           open
-          type={modalData.type}
-          title={modalData.title}
-          message={modalData.message}
-          onClose={modalData.onClose}
-          onConfirm={modalData.onConfirm}
-          cancelText={modalData.cancelText}
-          confirmText={modalData.confirmText}
+          {...modalData}
         />
       )}
     </>

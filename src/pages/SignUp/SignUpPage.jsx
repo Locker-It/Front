@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import SignupForm from '../../components/Forms/SignUpForm';
 import { StatusModal } from '../../components/shared/Modal/StatusModal.jsx';
 import { AUTH_ERRORS } from '../../constants/errorMessages.js';
+import { TIMER } from '../../constants/hardText.js';
 import { ROUTES } from '../../constants/routes.constants.js';
 import { MODAL_TYPES } from '../../constants/types.js';
 import { useRegisterUserMutation } from '../../services/authApi';
@@ -24,7 +25,7 @@ const SignUpPage = () => {
            timer = setTimeout(() => {
                 setModalData(null);
                 navigate(ROUTES.LOGIN);
-              }, 2000);
+              }, TIMER.TIMEOUT);
           }
         return () => clearTimeout(timer);
       }, [shouldNavigate, navigate]);
@@ -56,10 +57,7 @@ const SignUpPage = () => {
       {modalData && (
         <StatusModal
           open
-          type={modalData.type}
-          title={modalData.title}
-          message={modalData.message}
-          onClose={modalData.onClose}
+          {...modalData}
         />
       )}
     </div>

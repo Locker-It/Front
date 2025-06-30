@@ -72,3 +72,6 @@ export const NAVBAR_TEXT = {
   HELLO_USER: 'Hello, ',
 };
 
+export const TIMER = {
+  TIMEOUT: 2000,
+}

@@ -13,6 +13,7 @@ import {
   RightSection,
 } from './Navbar.styled';
 import { ERROR_MESSAGES } from '../../constants/errorMessages.js';
+import { TIMER } from '../../constants/hardText.js';
 import { ROUTES as ROUTER_PATHS } from '../../constants/routes.constants.js';
 import { BUTTON_VARIANTS, MODAL_TYPES } from '../../constants/types.js';
 import { useLogoutUserMutation } from '../../services/authApi.js';
@@ -50,7 +51,7 @@ function Navbar() {
       setTimeout(() => {
         setModalData(null);
         navigate(ROUTER_PATHS.HOME);
-      }, 2000);
+      }, TIMER.TIMEOUT);
 
     } catch (error) {
       console.error(ERROR_MESSAGES.LOGOUT_FAILED, error);
@@ -62,10 +63,7 @@ function Navbar() {
       {modalData && (
         <StatusModal
           open
-          type={modalData.type}
-          title={modalData.title}
-          message={modalData.message}
-          onClose={modalData.onClose}
+          {...modalData}
         />
       )}
       <CustomToolbar>
