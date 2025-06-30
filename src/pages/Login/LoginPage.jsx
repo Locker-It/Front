@@ -13,26 +13,17 @@ import { extractApiError } from '../../utils/authErrors.js';
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const [loginUser, { isLoading, error }] = useLoginUserMutation();
-  useSelector((state) => state.auth.isLoggedIn);
+  const [loginUser, { isLoading}] = useLoginUserMutation();
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const [modalData, setModalData] = useState(null);
 
   const handleLogin = async (credentials) => {
     try {
       await loginUser(credentials).unwrap();
-
-      setModalData({
-        type: MODAL_TYPES.SUCCESS,
-        title: MODAL_TYPES.LOGIN_SUCCESS,
-        message: MODAL_TYPES.LOGIN_SUCCESS_MESSAGE,
-      });
-
-      setTimeout(() => {
-        setModalData(null);
         navigate(ROUTES.HOME);
-      }, 2000);
     } catch (err) {
       setModalData({
+        type: MODAL_TYPES.ERROR,
         title: AUTH_ERRORS.LOGIN_FAILED,
         message: extractApiError(err, AUTH_ERRORS.GENERAL_LOGIN_ERROR),
         onClose: () => setModalData(null),

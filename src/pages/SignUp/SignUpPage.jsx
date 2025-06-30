@@ -13,15 +13,21 @@ import { extractApiError } from '../../utils/authErrors.js';
 
 const SignUpPage = () => {
   const navigate = useNavigate();
-  const [registerUser, { isLoading, error }] = useRegisterUserMutation();
+  const [registerUser, { isLoading }] = useRegisterUserMutation();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const [modalData, setModalData] = useState(null);
+  const [shouldNavigate, setShouldNavigate] = useState(false);
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      navigate(ROUTES.HOME);
-    }
-  }, [isLoggedIn, navigate]);
+   useEffect(() => {
+        let timer;
+       if (shouldNavigate) {
+           timer = setTimeout(() => {
+                setModalData(null);
+                navigate(ROUTES.LOGIN);
+              }, 2000);
+          }
+        return () => clearTimeout(timer);
+      }, [shouldNavigate, navigate]);
 
   const handleSignup = async (formData) => {
     try {
@@ -32,12 +38,7 @@ const SignUpPage = () => {
         title: MODAL_TYPES.ACCOUNT_CREATED,
         message: MODAL_TYPES.ACCOUNT_HAS_CREATED_SUCCESSFULLY,
       });
-
-      setTimeout(() => {
-        setModalData(null);
-        navigate(ROUTES.LOGIN);
-      }, 2000);
-
+      setShouldNavigate(true);
     } catch (err) {
       setModalData({
         type: MODAL_TYPES.ERROR,
