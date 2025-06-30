@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 
 import AuthButton from './AuthButton.jsx';
 import { cartNavItem, mainNavItems } from './Navbar.helpers.jsx';
@@ -16,6 +15,7 @@ import { ERROR_MESSAGES } from '../../constants/errorMessages.js';
 import { TIMER } from '../../constants/hardText.js';
 import { ROUTES as ROUTER_PATHS } from '../../constants/routes.constants.js';
 import { BUTTON_VARIANTS, MODAL_TYPES } from '../../constants/types.js';
+import { useModal } from '../../hooks/useModal.js';
 import { useLogoutUserMutation } from '../../services/authApi.js';
 import { logout } from '../../store/authSlice.js';
 import UserGreeting from '../Auth/UserGreeting.jsx';
@@ -25,10 +25,11 @@ import { StatusModal } from '../shared/Modal/StatusModal.jsx';
 
 function Navbar() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+
   const { isLoggedIn, user } = useSelector((state) => state.auth);
   const [logoutUser] = useLogoutUserMutation();
-  const [modalData, setModalData] = React.useState(null);
+  const { modalData, showModal, closeModal } = useModal();
+
 
   const navItems = React.useMemo(() => {
     const items = [...mainNavItems];
@@ -42,16 +43,14 @@ function Navbar() {
     try {
       await logoutUser().unwrap();
       dispatch(logout());
-      setModalData({
-        type: MODAL_TYPES.SUCCESS,
-        title: MODAL_TYPES.LOGOUT_SUCCESS,
-        message: MODAL_TYPES.LOGOUT_SUCCESS_MESSAGE,
-      });
-
-      setTimeout(() => {
-        setModalData(null);
-        navigate(ROUTER_PATHS.HOME);
-      }, TIMER.TIMEOUT);
+      showModal({
+               type: MODAL_TYPES.SUCCESS,
+                title: MODAL_TYPES.LOGOUT_SUCCESS,
+                message: MODAL_TYPES.LOGOUT_SUCCESS_MESSAGE,
+                autoCloseAfter: TIMER.TIMEOUT,
+                navigateTo: ROUTER_PATHS.HOME,
+                onClose: closeModal,
+              });
 
     } catch (error) {
       console.error(ERROR_MESSAGES.LOGOUT_FAILED, error);
