@@ -1,53 +1,54 @@
-import { useCallback, useState, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 
-import { useGetPresignedUrlMutation } from '../services/imageUploadApi';
+import { ERROR_MESSAGES } from '../constants/errorMessages.js';
+import { HTTP_HEADERS } from '../constants/httpHeaders.js';
+import { HTTP_METHODS } from '../constants/httpMethods.js';
+import { useGetPresignedUrlMutation } from '../services/imageUploadApi.js';
 
-export const useS3ImageUpload = (setValue) => {
+export function useS3ImageUpload() {
   const [preview, setPreview] = useState(null);
-  const [isUploading, setIsUploading] = useState(false);
-  const [uploadError, setUploadError] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
   const [getPresignedUrl] = useGetPresignedUrlMutation();
 
-  const onDrop = useCallback(
-    async (acceptedFiles) => {
-      const file = acceptedFiles?.[0];
-      if (!file) return;
-
-      setIsUploading(true);
-      setUploadError(null);
-
-      try {
-        const { uploadUrl, publicUrl } = await getPresignedUrl({
-          filename: file.name,
-          mimetype: file.type,
-        }).unwrap();
-
-        await fetch(uploadUrl, {
-          method: 'PUT',
-          body: file,
-          headers: { 'Content-Type': file.type },
-        });
-
-        const objectUrl = URL.createObjectURL(file);
-        setPreview(objectUrl);
-        setValue('image', publicUrl);
-      } catch (err) {
-        setUploadError('Failed to upload image. Please try again.');
-        console.error('S3 Upload Error:', err);
-      } finally {
-        setIsUploading(false);
-      }
-    },
-    [getPresignedUrl, setValue]
-  );
-
-  useEffect(() => {
-    return () => {
-      if (preview) {
-        URL.revokeObjectURL(preview);
-      }
-    };
+  const createPreview = useCallback((file) => {
+    if (preview) {
+      URL.revokeObjectURL(preview);
+    }
+    const objectUrl = URL.createObjectURL(file);
+    setPreview(objectUrl);
   }, [preview]);
 
-  return { preview, onDrop, isUploading, error: uploadError };
-};
+  const handleFileSelect = useCallback((file) => {
+    createPreview(file);
+    setSelectedFile(file);
+  }, [createPreview]);
+
+  const uploadFileToS3 = useCallback(async () => {
+    if (!selectedFile) return null;
+    try {
+      const { uploadUrl, publicUrl } = await getPresignedUrl({
+        filename: selectedFile.name,
+        mimetype: selectedFile.type,
+      }).unwrap();
+
+      const res = await fetch(uploadUrl, {
+        method: HTTP_METHODS.PUT,
+        body: selectedFile,
+        headers: { [HTTP_HEADERS.CONTENT_TYPE]: selectedFile.type },
+      });
+
+      if (!res.ok) throw new Error(ERROR_MESSAGES.S3_UPLOAD_FAILED);
+      return publicUrl;
+    } catch (error) {
+      console.error(ERROR_MESSAGES.UPLOAD_FAILED, error);
+      throw error;
+    }
+  }, [selectedFile, getPresignedUrl]);
+
+  return {
+    preview,
+    selectedFile,
+    handleFileSelect,
+    uploadFileToS3,
+  };
+}

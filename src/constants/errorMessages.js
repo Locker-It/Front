@@ -5,8 +5,11 @@ export const ERROR_MESSAGES = {
   ADD_TO_CART_FAILED: 'Add to Cart failed:',
   LOGOUT_FAILED: 'Failed to log out. Please try again later.',
   NO_ITEMS_IN_CART: 'No items in your cart',
-
+  SUBMIT_FAILED: 'Failed to submit product:',
+  UPLOAD_FAILED: 'upload failed. Please try again later.',
+  S3_UPLOAD_FAILED: 'Upload to S3 failed',
 };
+
 export const AUTH_ERRORS = {
   LOGIN_FAILED: 'Login failed',
   GENERAL_LOGIN_ERROR: 'General login error',

@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 
 import { TextField, Stack, MenuItem } from '@mui/material';
 
+import { ERROR_MESSAGES } from '../../../constants/errorMessages.js';
 import { BUTTON_VARIANTS } from '../../../constants/types';
-import { addProductSchema } from '../../../validation/addProduct.schema';
 import ActionButton from '../../shared/Button/ActionButton';
 import { StyledPaper, TitleWrapper, FormWrapper } from '../Form.styled';
 import {
@@ -16,13 +16,13 @@ import {
 import SharedTypography from '../../shared/Text/SharedTypography';
 import { PRODUCT_FORM_TEXT } from '../forms.constants';
 import ImageDropzone from './ImageDropzone.jsx';
-import { useGetPresignedUrlMutation } from '../../../services/imageUploadApi';
+import { useS3ImageUpload } from '../../../hooks/useS3ImageUpload.js';
+import { addProductSchema } from '../../../validation/addProduct.schema.js';
+
 
 
 export default function AddProductForm({ onSubmit, isLoading }) {
-  const [preview, setPreview] = useState(null);
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [getPresignedUrl] = useGetPresignedUrlMutation();
+  const { preview, handleFileSelect, uploadFileToS3 } = useS3ImageUpload();
 
   const {
     register,
@@ -35,33 +35,17 @@ export default function AddProductForm({ onSubmit, isLoading }) {
     },
   });
 
-  const handleFileSelect = (file) => {
-    const objectUrl = URL.createObjectURL(file);
-    setPreview(objectUrl);
-    setSelectedFile(file);
-  };
-
   const handleFormSubmit = async (data) => {
     try {
-      if (selectedFile) {
-        const { uploadUrl, publicUrl } = await getPresignedUrl({
-          filename: selectedFile.name,
-          mimetype: selectedFile.type,
-        }).unwrap();
-
-        const res = await fetch(uploadUrl, {
-          method: 'PUT',
-          body: selectedFile,
-          headers: { 'Content-Type': selectedFile.type },
-        });
-
-        if (!res.ok) throw new Error('Upload to S3 failed');
-
-        data.images = [publicUrl];
+      if (preview) {
+        const publicUrl = await uploadFileToS3();
+        if (publicUrl) {
+          data.images = [publicUrl];
+        }
       }
       await onSubmit(data);
     } catch (error) {
-      console.error(' Failed to submit product:', error);
+      console.error(ERROR_MESSAGES.SUBMIT_FAILED, error);
     }
   };
 

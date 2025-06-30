@@ -7,7 +7,7 @@ import { TAG_TYPES } from '../constants/types.js';
 export const imageUploadApi = createApi({
   reducerPath: 'imageUploadApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:3001/api/v1',
+    baseUrl: ROUTES.MICRO_SERVICE_URL,
     credentials: 'include',
   }),
   tagTypes: [TAG_TYPES.IMAGE],

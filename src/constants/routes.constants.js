@@ -19,4 +19,5 @@ export const ROUTES = {
   CURRENT_USER: '/auth/me',
   DASHBOARD: '/dashboard',
   PRESIGNED_URL: '/images/presigned-url',
+  MICRO_SERVICE_URL: 'http://localhost:3001/api/v1',
 };
