@@ -15,6 +15,7 @@ import AddProductPage from './pages/Product/AddProductPage.jsx';
 import ProductPage from './pages/Product/ProductPage.jsx';
 import ProductListPage from './pages/Products/ProductListPage.jsx';
 import SignUpPage from './pages/SignUp/SignUpPage.jsx';
+import PublicRoute from './routes/PublicRoute.jsx';
 
 const router = createBrowserRouter([
   {
@@ -34,8 +35,8 @@ const router = createBrowserRouter([
           { path: ROUTES.CUSTOMER_PAGE, element: <Customer_Bar /> },
           { path: ROUTES.CART, element: <CartPage /> },
           { path: ROUTES.DASHBOARD_CARDS, element: <DashboardCards /> },
-          { path: ROUTES.LOGIN, element: <LoginPage /> },
-          { path: ROUTES.REGISTER, element: <SignUpPage /> },
+          { path: ROUTES.LOGIN, element: <PublicRoute><LoginPage /></PublicRoute> },
+          { path: ROUTES.REGISTER, element: <PublicRoute><SignUpPage /></PublicRoute> },
           { path: ROUTES.ADD_PRODUCT, element: <AddProductPage /> },
         ],
       },

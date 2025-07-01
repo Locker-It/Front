@@ -72,3 +72,6 @@ export const NAVBAR_TEXT = {
   HELLO_USER: 'Hello, ',
 };
 
+export const TIMER = {
+  MODAL_TIMEOUT: 2000,
+}
