@@ -25,15 +25,16 @@ export const ItemCard = styled(Paper)(({ theme }) => ({
 }));
 
 export const ImageStyle = {
-  width: 100,
-  height: 100,
+  width: 160,
+  height: 160,
   objectFit: 'cover',
+  marginLeft: '4rem',
 };
 
 export const SharedFlexBox = styled(Box)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
-  gap: theme.spacing(2),
+  gap: theme.spacing(12),
 }));
 
 export const dividerStyle = {
@@ -43,5 +44,6 @@ export const dividerStyle = {
 export const InfoBox = styled(Box)(() => ({
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'flex-start',
+  justifyContent: 'center',
+  gap: theme.spacing(1),
 }));
