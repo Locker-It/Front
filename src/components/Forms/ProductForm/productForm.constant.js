@@ -4,6 +4,7 @@ export const ADD_PRODUCT_CONSTANTS = {
   PRICE: 'price',
   CATEGORY: 'category',
   IMAGE_URL: 'images',
+
 };
 
 export const PRODUCT_CATEGORIES = ['ELECTRONICS', 'CLOTHING', 'BOOKS', 'FOOD'];

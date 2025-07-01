@@ -36,7 +36,7 @@ export default function AddProductForm({ onSubmit, isLoading, lockers = [] }) {
     },
   });
 
-  const selectedLockerIds = watch('selectedLockerIds');
+  const selectedLockerIds = watch(LOCKER_TEXT.SELECTED_LOCKER_IDS);
 
   const { preview, onDrop } = useImageUpload(setValue);
 

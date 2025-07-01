@@ -38,7 +38,7 @@ const OrderCard = ({ items = [], total = 0 }) => {
             <Grid key={_id}>
               <ItemCard>
                 <SharedFlexBox>
-                  <SharedImage src={images} alt={name} sx={ImageStyle} />
+                  <SharedImage src={images} alt={name} style={ImageStyle} />
 
                   <InfoBox>
                     <SharedTypography variant="body1" fontWeight="bold">
@@ -60,7 +60,7 @@ const OrderCard = ({ items = [], total = 0 }) => {
         })}
       </SharedGrid>
 
-      <Divider sx={dividerStyle} />
+      <Divider style={dividerStyle} />
 
       <SharedGrid container justifyContent="space-between" alignItems="center">
         <SharedTypography variant="h6" fontWeight="bold">

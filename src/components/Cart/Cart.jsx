@@ -7,6 +7,7 @@ import {
   EmptyCartText,
   RemoveButtonWrapper,
   CartItemWrapper,
+  cartGridStyle,
 } from './Cart.styles';
 import { CART_TEXT } from '../../constants/hardText.js';
 import { BUTTON_VARIANTS } from '../../constants/types.js';
@@ -14,6 +15,8 @@ import ProductCard from '../Product/ProductCard';
 import ActionButton from '../shared/Button/ActionButton.jsx';
 import CustomDivider from '../shared/Divider/CustomDivider.jsx';
 import SharedGrid from '../shared/Grid/SharedGrid';
+import { LOCKER_LOCATION } from '../../utils/textTemplates.js';
+import { addSignShekel } from '../../utils/converting.js';
 
 const Cart = ({
   items,
@@ -71,8 +74,10 @@ const Cart = ({
                       disabled
                     />
                     <p>
-                      Locker #{rest.lockerId?.lockerNumber} –{' '}
-                      {rest.lockerId?.location}
+                      {LOCKER_LOCATION.LOCKER_LABEL(
+                        rest.lockerId?.lockerNumber ?? '',
+                        rest.lockerId?.location ?? '',
+                      )}
                     </p>
                     <RemoveButtonWrapper>
                       <ActionButton
@@ -86,10 +91,7 @@ const Cart = ({
                 ),
               }),
             )}
-            columns={1}
-            spacing={2}
-            justifyContent="center"
-            alignItems="center"
+            {...cartGridStyle}
           />
           <CustomDivider />
           <CartRow>
@@ -97,7 +99,7 @@ const Cart = ({
               {CART_TEXT.CART_TOTAL}
             </CartTitle>
             <CartTitle as="span" variant="body1">
-              {total} ₪
+              {addSignShekel(total)}
             </CartTitle>
           </CartRow>
           {!isLoggedIn && (
