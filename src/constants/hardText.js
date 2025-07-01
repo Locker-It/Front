@@ -76,3 +76,6 @@ export const LOCKER_TEXT = {
   SELECT_LOCKERS: 'Select Lockers',
   SELECTED_LOCKER_IDS: 'selectedLockerIds',
 };
+export const TIMER = {
+  MODAL_TIMEOUT: 2000,
+}
