@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 
 import SignupForm from '../../components/Forms/SignUpForm';
 import { StatusModal } from '../../components/shared/Modal/StatusModal.jsx';
@@ -26,7 +25,7 @@ const SignUpPage = () => {
         type: MODAL_TYPES.SUCCESS,
         title: MODAL_TYPES.ACCOUNT_CREATED,
         message: MODAL_TYPES.ACCOUNT_HAS_CREATED_SUCCESSFULLY,
-        autoCloseAfter: TIMER.TIMEOUT,
+        autoCloseAfter: TIMER.MODAL_TIMEOUT,
         navigateTo: ROUTES.LOGIN,
         onClose: closeModal,
       });

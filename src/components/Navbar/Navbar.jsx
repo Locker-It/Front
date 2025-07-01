@@ -47,7 +47,7 @@ function Navbar() {
                type: MODAL_TYPES.SUCCESS,
                 title: MODAL_TYPES.LOGOUT_SUCCESS,
                 message: MODAL_TYPES.LOGOUT_SUCCESS_MESSAGE,
-                autoCloseAfter: TIMER.TIMEOUT,
+                autoCloseAfter: TIMER.MODAL_TIMEOUT,
                 navigateTo: ROUTER_PATHS.HOME,
                 onClose: closeModal,
               });

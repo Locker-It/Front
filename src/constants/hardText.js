@@ -73,5 +73,5 @@ export const NAVBAR_TEXT = {
 };
 
 export const TIMER = {
-  TIMEOUT: 2000,
+  MODAL_TIMEOUT: 2000,
 }
