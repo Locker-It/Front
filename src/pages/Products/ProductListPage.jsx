@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { CircularProgress, Grid } from '@mui/material';
 
 import { containerStyle, spinnerStyle } from './ProductListPage.styled.js';
-import ProductCard from '../../components/Product/ProductCard.jsx';
+import ProductCard from '../../components/Product/ProductCard/ProductCard.jsx';
+import { getProductCardProps } from '../../components/Product/ProductCard/productCard.utils.js';
 import SharedTypography from '../../components/shared/Text/SharedTypography.jsx';
 import { ERROR_MESSAGES } from '../../constants/errorMessages.js';
 import { ROUTES } from '../../constants/routes.constants.js';
@@ -37,7 +38,7 @@ const ProductListPage = () => {
     <Grid container spacing={3} style={containerStyle}>
       {products.map((p) => (
         <Grid key={p.id}>
-          <ProductCard {...p} onSelect={handleSelect} />
+          <ProductCard {...getProductCardProps(p, handleSelect)} />
         </Grid>
       ))}
     </Grid>
