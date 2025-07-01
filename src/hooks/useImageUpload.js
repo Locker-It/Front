@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 import { ERROR_MESSAGES } from '../constants/errorMessages.js';
 import { HTTP_HEADERS } from '../constants/httpHeaders.js';
@@ -47,43 +47,45 @@ export function useImageUpload() {
     setSelectedFile(file);
   }
 
-  const uploadFileToS3 = useCallback(async () => {
+  function uploadFileToS3() {
     if (!selectedFile) return null;
 
     setIsUploading(true);
     setUploadError(null);
 
-    try {
-      const { uploadUrl, publicUrl } = await getPresignedUrl({
-        filename: selectedFile.name,
-        mimetype: selectedFile.type,
-      }).unwrap();
-
-      const res = await fetch(uploadUrl, {
-        method: HTTP_METHODS.PUT,
-        body: selectedFile,
-        headers: { [HTTP_HEADERS.CONTENT_TYPE]: selectedFile.type },
+    return getPresignedUrl({
+      filename: selectedFile.name,
+      mimetype: selectedFile.type,
+    })
+      .unwrap()
+      .then(({ uploadUrl, publicUrl }) =>
+        fetch(uploadUrl, {
+          method: HTTP_METHODS.PUT,
+          body: selectedFile,
+          headers: { [HTTP_HEADERS.CONTENT_TYPE]: selectedFile.type },
+        }).then((res) => {
+          if (!res.ok) throw new Error(ERROR_MESSAGES.S3_UPLOAD_FAILED);
+          return publicUrl;
+        }),
+      )
+      .catch((error) => {
+        console.error(ERROR_MESSAGES.UPLOAD_FAILED, error);
+        setUploadError(error);
+        throw error;
+      })
+      .finally(() => {
+        setIsUploading(false);
       });
+  }
 
-      if (!res.ok) throw new Error(ERROR_MESSAGES.S3_UPLOAD_FAILED);
-      return publicUrl;
-    } catch (error) {
-      console.error(ERROR_MESSAGES.UPLOAD_FAILED, error);
-      setUploadError(error);
-      throw error;
-    } finally {
-      setIsUploading(false);
-    }
-  }, [selectedFile, getPresignedUrl]);
-
-  const resetPreview = useCallback(() => {
+  function resetPreview() {
     if (previewRef.current) {
       URL.revokeObjectURL(previewRef.current);
       previewRef.current = null;
     }
     setPreview(null);
     setSelectedFile(null);
-  }, []);
+  }
 
   return {
     preview,
