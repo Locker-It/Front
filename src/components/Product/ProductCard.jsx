@@ -3,7 +3,6 @@ import React from 'react';
 import { CardContent, CardActionArea } from '@mui/material';
 
 import { StyledCard } from './Product.styled.js';
-import { UI_TEXT } from '../../constants/hardText.js';
 import { addSignShekel  } from '../../utils/converting.js';
 import { SharedImage } from '../shared/Image/SharedImage.jsx';
 import SharedTypography from '../shared/Text/SharedTypography.jsx';
@@ -14,10 +13,9 @@ const ProductCard = ({
   name,
   price,
   onSelect,
-  ...props
 }) => {
   return (
-    <StyledCard {...props}>
+    <StyledCard>
       <CardActionArea onClick={() => onSelect(id)}>
         <SharedImage src={images} alt={name} />
 

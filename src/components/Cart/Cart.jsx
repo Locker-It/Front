@@ -52,8 +52,7 @@ const Cart = ({
         <>
           <SharedGrid
             items={validItems.map(
-              ({ id, images, name, price, rating, ...rest }) => ({
-                ...rest,
+              ({ id, images, name, price, rating,  }) => ({
                 id,
                 images,
                 name,

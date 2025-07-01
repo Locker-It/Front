@@ -37,7 +37,13 @@ const ProductListPage = () => {
     <Grid container spacing={3} style={containerStyle}>
       {products.map((p) => (
         <Grid key={p.id}>
-          <ProductCard {...p} onSelect={handleSelect} />
+          <ProductCard
+            id={p.id}
+            images={p.images}
+            name={p.name}
+            price={p.price}
+            onSelect={handleSelect}
+          />
         </Grid>
       ))}
     </Grid>
