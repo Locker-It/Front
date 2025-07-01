@@ -8,7 +8,7 @@ import {
   RemoveButtonWrapper,
   CartItemWrapper,
 } from './Cart.styles';
-import { CART_TEXT} from '../../constants/hardText.js';
+import { CART_TEXT } from '../../constants/hardText.js';
 import { BUTTON_VARIANTS } from '../../constants/types.js';
 import ProductCard from '../Product/ProductCard/ProductCard.jsx';
 import ActionButton from '../shared/Button/ActionButton.jsx';
@@ -51,36 +51,34 @@ const Cart = ({
       ) : (
         <>
           <SharedGrid
-            items={validItems.map(
-              ({ id, images, name, price, rating,  }) => ({
-                id,
-                images,
-                name,
-                price,
-                rating,
-                description: (
-                  <CartItemWrapper>
-                    <ProductCard
-                      id={id}
-                      images={images}
-                      name={name}
-                      price={price}
-                      rating={rating}
-                      onSelect={() => {}}
-                      disabled
-                    />
-                    <RemoveButtonWrapper>
-                      <ActionButton
-                        onClick={() => handleItemRemove(id)}
-                        styleType={BUTTON_VARIANTS.OUTLINED}
-                      >
-                        {CART_TEXT.REMOVE_BUTTON}
-                      </ActionButton>
-                    </RemoveButtonWrapper>
-                  </CartItemWrapper>
-                ),
-              }),
-            )}
+            items={validItems.map(({ id, images, name, price, rating }) => ({
+              id,
+              images,
+              name,
+              price,
+              rating,
+              description: (
+                <CartItemWrapper>
+                  <ProductCard
+                    id={id}
+                    images={images}
+                    name={name}
+                    price={price}
+                    rating={rating}
+                    onSelect={() => {}}
+                    disabled
+                  />
+                  <RemoveButtonWrapper>
+                    <ActionButton
+                      onClick={() => handleItemRemove(id)}
+                      styleType={BUTTON_VARIANTS.OUTLINED}
+                    >
+                      {CART_TEXT.REMOVE_BUTTON}
+                    </ActionButton>
+                  </RemoveButtonWrapper>
+                </CartItemWrapper>
+              ),
+            }))}
             columns={1}
             spacing={2}
             justifyContent="center"
@@ -98,7 +96,11 @@ const Cart = ({
           {!isLoggedIn && (
             <EmptyCartText>{CART_TEXT.CART_LOGIN_REQUIRED}</EmptyCartText>
           )}
-          <ActionButton onClick={onContinue} disabled={!canPurchase} styleType={BUTTON_VARIANTS.FILLED}>
+          <ActionButton
+            onClick={onContinue}
+            disabled={!canPurchase}
+            styleType={BUTTON_VARIANTS.FILLED}
+          >
             {CART_TEXT.CART_CONTINUE}
           </ActionButton>
         </>
