@@ -9,7 +9,7 @@ import {
 } from '../constants/upload.constants.js';
 import { useGetPresignedUrlMutation } from '../services/imageUploadApi.js';
 
-export function useS3ImageUpload() {
+export function useImageUpload() {
   const [preview, setPreview] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [getPresignedUrl] = useGetPresignedUrlMutation();
@@ -17,14 +17,14 @@ export function useS3ImageUpload() {
   const [isUploading, setIsUploading] = useState(false);
   const [uploadError, setUploadError] = useState(null);
 
-  const createPreview = useCallback((file) => {
+  function createPreview(file) {
     if (previewRef.current) {
       URL.revokeObjectURL(previewRef.current);
     }
     const objectUrl = URL.createObjectURL(file);
     previewRef.current = objectUrl;
     setPreview(objectUrl);
-  }, []);
+  }
 
   useEffect(() => {
     return () => {
@@ -34,21 +34,18 @@ export function useS3ImageUpload() {
     };
   }, []);
 
-  const handleFileSelect = useCallback(
-    (file) => {
-      if (!SUPPORTED_IMAGE_TYPES.includes(file.type)) {
-        throw new Error(ERROR_MESSAGES.UNSUPPORTED_FILE_TYPE);
-      }
+  function handleFileSelect(file) {
+    if (!SUPPORTED_IMAGE_TYPES.includes(file.type)) {
+      throw new Error(ERROR_MESSAGES.UNSUPPORTED_FILE_TYPE);
+    }
 
-      if (file.size > MAX_IMAGE_FILE_SIZE) {
-        throw new Error(ERROR_MESSAGES.FILE_TOO_LARGE);
-      }
+    if (file.size > MAX_IMAGE_FILE_SIZE) {
+      throw new Error(ERROR_MESSAGES.FILE_TOO_LARGE);
+    }
 
-      createPreview(file);
-      setSelectedFile(file);
-    },
-    [createPreview],
-  );
+    createPreview(file);
+    setSelectedFile(file);
+  }
 
   const uploadFileToS3 = useCallback(async () => {
     if (!selectedFile) return null;

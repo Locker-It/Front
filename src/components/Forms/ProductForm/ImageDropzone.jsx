@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 
 import { useDropzone } from 'react-dropzone';
 
@@ -7,16 +7,12 @@ import { DropzoneContainer, PreviewImage } from '../Form.styled.js';
 import { IMAGE_DROPZONE_TEXT } from '../forms.constants.js';
 
 const ImageDropzone = ({ onFileSelect, preview: previewProp }) => {
-  const onDrop = useCallback(
-    (acceptedFiles) => {
-      const file = acceptedFiles?.[0];
 
-      if (!file) return;
-
-      onFileSelect(file);
-    },
-    [onFileSelect],
-  );
+  const onDrop = (acceptedFiles) => {
+    const file = acceptedFiles?.[0];
+    if (!file) return;
+    onFileSelect(file);
+  };
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 

@@ -16,14 +16,13 @@ import {
 import SharedTypography from '../../shared/Text/SharedTypography';
 import { PRODUCT_FORM_TEXT } from '../forms.constants';
 import ImageDropzone from './ImageDropzone.jsx';
-import { useS3ImageUpload } from '../../../hooks/useS3ImageUpload.js';
+import { useImageUpload } from '../../../hooks/useImageUpload.js';
 import { addProductSchema } from '../../../validation/addProduct.schema.js';
 
 
 
 export default function AddProductForm({ onSubmit, isLoading }) {
-  const { preview, handleFileSelect, uploadFileToS3 , resetPreview, isUploading } = useS3ImageUpload();
-  const isFormDisabled = isSubmitting || isLoading || isUploading;
+  const { preview, handleFileSelect, uploadFileToS3 , resetPreview, isUploading } = useImageUpload();
 
   const {
     register,
@@ -36,7 +35,7 @@ export default function AddProductForm({ onSubmit, isLoading }) {
       [ADD_PRODUCT_CONSTANTS.CATEGORY]: '',
     },
   });
-
+  const isFormDisabled = isSubmitting || isLoading || isUploading;
   const handleFormSubmit = async (data) => {
     try {
       if (preview) {
