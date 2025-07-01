@@ -8,6 +8,9 @@ export const ERROR_MESSAGES = {
   SUBMIT_FAILED: 'Failed to submit product:',
   UPLOAD_FAILED: 'upload failed. Please try again later.',
   S3_UPLOAD_FAILED: 'Upload to S3 failed',
+  UNSUPPORTED_FILE_TYPE: 'Unsupported file type. Please upload a valid image.',
+  FILE_TOO_LARGE: 'File is too large. Maximum size allowed is 5MB.',
+  PRODUCT_UPLOAD_ERROR: 'Failed to Add Product',
 };
 
 export const AUTH_ERRORS = {

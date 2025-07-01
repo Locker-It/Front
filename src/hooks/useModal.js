@@ -9,9 +9,12 @@ export function useModal() {
   useEffect(() => {
     if (modalData?.autoCloseAfter) {
       const timer = setTimeout(() => {
-        if (modalData.onClose) modalData.onClose();
         setModalData(null);
-        if (modalData.navigateTo) navigate(modalData.navigateTo);
+
+        setTimeout(() => {
+          if (modalData.onClose) modalData.onClose();
+          if (modalData.navigateTo) navigate(modalData.navigateTo);
+        }, 300);
       }, modalData.autoCloseAfter);
 
       return () => clearTimeout(timer);

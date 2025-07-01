@@ -43,4 +43,7 @@ export const MODAL_TYPES = {
   ADD_TO_CART_FAILED: 'Add to Cart Failed',
   LOGOUT_SUCCESS: 'Logged out',
   LOGOUT_SUCCESS_MESSAGE: 'Hope to see you again soon!',
+  PRODUCT_ADDED: 'Product Added successfully',
+  PRODUCT_ADDED_MESSAGE: 'The product has been saved to the system.',
+
 };

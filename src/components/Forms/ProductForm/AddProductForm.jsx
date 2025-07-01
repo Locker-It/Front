@@ -22,11 +22,13 @@ import { addProductSchema } from '../../../validation/addProduct.schema.js';
 
 
 export default function AddProductForm({ onSubmit, isLoading }) {
-  const { preview, handleFileSelect, uploadFileToS3 } = useS3ImageUpload();
+  const { preview, handleFileSelect, uploadFileToS3 , resetPreview, isUploading } = useS3ImageUpload();
+  const isFormDisabled = isSubmitting || isLoading || isUploading;
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm({
     resolver: yupResolver(addProductSchema),
@@ -39,11 +41,16 @@ export default function AddProductForm({ onSubmit, isLoading }) {
     try {
       if (preview) {
         const publicUrl = await uploadFileToS3();
-        if (publicUrl) {
-          data.images = [publicUrl];
+        if (!publicUrl) {
+          throw new Error(ERROR_MESSAGES.S3_UPLOAD_FAILED);
         }
+        data.images = [publicUrl];
       }
+
       await onSubmit(data);
+
+      reset();
+      resetPreview();
     } catch (error) {
       console.error(ERROR_MESSAGES.SUBMIT_FAILED, error);
     }
@@ -113,17 +120,16 @@ export default function AddProductForm({ onSubmit, isLoading }) {
 
           <ImageDropzone preview={preview} onFileSelect={handleFileSelect} />
 
-          {errors.image && (
+          {errors.images && (
             <SharedTypography variant="body2" color="error">
-              {errors.image.message}
+              {errors.images.message}
             </SharedTypography>
           )}
 
+
           <ActionButton
             type="submit"
-            size="large"
-            disabled={isSubmitting || isLoading}
-            fullWidth
+            disabled={isFormDisabled}
             styleType={BUTTON_VARIANTS.FILLED}
           >
             {PRODUCT_FORM_TEXT.SUBMIT}

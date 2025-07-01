@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback } from 'react';
 
 import { useDropzone } from 'react-dropzone';
 
@@ -6,25 +6,17 @@ import SharedTypography from '../../shared/Text/SharedTypography.jsx';
 import { DropzoneContainer, PreviewImage } from '../Form.styled.js';
 import { IMAGE_DROPZONE_TEXT } from '../forms.constants.js';
 
-const ImageDropzone = ({ onFileSelect }) => {
-  const [preview, setPreview] = useState(null);
+const ImageDropzone = ({ onFileSelect, preview: previewProp }) => {
+  const onDrop = useCallback(
+    (acceptedFiles) => {
+      const file = acceptedFiles?.[0];
 
-  const onDrop = useCallback((acceptedFiles) => {
-    const file = acceptedFiles?.[0];
-    if (!file) return;
+      if (!file) return;
 
-    const objectUrl = URL.createObjectURL(file);
-    setPreview(objectUrl);
-    onFileSelect(file);
-  }, [onFileSelect]);
-
-  useEffect(() => {
-    return () => {
-      if (preview) {
-        URL.revokeObjectURL(preview);
-      }
-    };
-  }, [preview]);
+      onFileSelect(file);
+    },
+    [onFileSelect],
+  );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
@@ -33,10 +25,13 @@ const ImageDropzone = ({ onFileSelect }) => {
     : IMAGE_DROPZONE_TEXT.DROP_DEFAULT;
 
   return (
-    <DropzoneContainer {...getRootProps()} className={isDragActive ? 'active' : ''}>
+    <DropzoneContainer
+      {...getRootProps()}
+      className={isDragActive ? 'active' : ''}
+    >
       <input {...getInputProps()} />
       <SharedTypography>{dropText}</SharedTypography>
-      {preview && <PreviewImage src={preview} alt="Preview" />}
+      {previewProp && <PreviewImage src={previewProp} alt="Preview" />}
     </DropzoneContainer>
   );
 };
