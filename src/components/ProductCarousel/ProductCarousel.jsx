@@ -12,7 +12,8 @@ import {
 } from './Carousel.constants.js';
 import { CarouselWrapper } from './ProductCarousel.styled';
 import { ROUTES } from '../../constants/routes.constants.js';
-import ProductCard from '../Product/ProductCard';
+import ProductCard from '../Product/ProductCard/ProductCard.jsx';
+import { getProductCardProps } from '../Product/ProductCard/productCard.utils.js';
 
 const ProductCarousel = ({ products }) => {
   const settings = {
@@ -39,13 +40,7 @@ const ProductCarousel = ({ products }) => {
       <Slider {...settings}>
         {products.map((product) => (
           <div key={product.id}>
-            <ProductCard
-              id={product.id}
-              images={product.images}
-              name={product.name}
-              price={product.price}
-              onSelect={handleProductClick}
-            />
+            <ProductCard {...getProductCardProps(product, handleProductClick)} />
           </div>
         ))}
       </Slider>

@@ -10,7 +10,7 @@ import {
 } from './Cart.styles';
 import { CART_TEXT} from '../../constants/hardText.js';
 import { BUTTON_VARIANTS } from '../../constants/types.js';
-import ProductCard from '../Product/ProductCard';
+import ProductCard from '../Product/ProductCard/ProductCard.jsx';
 import ActionButton from '../shared/Button/ActionButton.jsx';
 import CustomDivider from '../shared/Divider/CustomDivider.jsx';
 import SharedGrid from '../shared/Grid/SharedGrid';
