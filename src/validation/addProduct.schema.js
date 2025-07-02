@@ -31,20 +31,13 @@ export const addProductSchema = yup.object({
     .oneOf(PRODUCT_CATEGORIES, PRODUCT_FORM_TEXT.CATEGORY_INVALID)
     .required(PRODUCT_FORM_TEXT.CATEGORY_REQUIRED),
 
-  image: yup
-    .mixed()
-    // TODO: When using image upload microservice, consider removing this validation
-    .test(
-      IMAGE_VALIDATION.TEST_NAME,
-      IMAGE_VALIDATION.ERROR_MESSAGE,
-      (value) => {
-        if (!value || value.length === 0) return true;
-        return SUPPORTED_IMAGE_TYPES.includes(value[0].type);
-      },
-    ),
   selectedLockerIds: yup
     .array()
     .of(yup.string().required())
     .min(1, LOCKER_VALIDATION.AT_LEAST_SELECT_ONE)
     .required(LOCKER_VALIDATION.LOCKERS_ARE_REQUIRED),
+  images: yup
+    .array()
+    .of(yup.string().url(IMAGE_VALIDATION.ERROR_MESSAGE))
+    .min(1, IMAGE_VALIDATION.ERROR_MESSAGE),
 });

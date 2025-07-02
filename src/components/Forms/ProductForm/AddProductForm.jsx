@@ -1,14 +1,10 @@
 import React from 'react';
-
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useDropzone } from 'react-dropzone';
 import { useForm } from 'react-hook-form';
-
 import { TextField, Stack, MenuItem, Autocomplete, Chip } from '@mui/material';
-
+import { ERROR_MESSAGES } from '../../../constants/errorMessages.js';
 import { BUTTON_VARIANTS } from '../../../constants/types';
 import { LOCKER_TEXT } from '../../../constants/hardText.js';
-import { useImageUpload } from '../../../hooks/useImageUpload';
 import { addProductSchema } from '../../../validation/addProduct.schema';
 import ActionButton from '../../shared/Button/ActionButton';
 import { StyledPaper, TitleWrapper, FormWrapper } from '../Form.styled';
@@ -20,13 +16,23 @@ import SharedTypography from '../../shared/Text/SharedTypography';
 import { PRODUCT_FORM_TEXT } from '../forms.constants';
 import ImageDropzone from './ImageDropzone.jsx';
 import { LOCKER_LOCATION } from '../../../utils/textTemplates.js';
+import { useImageUpload } from '../../../hooks/useImageUpload.js';
 
 export default function AddProductForm({ onSubmit, isLoading, lockers = [] }) {
+  const {
+    preview,
+    handleFileSelect,
+    uploadFileToS3,
+    resetPreview,
+    isUploading,
+  } = useImageUpload();
+
   const {
     register,
     handleSubmit,
     setValue,
     watch,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm({
     resolver: yupResolver(addProductSchema),
@@ -35,16 +41,27 @@ export default function AddProductForm({ onSubmit, isLoading, lockers = [] }) {
       selectedLockerIds: [],
     },
   });
-
   const selectedLockerIds = watch(LOCKER_TEXT.SELECTED_LOCKER_IDS);
 
-  const { preview, onDrop } = useImageUpload(setValue);
+  const isFormDisabled = isSubmitting || isLoading || isUploading;
+  const handleFormSubmit = async (data) => {
+    try {
+      if (preview) {
+        const publicUrl = await uploadFileToS3();
+        if (!publicUrl) {
+          throw new Error(ERROR_MESSAGES.S3_UPLOAD_FAILED);
+        }
+        data.images = [publicUrl];
+      }
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    onDrop,
-    accept: { 'image/*': [] },
-    multiple: false,
-  });
+      await onSubmit(data);
+
+      reset();
+      resetPreview();
+    } catch (error) {
+      console.error(ERROR_MESSAGES.SUBMIT_FAILED, error);
+    }
+  };
 
   return (
     <StyledPaper elevation={3}>
@@ -55,7 +72,7 @@ export default function AddProductForm({ onSubmit, isLoading, lockers = [] }) {
       </TitleWrapper>
 
       <FormWrapper
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(handleFormSubmit)}
         noValidate
         component="form"
       >
@@ -143,24 +160,17 @@ export default function AddProductForm({ onSubmit, isLoading, lockers = [] }) {
             disabled={lockers.length === 0}
           />
 
-          <ImageDropzone
-            getRootProps={getRootProps}
-            getInputProps={getInputProps}
-            isDragActive={isDragActive}
-            preview={preview}
-          />
+          <ImageDropzone preview={preview} onFileSelect={handleFileSelect} />
 
-          {errors.image && (
+          {errors.images && (
             <SharedTypography variant="body2" color="error">
-              {errors.image.message}
+              {errors.images.message}
             </SharedTypography>
           )}
 
           <ActionButton
             type="submit"
-            size="large"
-            disabled={isSubmitting || isLoading}
-            fullWidth
+            disabled={isFormDisabled}
             styleType={BUTTON_VARIANTS.FILLED}
           >
             {PRODUCT_FORM_TEXT.SUBMIT}

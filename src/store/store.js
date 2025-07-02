@@ -5,6 +5,7 @@ import { authApi } from '../services/authApi';
 import { cartApi } from '../services/cartApi';
 import { availableLockerApi } from '../services/availableLockerApi';
 import { lockerApi } from '../services/lockerApi';
+import { imageUploadApi } from '../services/imageUploadApi.js';
 import { productApi } from '../services/product/productApi.js';
 import { purchaseApi } from '../services/purchaseApi.js';
 
@@ -18,6 +19,7 @@ export const store = configureStore({
     [lockerApi.reducerPath]: lockerApi.reducer,
     [purchaseApi.reducerPath]: purchaseApi.reducer,
 
+    [imageUploadApi.reducerPath]: imageUploadApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
@@ -27,5 +29,6 @@ export const store = configureStore({
       availableLockerApi.middleware,
       lockerApi.middleware,
       purchaseApi.middleware,
+      imageUploadApi.middleware,
     ),
 });
