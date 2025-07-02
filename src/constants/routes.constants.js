@@ -1,5 +1,3 @@
-export const BASE_URL = import.meta.env.VITE_API_BASE_URL;
-
 export const ROUTES = {
   HOME: '/',
   ABOUT: '/about',
@@ -20,4 +18,6 @@ export const ROUTES = {
   LOGOUT: '/auth/logout',
   CURRENT_USER: '/auth/me',
   DASHBOARD: '/dashboard',
+  PRESIGNED_URL: '/images/presigned-url',
+  MICRO_SERVICE_URL: 'http://localhost:3001/api/v1',
 };

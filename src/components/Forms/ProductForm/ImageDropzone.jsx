@@ -1,26 +1,33 @@
 import React from 'react';
 
+import { useDropzone } from 'react-dropzone';
+
 import SharedTypography from '../../shared/Text/SharedTypography.jsx';
 import { DropzoneContainer, PreviewImage } from '../Form.styled.js';
 import { IMAGE_DROPZONE_TEXT } from '../forms.constants.js';
 
-const ImageDropzone = (props) => {
-  const {
-    getRootProps,
-    getInputProps,
-    isDragActive,
-    preview,
-  } = props;
+const ImageDropzone = ({ onFileSelect, preview: previewProp }) => {
+
+  const onDrop = (acceptedFiles) => {
+    const file = acceptedFiles?.[0];
+    if (!file) return;
+    onFileSelect(file);
+  };
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   const dropText = isDragActive
     ? IMAGE_DROPZONE_TEXT.DROP_ACTIVE
     : IMAGE_DROPZONE_TEXT.DROP_DEFAULT;
 
   return (
-    <DropzoneContainer {...getRootProps()} className={isDragActive ? 'active' : ''}>
+    <DropzoneContainer
+      {...getRootProps()}
+      className={isDragActive ? 'active' : ''}
+    >
       <input {...getInputProps()} />
       <SharedTypography>{dropText}</SharedTypography>
-      {preview && <PreviewImage src={preview} alt="Preview" />}
+      {previewProp && <PreviewImage src={previewProp} alt="Preview" />}
     </DropzoneContainer>
   );
 };

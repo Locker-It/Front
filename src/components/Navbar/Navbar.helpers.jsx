@@ -7,4 +7,9 @@ export const mainNavItems = [
   { to: ROUTER_PATHS.PRODUCTS, label: BUTTON_TEXT.PRODUCTS },
 ];
 
-export const cartNavItem = { to: ROUTER_PATHS.CART, label: BUTTON_TEXT.CART };
+export const loggedInItems = [
+  { to: ROUTER_PATHS.CART, label: BUTTON_TEXT.CART },
+  { to: ROUTER_PATHS.ADD_PRODUCT, label: BUTTON_TEXT.SELL_PRODUCT,
+  }
+];
+
