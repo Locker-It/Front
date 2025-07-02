@@ -36,8 +36,8 @@ const router = createBrowserRouter([
           { path: ROUTES.CUSTOMER_PAGE, element: <Customer_Bar /> },
           { path: ROUTES.DASHBOARD_CARDS, element: <DashboardCards /> },
 
-          { path: ROUTES.ORDER_PROCESS, element: <PrivateRoute><OrderProcess /> </PrivateRoute>},
-          { path: ROUTES.CART, element: <PrivateRoute><CartPage /> </PrivateRoute>},
+          { path: ROUTES.ORDER_PROCESS, element: <PrivateRoute><OrderProcess /></PrivateRoute>},
+          { path: ROUTES.CART, element: <PrivateRoute><CartPage /></PrivateRoute>},
           { path: ROUTES.ADD_PRODUCT, element: <PrivateRoute><AddProductPage /></PrivateRoute> },
 
           { path: ROUTES.LOGIN, element: <PublicRoute><LoginPage /></PublicRoute> },
