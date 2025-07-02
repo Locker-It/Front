@@ -33,6 +33,11 @@ const theme = createTheme({
     secondary: {
       main: '#1565c0',
     },
+
+    disabledCard: {
+      background: 'rgba(200, 200, 200, 0.6)', 
+      text: '#888888',
+    },
   },
   typography: {
     fontFamily: `'Roboto', 'Helvetica', 'Arial', sans-serif`,
@@ -43,7 +48,7 @@ const theme = createTheme({
   },
   customShadows: {
     main: '0 1rem 2rem rgba(0, 0, 0, 0.2)',
-    cardHover: '0 1.25rem 2.5rem rgba(0, 0, 0, 0.2)', 
+    cardHover: '0 1.25rem 2.5rem rgba(0, 0, 0, 0.2)',
   },
   transitions: {
     card: 'transform 0.3s ease, box-shadow 0.3s ease',
@@ -57,7 +62,6 @@ const theme = createTheme({
       },
     }),
   },
-  
   breakpoints: {
     values: {
       xs: 0,

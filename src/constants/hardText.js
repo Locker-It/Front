@@ -78,4 +78,8 @@ export const LOCKER_TEXT = {
 };
 export const TIMER = {
   MODAL_TIMEOUT: 2000,
-}
+};
+
+export const STATUSES = {
+  NOT_AVAILABLE: 'Not Available',
+};

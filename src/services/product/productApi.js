@@ -13,7 +13,7 @@ export const productApi = createApi({
   tagTypes: [TAG_TYPES.PRODUCT, TAG_TYPES.CART],
   endpoints: (builder) => ({
     getProducts: builder.query({
-      query: () => `${ROUTES.PRODUCTS}?status=AVAILABLE`,
+      query: () => `${ROUTES.PRODUCTS}?status=AVAILABLE,UNAVAILABLE`,
       providesTags: [TAG_TYPES.PRODUCT],
     }),
 
