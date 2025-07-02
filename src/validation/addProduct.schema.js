@@ -9,6 +9,7 @@ import {
   IMAGE_VALIDATION,
   SUPPORTED_IMAGE_TYPES,
 } from '../constants/upload.constants.js';
+import { LOCKER_VALIDATION } from '../constants/locker.constants.js';
 
 export const addProductSchema = yup.object({
   [ADD_PRODUCT_CONSTANTS.PRODUCT_NAME]: yup
@@ -41,10 +42,9 @@ export const addProductSchema = yup.object({
         return SUPPORTED_IMAGE_TYPES.includes(value[0].type);
       },
     ),
-
   selectedLockerIds: yup
     .array()
     .of(yup.string().required())
-    .min(1, 'At least one locker must be selected')
-    .required('Lockers are required'),
+    .min(1, LOCKER_VALIDATION.AT_LEAST_SELECT_ONE)
+    .required(LOCKER_VALIDATION.LOCKERS_ARE_REQUIRED),
 });
