@@ -1,12 +1,11 @@
 import React from 'react';
-
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-
-import { TextField, Stack, MenuItem } from '@mui/material';
-
+import { TextField, Stack, MenuItem, Autocomplete, Chip } from '@mui/material';
 import { ERROR_MESSAGES } from '../../../constants/errorMessages.js';
 import { BUTTON_VARIANTS } from '../../../constants/types';
+import { LOCKER_TEXT } from '../../../constants/hardText.js';
+import { addProductSchema } from '../../../validation/addProduct.schema';
 import ActionButton from '../../shared/Button/ActionButton';
 import { StyledPaper, TitleWrapper, FormWrapper } from '../Form.styled';
 import {
@@ -16,25 +15,34 @@ import {
 import SharedTypography from '../../shared/Text/SharedTypography';
 import { PRODUCT_FORM_TEXT } from '../forms.constants';
 import ImageDropzone from './ImageDropzone.jsx';
+import { LOCKER_LOCATION } from '../../../utils/textTemplates.js';
 import { useImageUpload } from '../../../hooks/useImageUpload.js';
-import { addProductSchema } from '../../../validation/addProduct.schema.js';
 
-
-
-export default function AddProductForm({ onSubmit, isLoading }) {
-  const { preview, handleFileSelect, uploadFileToS3 , resetPreview, isUploading } = useImageUpload();
+export default function AddProductForm({ onSubmit, isLoading, lockers = [] }) {
+  const {
+    preview,
+    handleFileSelect,
+    uploadFileToS3,
+    resetPreview,
+    isUploading,
+  } = useImageUpload();
 
   const {
     register,
     handleSubmit,
+    setValue,
+    watch,
     reset,
     formState: { errors, isSubmitting },
   } = useForm({
     resolver: yupResolver(addProductSchema),
+
     defaultValues: {
-      [ADD_PRODUCT_CONSTANTS.CATEGORY]: '',
+      selectedLockerIds: [],
     },
   });
+  const selectedLockerIds = watch(LOCKER_TEXT.SELECTED_LOCKER_IDS);
+
   const isFormDisabled = isSubmitting || isLoading || isUploading;
   const handleFormSubmit = async (data) => {
     try {
@@ -87,7 +95,7 @@ export default function AddProductForm({ onSubmit, isLoading }) {
             error={!!errors[ADD_PRODUCT_CONSTANTS.CATEGORY]}
             helperText={errors[ADD_PRODUCT_CONSTANTS.CATEGORY]?.message}
           >
-            <MenuItem value="">Select a category</MenuItem>
+            <MenuItem value="">{PRODUCT_FORM_TEXT.SELECT_A_CATEGORY} </MenuItem>
             {PRODUCT_CATEGORIES.map((category) => (
               <MenuItem key={category} value={category}>
                 {category}
@@ -117,6 +125,41 @@ export default function AddProductForm({ onSubmit, isLoading }) {
             helperText={errors[ADD_PRODUCT_CONSTANTS.DESCRIPTION]?.message}
           />
 
+          <Autocomplete
+            multiple
+            options={lockers}
+            getOptionLabel={(locker) =>
+              LOCKER_LOCATION.LOCKER_LABEL(locker.lockerNumber, locker.location)
+            }
+            value={lockers.filter((locker) =>
+              selectedLockerIds.includes(locker.id),
+            )}
+            onChange={(event, newValue) => {
+              setValue(
+                LOCKER_TEXT.SELECTED_LOCKER_IDS,
+                newValue.map((locker) => locker.id),
+              );
+            }}
+            isOptionEqualToValue={(option, value) => option.id === value.id}
+            renderTags={(selected, getTagProps) =>
+              selected.map((locker, index) => (
+                <Chip
+                  label={`#${locker.lockerNumber}`}
+                  {...getTagProps({ index })}
+                />
+              ))
+            }
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label={LOCKER_TEXT.SELECT_LOCKERS}
+                error={!!errors.selectedLockerIds}
+                helperText={errors.selectedLockerIds?.message}
+              />
+            )}
+            disabled={lockers.length === 0}
+          />
+
           <ImageDropzone preview={preview} onFileSelect={handleFileSelect} />
 
           {errors.images && (
@@ -124,7 +167,6 @@ export default function AddProductForm({ onSubmit, isLoading }) {
               {errors.images.message}
             </SharedTypography>
           )}
-
 
           <ActionButton
             type="submit"

@@ -11,9 +11,10 @@ export const cartApi = createApi({
   tagTypes: [TAG_TYPES.CART],
   endpoints: (builder) => ({
     addToCart: builder.mutation({
-      query: (productId) => ({
+      query: ({ productId, lockerId }) => ({
         url: `${ROUTES.PRODUCTS}/${productId}${ROUTES.ADD_TO_CART}`,
         method: HTTP_METHODS.PATCH,
+        body: { lockerId },
       }),
       invalidatesTags: [TAG_TYPES.CART, TAG_TYPES.PRODUCT],
     }),

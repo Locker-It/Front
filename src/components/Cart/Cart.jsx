@@ -7,13 +7,16 @@ import {
   EmptyCartText,
   RemoveButtonWrapper,
   CartItemWrapper,
+  cartGridStyle,
 } from './Cart.styles';
-import { CART_TEXT} from '../../constants/hardText.js';
+import { CART_TEXT } from '../../constants/hardText.js';
 import { BUTTON_VARIANTS } from '../../constants/types.js';
 import ProductCard from '../Product/ProductCard';
 import ActionButton from '../shared/Button/ActionButton.jsx';
 import CustomDivider from '../shared/Divider/CustomDivider.jsx';
 import SharedGrid from '../shared/Grid/SharedGrid';
+import { LOCKER_LOCATION } from '../../utils/textTemplates.js';
+import { addSignShekel } from '../../utils/converting.js';
 
 const Cart = ({
   items,
@@ -70,6 +73,12 @@ const Cart = ({
                       onSelect={() => {}}
                       disabled
                     />
+                    <p>
+                      {LOCKER_LOCATION.LOCKER_LABEL(
+                        rest.lockerId?.lockerNumber ?? '',
+                        rest.lockerId?.location ?? '',
+                      )}
+                    </p>
                     <RemoveButtonWrapper>
                       <ActionButton
                         onClick={() => handleItemRemove(id)}
@@ -82,10 +91,7 @@ const Cart = ({
                 ),
               }),
             )}
-            columns={1}
-            spacing={2}
-            justifyContent="center"
-            alignItems="center"
+            {...cartGridStyle}
           />
           <CustomDivider />
           <CartRow>
@@ -93,13 +99,17 @@ const Cart = ({
               {CART_TEXT.CART_TOTAL}
             </CartTitle>
             <CartTitle as="span" variant="body1">
-              {total} ₪
+              {addSignShekel(total)}
             </CartTitle>
           </CartRow>
           {!isLoggedIn && (
             <EmptyCartText>{CART_TEXT.CART_LOGIN_REQUIRED}</EmptyCartText>
           )}
-          <ActionButton onClick={onContinue} disabled={!canPurchase} styleType={BUTTON_VARIANTS.FILLED}>
+          <ActionButton
+            onClick={onContinue}
+            disabled={!canPurchase}
+            styleType={BUTTON_VARIANTS.FILLED}
+          >
             {CART_TEXT.CART_CONTINUE}
           </ActionButton>
         </>

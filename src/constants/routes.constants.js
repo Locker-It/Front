@@ -18,6 +18,10 @@ export const ROUTES = {
   LOGOUT: '/auth/logout',
   CURRENT_USER: '/auth/me',
   DASHBOARD: '/dashboard',
+  LOCKERS: '/lockers',
+  AVAILABLE_LOCKERS: '/available-lockers',
+  PURCHASES: '/purchases',
+  LOCKER_AVAILABLE: '/available',
   PRESIGNED_URL: '/images/presigned-url',
   MICRO_SERVICE_URL: 'http://localhost:3001/api/v1',
 };

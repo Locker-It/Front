@@ -40,3 +40,10 @@ export const RemoveButtonWrapper = styled(Box)(() => ({
   display: 'flex',
   justifyContent: 'flex-end',
 }));
+
+export const cartGridStyle = {
+  columns: 1,
+  spacing: 2,
+  justifyContent: 'center',
+  alignItems: 'center',
+};

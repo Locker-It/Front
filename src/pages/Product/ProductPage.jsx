@@ -29,12 +29,11 @@ const ProductPage = () => {
   const [addToCart, { isLoading: isAdding, error: addError }] =
     useAddToCartMutation();
 
-  const handleAddToCart = async () => {
-    if (!product || isAdding) return;
+  const handleAddToCart = async (lockerId) => {
+    if (!product || isAdding || !lockerId) return;
 
     try {
-      await addToCart(product.id).unwrap();
-
+      await addToCart({ productId: product.id, lockerId }).unwrap();
       showModal({
         type: MODAL_TYPES.SUCCESS,
         title: MODAL_TYPES.ITEM_ADDED_TO_CART,

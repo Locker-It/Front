@@ -12,12 +12,14 @@ export const uploadProductWithImage = async (formData, addProduct) => {
   const {
     image: _ignoredImage,
     category,
+    lockerIds,
     ...rest
   } = formData;
 
   const productToSubmit = {
     ...rest,
     category,
+    lockerIds,
     ...(imageUrl ? { images: [imageUrl] } : {}),
   };
 

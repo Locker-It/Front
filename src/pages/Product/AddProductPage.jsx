@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { useNavigate } from 'react-router-dom';
 import AddProductForm from '../../components/Forms/ProductForm/AddProductForm';
 import { StatusModal } from '../../components/shared/Modal/StatusModal.jsx';
 import SharedTypography from '../../components/shared/Text/SharedTypography.jsx';
@@ -11,11 +11,15 @@ import { useModal } from '../../hooks/useModal.js';
 import { useAddProductMutation } from '../../services/product/productApi.js';
 import { uploadProductWithImage } from '../../services/product/productService.js';
 import { extractApiError } from '../../utils/authErrors.js';
+import { useGetFreeLockersQuery } from '../../services/lockerApi';
+import { Box } from '@mui/material';
 
 export default function AddProductPage() {
-
   const [addProduct, { isLoading, error }] = useAddProductMutation();
   const { modalData, showModal, closeModal } = useModal();
+
+  const { data: lockers = [], isLoading: isLockersLoading } =
+    useGetFreeLockersQuery();
 
   const handleAddProduct = async (formData) => {
     try {
@@ -40,14 +44,19 @@ export default function AddProductPage() {
   };
 
   return (
-    <div>
-      <AddProductForm onSubmit={handleAddProduct} isLoading={isLoading} />
-        {modalData && <StatusModal open {...modalData} />}
+    <Box>
+      <AddProductForm
+        onSubmit={handleAddProduct}
+        isLoading={isLoading}
+        lockers={lockers}
+        isLockersLoading={isLockersLoading}
+      />
+      {modalData && <StatusModal open {...modalData} />}
       {error && (
         <SharedTypography variant="body2" color="error" component="p">
           {extractApiError(error, AUTH_ERRORS.GENERAL_PRODUCT_ERROR)}
         </SharedTypography>
       )}
-    </div>
+    </Box>
   );
 }

@@ -42,7 +42,7 @@ export const PRODUCT_FORM_TEXT = {
   CATEGORY_LABEL: 'Category',
   IMAGE_URL_LABEL: 'Image URL (optional)',
   SUBMIT: 'Add Product',
-
+  SELECT_A_CATEGORY: 'Select a category',
   PRODUCT_NAME_REQUIRED: 'Product name is required',
   DESCRIPTION_REQUIRED: 'Description is required',
   PRICE_REQUIRED: 'Price is required',

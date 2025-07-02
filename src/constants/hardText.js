@@ -60,18 +60,22 @@ export const CART_TEXT = {
   CART_LOGIN_REQUIRED: 'Please log in to continue your purchase.',
   CART_ERROR: 'Error loading cart. Please try again.',
   CART_REMOVE: 'Remove from Cart',
-
 };
 
 export const PLACEHOLDERS = {
   SEARCH: 'Search...',
 };
 
-
 export const NAVBAR_TEXT = {
   HELLO_USER: 'Hello, ',
 };
 
+export const LOCKER_TEXT = {
+  LOCKER: 'LOCKER',
+  SELECT_A_LOCKER: 'Select a Locker:',
+  SELECT_LOCKERS: 'Select Lockers',
+  SELECTED_LOCKER_IDS: 'selectedLockerIds',
+};
 export const TIMER = {
   MODAL_TIMEOUT: 2000,
 }
