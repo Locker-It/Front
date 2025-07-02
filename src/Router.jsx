@@ -15,6 +15,7 @@ import AddProductPage from './pages/Product/AddProductPage.jsx';
 import ProductPage from './pages/Product/ProductPage.jsx';
 import ProductListPage from './pages/Products/ProductListPage.jsx';
 import SignUpPage from './pages/SignUp/SignUpPage.jsx';
+import PrivateRoute from './routes/PrivateRoute.jsx';
 import PublicRoute from './routes/PublicRoute.jsx';
 
 const router = createBrowserRouter([
@@ -28,16 +29,20 @@ const router = createBrowserRouter([
         children: [
           { path: ROUTES.HOME, element: <Home /> },
           { path: ROUTES.ABOUT, element: <About /> },
-          { path: ROUTES.ORDER_PROCESS, element: <OrderProcess /> },
+
           { path: ROUTES.PRODUCT_DETAILS, element: <ProductPage /> },
           { path: ROUTES.PRODUCTS, element: <ProductListPage /> },
           { path: ROUTES.MANAGER_PAGE, element: <Manager_bar /> },
           { path: ROUTES.CUSTOMER_PAGE, element: <Customer_Bar /> },
-          { path: ROUTES.CART, element: <CartPage /> },
           { path: ROUTES.DASHBOARD_CARDS, element: <DashboardCards /> },
+
+          { path: ROUTES.ORDER_PROCESS, element: <PrivateRoute><OrderProcess /></PrivateRoute>},
+          { path: ROUTES.CART, element: <PrivateRoute><CartPage /></PrivateRoute>},
+          { path: ROUTES.ADD_PRODUCT, element: <PrivateRoute><AddProductPage /></PrivateRoute> },
+
           { path: ROUTES.LOGIN, element: <PublicRoute><LoginPage /></PublicRoute> },
           { path: ROUTES.REGISTER, element: <PublicRoute><SignUpPage /></PublicRoute> },
-          { path: ROUTES.ADD_PRODUCT, element: <AddProductPage /> },
+
         ],
       },
     ],
