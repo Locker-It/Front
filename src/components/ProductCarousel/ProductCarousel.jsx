@@ -10,7 +10,7 @@ import {
   AUTOPLAY_SPEED_MS,
   RESPONSIVE_BREAKPOINTS,
 } from './Carousel.constants.js';
-import { CarouselWrapper } from './ProductCarousel.styled';
+import { CarouselWrapper } from './ProductCarousel.styles';
 import { ROUTES } from '../../constants/routes.constants.js';
 import ProductCard from '../Product/ProductCard';
 

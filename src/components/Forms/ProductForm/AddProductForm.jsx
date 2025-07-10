@@ -7,7 +7,7 @@ import { BUTTON_VARIANTS } from '../../../constants/types';
 import { LOCKER_TEXT } from '../../../constants/hardText.js';
 import { addProductSchema } from '../../../validation/addProduct.schema';
 import ActionButton from '../../shared/Button/ActionButton';
-import { StyledPaper, TitleWrapper, FormWrapper } from '../Form.styled';
+import { StyledPaper, TitleWrapper, FormWrapper } from '../Form.styles';
 import {
   ADD_PRODUCT_CONSTANTS,
   PRODUCT_CATEGORIES,

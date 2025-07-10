@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { managementContainerStyle } from './Manager.styled.js';
+import { managementContainerStyle } from './Manager.styles.js';
 import FloatingActionButtonZoom from '../../components/Manage/SharedManagementBar.jsx';
 import { UI_TEXT } from '../../constants/hardText.js';
 

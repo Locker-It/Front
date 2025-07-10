@@ -8,10 +8,11 @@ import {
   FooterContainer,
   FooterLinks,
   footerTextStyle,
-} from './Footer.styled.js';
+} from './Footer.styles.js';
 import { UI_TEXT } from '../../constants/hardText.js';
 import { ROUTES as ROUTER_PATHS } from '../../constants/routes.constants.js';
 import SharedTypography from '../shared/Text/SharedTypography.jsx';
+import {BUTTON_TEXT} from  '../../constants/buttons.constants.js';
 
 function Footer() {
   return (
@@ -22,7 +23,7 @@ function Footer() {
 
       <FooterLinks>
         <Link component={RouterLink} to={ROUTER_PATHS.ABOUT}>
-          About
+          {BUTTON_TEXT.ABOUT}
         </Link>
       </FooterLinks>
     </FooterContainer>

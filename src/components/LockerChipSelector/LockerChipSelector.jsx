@@ -1,9 +1,9 @@
 import { lockerStackStyle, chipStyles } from './LockerChipSelector.styles';
-import { Chip, Stack } from '@mui/material';
-import { LOCKER_TEXT } from '../../../constants/hardText';
-import CustomDivider from '../Divider/CustomDivider';
-import SharedTypography from '../Text/SharedTypography';
-import { LOCKER_LOCATION } from '../../../utils/textTemplates';
+import { Chip, Stack, Divider } from '@mui/material';
+import { LOCKER_TEXT } from '../../constants/hardText';
+import SharedTypography from '../shared/Text/SharedTypography';
+import { LOCKER_LOCATION } from '../../utils/textTemplates';
+import { TEXT_VARIANTS } from '../../constants/types';
 
 const LockerSelector = ({
   availableLockers,
@@ -14,9 +14,9 @@ const LockerSelector = ({
 
   return (
     <>
-      <CustomDivider />
+      <Divider />
 
-      <SharedTypography variant="subtitle1">
+      <SharedTypography variant={TEXT_VARIANTS.DEFAULT}>
         {LOCKER_TEXT.SELECT_A_LOCKER}
       </SharedTypography>
 

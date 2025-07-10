@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import AddProductForm from '../../components/Forms/ProductForm/AddProductForm';
 import { StatusModal } from '../../components/shared/Modal/StatusModal.jsx';
 import SharedTypography from '../../components/shared/Text/SharedTypography.jsx';
@@ -13,6 +12,7 @@ import { uploadProductWithImage } from '../../services/product/productService.js
 import { extractApiError } from '../../utils/authErrors.js';
 import { useGetFreeLockersQuery } from '../../services/lockerApi';
 import { Box } from '@mui/material';
+import { TEXT_VARIANTS } from '../../constants/types.js';
 
 export default function AddProductPage() {
   const [addProduct, { isLoading, error }] = useAddProductMutation();
@@ -53,7 +53,7 @@ export default function AddProductPage() {
       />
       {modalData && <StatusModal open {...modalData} />}
       {error && (
-        <SharedTypography variant="body2" color="error" component="p">
+        <SharedTypography variant={TEXT_VARIANTS.DEFAULT} color="error" component="p">
           {extractApiError(error, AUTH_ERRORS.GENERAL_PRODUCT_ERROR)}
         </SharedTypography>
       )}

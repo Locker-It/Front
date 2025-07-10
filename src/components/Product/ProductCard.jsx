@@ -4,11 +4,12 @@ import {
   StyledCard,
   UnavailableOverlay,
   NotAvailableBadge,
-} from './Product.styled.js';
+} from './Product.styles.js';
 import { addSignShekel } from '../../utils/converting.js';
 import { SharedImage } from '../shared/Image/SharedImage.jsx';
 import SharedTypography from '../shared/Text/SharedTypography.jsx';
 import { STATUSES } from '../../constants/hardText.js';
+import { TEXT_VARIANTS } from '../../constants/types.js';
 
 const ProductCard = ({
   id,
@@ -32,8 +33,8 @@ const ProductCard = ({
       <CardActionArea onClick={() => !isUnavailable && onSelect(id)}>
         <SharedImage src={images} alt={name} />
         <CardContent>
-          <SharedTypography variant="h5">{name}</SharedTypography>
-          <SharedTypography variant="body2">
+          <SharedTypography variant={TEXT_VARIANTS.DEFAULT}>{name}</SharedTypography>
+          <SharedTypography variant={TEXT_VARIANTS.DEFAULT}>
             {addSignShekel(price)}
           </SharedTypography>
         </CardContent>

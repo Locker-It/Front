@@ -2,7 +2,7 @@ import React from 'react';
 
 import { CardContent, CardActions, Stack } from '@mui/material';
 
-import { BigStyledCard } from './Product.styled';
+import { BigStyledCard } from './Product.styles';
 import {
   SkeletonCardImage,     
   SkeletonTitle,          
@@ -10,7 +10,7 @@ import {
   SkeletonCTAButton,      
   SkeletonLine,           
   SkeletonBodyText,     
-} from './Skeleton.styled';
+} from './Skeleton.styles';
 
 const ProductSkeleton = () => (
   <BigStyledCard>

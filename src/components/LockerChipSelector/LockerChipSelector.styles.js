@@ -1,4 +1,4 @@
-import theme from "../../../theme/theme";
+import theme from "../../theme/theme";
 
 export const chipStyles = (selectedLockerId, currentId) => ({
     minWidth: '18.75rem',

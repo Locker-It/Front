@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { CardActions, CardContent } from '@mui/material';
-import { BigStyledCard } from './Product.styled.js';
+import { BigStyledCard } from './Product.styles.js';
 import { CART_TEXT } from '../../constants/hardText.js';
 import { BUTTON_VARIANTS } from '../../constants/types.js';
 import { addSignShekel } from '../../utils/converting.js';
 import ActionButton from '../shared/Button/ActionButton.jsx';
 import { SharedImage } from '../shared/Image/SharedImage';
 import SharedTypography from '../shared/Text/SharedTypography.jsx';
-import LockerSelector from '../shared/Select/LockerChipSelector.jsx';
+import LockerSelector from '../LockerChipSelector/LockerChipSelector.jsx';
+import { TEXT_VARIANTS } from '../../constants/types.js';
 
 const ProductView = ({
   images,
@@ -25,9 +26,9 @@ const ProductView = ({
       <SharedImage src={images} alt={name} />
 
       <CardContent>
-        <SharedTypography variant="h5">{name}</SharedTypography>
-        <SharedTypography variant="body2">{description}</SharedTypography>
-        <SharedTypography variant="h6">{addSignShekel(price)}</SharedTypography>
+        <SharedTypography variant={TEXT_VARIANTS.DEFAULT}>{name}</SharedTypography>
+        <SharedTypography variant={TEXT_VARIANTS.DEFAULT}>{description}</SharedTypography>
+        <SharedTypography variant={TEXT_VARIANTS.DEFAULT}>{addSignShekel(price)}</SharedTypography>
 
         <LockerSelector
           availableLockers={availableLockers}

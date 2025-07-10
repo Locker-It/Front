@@ -12,6 +12,7 @@ import {
 import { BUTTON_VARIANTS, MODAL_TYPES } from '../../../constants/types';
 import ActionButton from '../Button/ActionButton';
 import SharedTypography from '../Text/SharedTypography';
+import { TEXT_VARIANTS } from '../../../constants/types';
 
 export const StatusModal = ({
   open,
@@ -36,11 +37,11 @@ export const StatusModal = ({
       <DialogTitle>
         <ModalHeaderStack>
           {icon}
-          <SharedTypography variant="h6">{title}</SharedTypography>
+          <SharedTypography variant={TEXT_VARIANTS.DEFAULT}>{title}</SharedTypography>
         </ModalHeaderStack>
       </DialogTitle>
       <DialogContent>
-        <SharedTypography variant="body1">{message}</SharedTypography>
+        <SharedTypography variant={TEXT_VARIANTS.DEFAULT}>{message}</SharedTypography>
       </DialogContent>
       {onConfirm && onClose && (
         <StyledDialogActions>

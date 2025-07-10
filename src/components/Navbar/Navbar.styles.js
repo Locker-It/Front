@@ -13,6 +13,8 @@ export const CustomToolbar = styled(Toolbar)({
   position: 'relative',
   paddingLeft: '1rem',
   paddingRight: '1rem',
+  gap: '2rem',
+  whiteSpace: 'nowrap',
 });
 
 export const Section = styled(Box)(({ align = 'left' }) => ({
@@ -20,7 +22,11 @@ export const Section = styled(Box)(({ align = 'left' }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent:
-    align === 'center' ? 'center' : align === 'right' ? 'flex-end' : 'flex-start',
+    align === 'center'
+      ? 'center'
+      : align === 'right'
+        ? 'flex-end'
+        : 'flex-start',
   gap: '1.5rem',
 }));
 
