@@ -2,11 +2,9 @@ import React from 'react';
 import {
   EmptyCartContainer,
   CartContainer,
-  CartTitle,
-  EmptyCartText,
   RemoveButtonWrapper,
   CartItemWrapper,
-  LockerText,
+  LockerTextStyle,
   TotalSection,
   CartGridContainer,
   cartTypograghy,
@@ -46,20 +44,26 @@ const Cart = ({
   if (statusText) {
     return (
       <EmptyCartContainer>
-        <CartTitle variant="h6">{CART_TEXT.CART_TITLE}</CartTitle>
-        <EmptyCartText>{statusText}</EmptyCartText>
+        <SharedTypography variant={TEXT_VARIANTS.DEFAULT}>
+          {CART_TEXT.CART_TITLE}
+        </SharedTypography>
+        <SharedTypography variant={TEXT_VARIANTS.DEFAULT}>
+          {statusText}
+        </SharedTypography>
       </EmptyCartContainer>
     );
   }
 
   return (
     <CartContainer>
-      <SharedTypography variant={TEXT_VARIANTS.DEFAULT} style={cartTypograghy}>{CART_TEXT.CART_TITLE}</SharedTypography>
+      <SharedTypography variant={TEXT_VARIANTS.DEFAULT} style={cartTypograghy}>
+        {CART_TEXT.CART_TITLE}
+      </SharedTypography>
       <CartGridContainer container spacing={3}>
         {validItems.map(({ id, images, name, price, rating, lockerId }) => (
           <Grid item xs={12} md={6} key={id}>
             <CartItemWrapper elevation={2}>
-              <ProductCard
+              <ProductCard 
                 id={id}
                 images={images}
                 name={name}
@@ -69,12 +73,12 @@ const Cart = ({
                 disabled
               />
 
-              <LockerText mt={1}>
+              <SharedTypography variant={TEXT_VARIANTS.DEFAULT} style={LockerTextStyle} >
                 {LOCKER_LOCATION.LOCKER_LABEL(
                   lockerId?.lockerNumber ?? '',
                   lockerId?.location ?? '',
                 )}
-              </LockerText>
+              </SharedTypography>
 
               <RemoveButtonWrapper>
                 <ActionButton
@@ -112,9 +116,9 @@ const Cart = ({
       </TotalSection>
 
       {!isLoggedIn && (
-        <EmptyCartText sx={{ mt: 2 }}>
+        <SharedTypography variant={TEXT_VARIANTS.DEFAULT} sx={{ mt: 2 }}>
           {CART_TEXT.CART_LOGIN_REQUIRED}
-        </EmptyCartText>
+        </SharedTypography>
       )}
     </CartContainer>
   );

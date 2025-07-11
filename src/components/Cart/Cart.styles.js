@@ -8,6 +8,10 @@ export const EmptyCartContainer = styled(Box)(({ theme }) => ({
   borderRadius: theme.shape.custom?.roundedLg || '0.75rem',
   backgroundColor: theme.palette.background.paper,
   boxShadow: theme.shadows[2],
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  gap: '2rem',
 }));
 
 export const CartContainer = styled(Box)(({ theme }) => ({
@@ -20,22 +24,14 @@ export const CartContainer = styled(Box)(({ theme }) => ({
   width: '100%',
 }));
 
-export const CartTitle = styled(Typography)(({ theme }) => ({
-  fontWeight: theme.typography.fontWeightBold,
-  marginBottom: '1.5rem',
-  display: 'flex',
-  justifyContent: 'center',
-}));
-
 export const CartItemWrapper = styled(Paper)(({ theme }) => ({
   padding: '1rem',
   borderRadius: '0.75rem',
   height: '100%',
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'flex-start',
-  textAlign: 'left',
   boxShadow: theme.shadows[1],
+  alignItems: 'center', 
 }));
 
 export const RemoveButtonWrapper = styled(Box)(({ theme }) => ({
@@ -43,11 +39,10 @@ export const RemoveButtonWrapper = styled(Box)(({ theme }) => ({
   marginTop: '1rem',
 }));
 
-export const LockerText = styled(Typography)(({ theme }) => ({
-  color: theme.palette.text.secondary,
+export const LockerTextStyle = {
   fontSize: '0.875rem',
-  marginTop: '0.5rem',
-}));
+  marginTop: '1rem',
+};
 
 export const TotalSection = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -57,40 +52,15 @@ export const TotalSection = styled(Box)(({ theme }) => ({
   gap: '1rem',
 }));
 
-export const TotalLabel = styled(Typography)(({ theme }) => ({
-  fontWeight: theme.typography.fontWeightMedium,
-  marginBottom: '0.5rem',
-}));
-
-export const TotalAmount = styled(Typography)(({ theme }) => ({
-  color: theme.palette.primary.main,
-  fontWeight: theme.typography.fontWeightBold,
-  fontSize: '1.25rem',
-}));
-
-export const EmptyCartText = styled(Typography)(({ theme }) => ({
-  textAlign: 'center',
-  padding: '2rem',
-  color: theme.palette.text.primary,
-}));
-
-export const StyledContinueButton = styled(Box)(({ theme }) => ({
-  minWidth: '13.75rem',
-  paddingTop: '1.2rem',
-  paddingBottom: '1.2rem',
-  fontWeight: theme.typography.fontWeightBold,
-  fontSize: '1rem',
-}));
-
 export const CartGridContainer = styled(Grid)(({ theme }) => ({
   justifyContent: 'center',
   marginTop: theme.spacing(2),
 }));
 
-export const cartTypograghy={
-    display: 'flex',
-    justifyContent: 'center',
-}
+export const cartTypograghy = {
+  display: 'flex',
+  justifyContent: 'center',
+};
 
 export const dividerStyle = {
   margin: '2rem 0',
