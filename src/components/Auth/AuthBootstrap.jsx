@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom';
 
 import { useGetCurrentUserQuery } from '../../services/authApi';
 import { loginSuccess, logout } from '../../store/authSlice';
-import FullScreenLoader from '../shared/Loader/FullScreenLoader';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export default function AuthBootstrap() {
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ export default function AuthBootstrap() {
     }
   }, [user, isError, dispatch]);
 
-  if (isLoading) return <FullScreenLoader />;
+  if (isLoading) return <CircularProgress />;
 
   return <Outlet />;
 }

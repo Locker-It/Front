@@ -6,7 +6,7 @@ import * as yup from 'yup';
 
 import { TextField, Stack } from '@mui/material';
 
-import { StyledPaper, TitleWrapper, FormWrapper } from './Form.styled';
+import { StyledPaper, TitleWrapper, FormWrapper } from './Form.styles';
 import { SIGN_UP_CONSTANTS, SIGNUP_TEXT } from './forms.constants.js';
 import { ROUTES } from '../../constants/routes.constants.js';
 import { BUTTON_VARIANTS } from '../../constants/types.js';

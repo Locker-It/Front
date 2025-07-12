@@ -8,21 +8,23 @@ import {
   dividerStyle,
   ImageStyle,
   InfoBox,
-} from './OrderCard.styled';
+  ItemsContainerGrid,
+  SummaryGrid,
+} from './OrderCard.styles';
 
 import { ERROR_MESSAGES } from '../../constants/errorMessages.js';
 import { CART_TEXT } from '../../constants/hardText.js';
 import { addSignShekel } from '../../utils/converting';
-import SharedGrid from '../shared/Grid/SharedGrid';
 import { SharedImage } from '../shared/Image/SharedImage';
 import SharedTypography from '../shared/Text/SharedTypography.jsx';
-import {LOCKER_LOCATION} from '../../utils/textTemplates.js';
+import { LOCKER_LOCATION } from '../../utils/textTemplates.js';
+import { TEXT_VARIANTS } from '../../constants/types.js';
 
 const OrderCard = ({ items = [], total = 0 }) => {
   if (items.length === 0) {
     return (
       <OrderCardContainer>
-        <SharedTypography variant="body1">
+        <SharedTypography variant={TEXT_VARIANTS.GREY_TITLE}>
           {ERROR_MESSAGES.NO_ITEMS_IN_CART}
         </SharedTypography>
       </OrderCardContainer>
@@ -31,7 +33,7 @@ const OrderCard = ({ items = [], total = 0 }) => {
 
   return (
     <OrderCardContainer>
-      <SharedGrid container direction="column">
+      <ItemsContainerGrid container>
         {items.map(({ _id, images, name, price, lockerId }) => {
           const shekelPrice = addSignShekel(price);
           return (
@@ -41,15 +43,19 @@ const OrderCard = ({ items = [], total = 0 }) => {
                   <SharedImage src={images} alt={name} style={ImageStyle} />
 
                   <InfoBox>
-                    <SharedTypography variant="body1" fontWeight="bold">
+                    <SharedTypography variant={TEXT_VARIANTS.DEFAULT}>
                       {name}
                     </SharedTypography>
-                    <SharedTypography variant="body2" fontWeight="medium">
+
+                    <SharedTypography variant={TEXT_VARIANTS.DEFAULT}>
                       {shekelPrice}
                     </SharedTypography>
                     {lockerId && (
-                      <SharedTypography variant="body2" color="textSecondary">
-                        {LOCKER_LOCATION.LOCKER_LABEL(lockerId.lockerNumber, lockerId.location)}
+                      <SharedTypography variant={TEXT_VARIANTS.DEFAULT}>
+                        {LOCKER_LOCATION.LOCKER_LABEL(
+                          lockerId.lockerNumber,
+                          lockerId.location,
+                        )}
                       </SharedTypography>
                     )}
                   </InfoBox>
@@ -58,18 +64,18 @@ const OrderCard = ({ items = [], total = 0 }) => {
             </Grid>
           );
         })}
-      </SharedGrid>
+      </ItemsContainerGrid>
 
       <Divider style={dividerStyle} />
 
-      <SharedGrid container justifyContent="space-between" alignItems="center">
-        <SharedTypography variant="h6" fontWeight="bold">
+      <SummaryGrid container>
+        <SharedTypography variant={TEXT_VARIANTS.DEFAULT}>
           {CART_TEXT.CART_TOTAL}
         </SharedTypography>
-        <SharedTypography variant="h6" fontWeight="bold">
+        <SharedTypography variant={TEXT_VARIANTS.DEFAULT}>
           {addSignShekel(total.toFixed(2))}
         </SharedTypography>
-      </SharedGrid>
+      </SummaryGrid>
     </OrderCardContainer>
   );
 };

@@ -1,20 +1,22 @@
 import React from 'react';
-
 import {
+  EmptyCartContainer,
   CartContainer,
-  CartTitle,
-  CartRow,
-  EmptyCartText,
   RemoveButtonWrapper,
   CartItemWrapper,
-  cartGridStyle,
+  LockerTextStyle,
+  TotalSection,
+  CartGridContainer,
+  cartTypograghy,
+  dividerStyle,
 } from './Cart.styles';
+import SharedTypography from '../shared/Text/SharedTypography.jsx';
+import { TEXT_VARIANTS } from '../../constants/types.js';
 import { CART_TEXT } from '../../constants/hardText.js';
 import { BUTTON_VARIANTS } from '../../constants/types.js';
 import ProductCard from '../Product/ProductCard';
 import ActionButton from '../shared/Button/ActionButton.jsx';
-import CustomDivider from '../shared/Divider/CustomDivider.jsx';
-import SharedGrid from '../shared/Grid/SharedGrid';
+import { Divider, Grid, Box } from '@mui/material';
 import { LOCKER_LOCATION } from '../../utils/textTemplates.js';
 import { addSignShekel } from '../../utils/converting.js';
 
@@ -35,84 +37,88 @@ const Cart = ({
     ? CART_TEXT.CART_LOADING
     : isError
       ? CART_TEXT.CART_ERROR
-      : null;
+      : isCartEmpty
+        ? CART_TEXT.CART_EMPTY
+        : null;
 
   if (statusText) {
     return (
-      <CartContainer>
-        <CartTitle variant="h6">{CART_TEXT.CART_TITLE}</CartTitle>
-        <EmptyCartText>{statusText}</EmptyCartText>
-      </CartContainer>
+      <EmptyCartContainer>
+        <SharedTypography variant={TEXT_VARIANTS.DEFAULT}>
+          {CART_TEXT.CART_TITLE}
+        </SharedTypography>
+        <SharedTypography variant={TEXT_VARIANTS.DEFAULT}>
+          {statusText}
+        </SharedTypography>
+      </EmptyCartContainer>
     );
   }
 
   return (
     <CartContainer>
-      <CartTitle variant="h6">{CART_TEXT.CART_TITLE}</CartTitle>
-      {isCartEmpty ? (
-        <EmptyCartText>{CART_TEXT.CART_EMPTY}</EmptyCartText>
-      ) : (
-        <>
-          <SharedGrid
-            items={validItems.map(
-              ({ id, images, name, price, rating, ...rest }) => ({
-                ...rest,
-                id,
-                images,
-                name,
-                price,
-                rating,
-                description: (
-                  <CartItemWrapper>
-                    <ProductCard
-                      id={id}
-                      images={images}
-                      name={name}
-                      price={price}
-                      rating={rating}
-                      onSelect={() => {}}
-                      disabled
-                    />
-                    <p>
-                      {LOCKER_LOCATION.LOCKER_LABEL(
-                        rest.lockerId?.lockerNumber ?? '',
-                        rest.lockerId?.location ?? '',
-                      )}
-                    </p>
-                    <RemoveButtonWrapper>
-                      <ActionButton
-                        onClick={() => handleItemRemove(id)}
-                        styleType={BUTTON_VARIANTS.OUTLINED}
-                      >
-                        {CART_TEXT.REMOVE_BUTTON}
-                      </ActionButton>
-                    </RemoveButtonWrapper>
-                  </CartItemWrapper>
-                ),
-              }),
-            )}
-            {...cartGridStyle}
-          />
-          <CustomDivider />
-          <CartRow>
-            <CartTitle as="span" variant="body1">
-              {CART_TEXT.CART_TOTAL}
-            </CartTitle>
-            <CartTitle as="span" variant="body1">
-              {addSignShekel(total)}
-            </CartTitle>
-          </CartRow>
-          {!isLoggedIn && (
-            <EmptyCartText>{CART_TEXT.CART_LOGIN_REQUIRED}</EmptyCartText>
-          )}
-          <ActionButton
-            onClick={onContinue}
-            disabled={!canPurchase}
-            styleType={BUTTON_VARIANTS.FILLED}
-          >
-            {CART_TEXT.CART_CONTINUE}
-          </ActionButton>
-        </>
+      <SharedTypography variant={TEXT_VARIANTS.DEFAULT} style={cartTypograghy}>
+        {CART_TEXT.CART_TITLE}
+      </SharedTypography>
+      <CartGridContainer container spacing={3}>
+        {validItems.map(({ id, images, name, price, rating, lockerId }) => (
+          <Grid item xs={12} md={6} key={id}>
+            <CartItemWrapper elevation={2}>
+              <ProductCard 
+                id={id}
+                images={images}
+                name={name}
+                price={price}
+                rating={rating}
+                onSelect={() => {}}
+                disabled
+              />
+
+              <SharedTypography variant={TEXT_VARIANTS.DEFAULT} style={LockerTextStyle} >
+                {LOCKER_LOCATION.LOCKER_LABEL(
+                  lockerId?.lockerNumber ?? '',
+                  lockerId?.location ?? '',
+                )}
+              </SharedTypography>
+
+              <RemoveButtonWrapper>
+                <ActionButton
+                  onClick={() => handleItemRemove(id)}
+                  styleType={BUTTON_VARIANTS.OUTLINED}
+                  fullWidth
+                >
+                  {CART_TEXT.REMOVE_BUTTON}
+                </ActionButton>
+              </RemoveButtonWrapper>
+            </CartItemWrapper>
+          </Grid>
+        ))}
+      </CartGridContainer>
+
+      <Divider style={dividerStyle} />
+
+      <TotalSection>
+        <Box>
+          <SharedTypography variant={TEXT_VARIANTS.DEFAULT}>
+            {CART_TEXT.CART_TOTAL}
+          </SharedTypography>
+          <SharedTypography variant={TEXT_VARIANTS.DEFAULT}>
+            {addSignShekel(total)}
+          </SharedTypography>
+        </Box>
+
+        <ActionButton
+          onClick={onContinue}
+          disabled={!canPurchase}
+          styleType={BUTTON_VARIANTS.FILLED}
+        >
+          {CART_TEXT.CART_CONTINUE}
+        </ActionButton>
+      </TotalSection>
+
+      {!isLoggedIn && (
+        <SharedTypography variant={TEXT_VARIANTS.DEFAULT} sx={{ mt: 2 }}>
+          {CART_TEXT.CART_LOGIN_REQUIRED}
+        </SharedTypography>
       )}
     </CartContainer>
   );

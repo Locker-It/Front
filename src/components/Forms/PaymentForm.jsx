@@ -6,7 +6,7 @@ import * as yup from 'yup';
 
 import { TextField, Stack } from '@mui/material';
 
-import { StyledPaper, FormWrapper } from './Form.styled.js';
+import { StyledPaper, FormWrapper } from './Form.styles.js';
 import { BUTTON_TEXT } from '../../constants/buttons.constants.js';
 import { PAYMENT_TEXT } from '../../constants/hardText.js';
 import {
@@ -17,6 +17,7 @@ import {
 import { BUTTON_VARIANTS } from '../../constants/types.js';
 import ActionButton from '../shared/Button/ActionButton.jsx';
 import SharedTypography from '../shared/Text/SharedTypography.jsx';
+import { TEXT_VARIANTS } from '../../constants/types.js';
 
 const paymentSchema = yup.object({
   cardNumber: yup
@@ -43,7 +44,7 @@ export default function PaymentForm({ onSubmit }) {
 
   return (
     <StyledPaper elevation={3}>
-      <SharedTypography variant="h5">
+      <SharedTypography variant={TEXT_VARIANTS.DEFAULT}>
         {PAYMENT_TEXT.TITLE}
       </SharedTypography>
       <FormWrapper

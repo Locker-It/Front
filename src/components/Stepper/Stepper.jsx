@@ -10,15 +10,15 @@ import {
   StyledStepContentBox,
   buttonContainerStyle,
   spacerStyle,
-} from './Stepper.styles';
+} from './Stepper.styles.js';
 import OrderComplete from '../../pages/OrderComplete.jsx';
 import OrderSummary from '../../pages/OrderSummary.jsx';
 import PaymentDetails from '../../pages/PaymentDetails.jsx';
-import useStep from './useStep';
+import useStep from './useStep.js';
 import { BUTTON_TEXT } from '../../constants/buttons.constants.js';
 import { ROUTES as ROUTER_PATHS } from '../../constants/routes.constants.js';
 import { BUTTON_VARIANTS } from '../../constants/types.js';
-import ActionButton from '../shared/Button/ActionButton';
+import ActionButton from '../shared/Button/ActionButton.jsx';
 
 const stepComponents = [
   <OrderSummary />,

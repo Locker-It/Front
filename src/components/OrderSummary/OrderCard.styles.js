@@ -1,5 +1,4 @@
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
+import { Paper, Grid, Box } from '@mui/material';
 import { styled } from '@mui/system';
 import theme from '../../theme/theme';
 
@@ -10,6 +9,11 @@ export const OrderCardContainer = styled(Box)(({ theme }) => ({
   paddingLeft: theme.spacing(2),
   paddingRight: theme.spacing(2),
 }));
+
+export const ItemsContainerGrid = styled(Grid)({
+  flexDirection: 'column',
+    gap: theme.spacing(2),
+});
 
 export const ItemCard = styled(Paper)(({ theme }) => ({
   display: 'flex',
@@ -47,3 +51,8 @@ export const InfoBox = styled(Box)(() => ({
   justifyContent: 'center',
   gap: theme.spacing(1),
 }));
+
+export const SummaryGrid = styled(Grid)({
+  justifyContent: 'space-between',
+  alignItems: 'center',
+});

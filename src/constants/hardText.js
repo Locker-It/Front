@@ -1,36 +1,14 @@
 export const UI_TEXT = {
   LOCKER_IT: 'Locker It',
   MANAGER: 'Manager',
+  ADMIN: 'admin',
   CUSTOMER: 'Customer',
   DASHBOARD: 'Dashboard',
   SELECT_AN_OPTION: 'Select an option...',
   NEWEST_PRODUCTS: 'Newest Products',
-  ADD_PRODUCT: 'Add Product.',
+  ADD_PRODUCT: 'Add Product',
   UPLOAD_PRODUCT: 'Upload a new product to Locker It.',
   VIEW_ANALYTICS: 'View your products, orders, and analytics.',
-};
-
-export const ABOUT_TEXT = {
-  TITLE: 'Nice to meet you! 👋',
-  WHO_ARE_WE_TITLE: 'Who Are We?',
-  WHO_ARE_WE_DESC:
-    'We are here to create a modern and secure shopping experience where you choose, pay, and collect anytime.',
-  WHY_CHOOSE_US: 'Why Choose Us?',
-  PICKUP_LOCKERS: 'Self Pickup Lockers',
-  PICKUP_LOCKERS_DESC: 'Collect anytime – no delivery fees.',
-  AVAILABILITY: '24/7 Availability',
-  AVAILABILITY_DESC: 'Our lockers are always open for you.',
-  PRIVACY: 'User Privacy',
-  PRIVACY_DESC: 'Your data is protected with the latest technologies.',
-  LOCATIONS_TITLE: 'Our Locker Locations 📍',
-  LOCATIONS: [
-    'Tel Aviv – Azrieli',
-    'Jerusalem – Malha',
-    'Haifa – Grand Canyon',
-    'More locations across the country...',
-  ],
-  CTA_TITLE: 'Want to explore our locker network?',
-  CTA_BUTTON: 'View All Locations',
 };
 
 export const PAYMENT_TEXT = {

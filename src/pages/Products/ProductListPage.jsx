@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { CircularProgress, Grid } from '@mui/material';
 
-import { containerStyle, spinnerStyle } from './ProductListPage.styled.js';
+import { containerStyle, spinnerStyle } from './ProductListPage.styles.js';
 import ProductCard from '../../components/Product/ProductCard.jsx';
 import SharedTypography from '../../components/shared/Text/SharedTypography.jsx';
 import { ERROR_MESSAGES } from '../../constants/errorMessages.js';

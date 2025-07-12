@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useParams, useNavigate } from 'react-router-dom';
 
-import { StyledSharedTypography } from '../../components/Product/Product.styled.js';
+import SharedTypography from '../../components/shared/Text/SharedTypography.jsx';
 import ProductSkeleton from '../../components/Product/ProductSkeleton.jsx';
 import ProductView from '../../components/Product/ProductView.jsx';
 import { StatusModal } from '../../components/shared/Modal/StatusModal.jsx';
@@ -71,16 +71,16 @@ const ProductPage = () => {
 
   if (productError)
     return (
-      <StyledSharedTypography color="error">
+      <SharedTypography color="error">
         {ERROR_MESSAGES.FAILED_TO_LOAD_PRODUCTS}
-      </StyledSharedTypography>
+      </SharedTypography>
     );
 
   if (!product)
     return (
-      <StyledSharedTypography color="error">
+      <SharedTypography color="error">
         {ERROR_MESSAGES.PRODUCT_NOT_FOUND}
-      </StyledSharedTypography>
+      </SharedTypography>
     );
 
   return (

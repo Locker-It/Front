@@ -2,7 +2,7 @@ import React from 'react';
 
 import { CircularProgress } from '@mui/material';
 
-import { StyledContainer, HeroBox, NewestProductsBox } from './Home.styled';
+import { StyledContainer, HeroBox, NewestProductsBox } from './Home.styles';
 import Hero from '../../components/Hero/Hero.jsx';
 import ProductCarousel from '../../components/ProductCarousel/ProductCarousel.jsx';
 import SharedTypography from '../../components/shared/Text/SharedTypography.jsx';

@@ -3,14 +3,17 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import AuthButton from './AuthButton.jsx';
-import { loggedInItems, mainNavItems } from './Navbar.helpers.jsx';
+import {
+  mainNavItems,
+  getLoggedInItems,
+} from './Navbar.helpers.jsx';
 import {
   CustomAppBar,
   CustomToolbar,
   LeftSection,
   CenterSection,
   RightSection,
-} from './Navbar.styled';
+} from './Navbar.styles';
 import { ERROR_MESSAGES } from '../../constants/errorMessages.js';
 import { TIMER } from '../../constants/hardText.js';
 import { ROUTES as ROUTER_PATHS } from '../../constants/routes.constants.js';
@@ -30,24 +33,25 @@ function Navbar() {
   const [logoutUser] = useLogoutUserMutation();
   const { modalData, showModal, closeModal } = useModal();
 
-
   const navItems = React.useMemo(() => {
-    return isLoggedIn ? [...mainNavItems, ...loggedInItems] : [...mainNavItems];
-  }, [isLoggedIn]);
+    if (isLoggedIn && user?.role) {
+      return [...mainNavItems, ...getLoggedInItems(user.role)];
+    }
+    return [...mainNavItems];
+  }, [isLoggedIn, user?.role]);
 
   const handleLogout = async () => {
     try {
       await logoutUser().unwrap();
       dispatch(logout());
       showModal({
-               type: MODAL_TYPES.SUCCESS,
-                title: MODAL_TYPES.LOGOUT_SUCCESS,
-                message: MODAL_TYPES.LOGOUT_SUCCESS_MESSAGE,
-                autoCloseAfter: TIMER.MODAL_TIMEOUT,
-                navigateTo: ROUTER_PATHS.HOME,
-                onClose: closeModal,
-              });
-
+        type: MODAL_TYPES.SUCCESS,
+        title: MODAL_TYPES.LOGOUT_SUCCESS,
+        message: MODAL_TYPES.LOGOUT_SUCCESS_MESSAGE,
+        autoCloseAfter: TIMER.MODAL_TIMEOUT,
+        navigateTo: ROUTER_PATHS.HOME,
+        onClose: closeModal,
+      });
     } catch (error) {
       console.error(ERROR_MESSAGES.LOGOUT_FAILED, error);
     }
@@ -55,12 +59,7 @@ function Navbar() {
 
   return (
     <CustomAppBar position="static">
-      {modalData && (
-        <StatusModal
-          open
-          {...modalData}
-        />
-      )}
+      {modalData && <StatusModal open {...modalData} />}
       <CustomToolbar>
         <LeftSection>
           <Logo variant="NAVBAR" alt="Company Logo" />
