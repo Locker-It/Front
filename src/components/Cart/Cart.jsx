@@ -1,34 +1,30 @@
 import React from 'react';
+
+import { Divider, Grid } from '@mui/material';
+
 import {
   EmptyCartContainer,
   CartContainer,
-  RemoveButtonWrapper,
   CartItemWrapper,
-  LockerTextStyle,
-  TotalSection,
-  CartGridContainer,
-  cartTypograghy,
-  dividerStyle,
+  RemoveButtonWrapper,
 } from './Cart.styles';
-import SharedTypography from '../shared/Text/SharedTypography.jsx';
-import { TEXT_VARIANTS } from '../../constants/types.js';
 import { CART_TEXT } from '../../constants/hardText.js';
-import { BUTTON_VARIANTS } from '../../constants/types.js';
+import { TEXT_VARIANTS, BUTTON_VARIANTS } from '../../constants/types.js';
+import { addSignShekel } from '../../utils/converting.js';
+import { LOCKER_LOCATION } from '../../utils/textTemplates.js';
 import ProductCard from '../Product/ProductCard';
 import ActionButton from '../shared/Button/ActionButton.jsx';
-import { Divider, Grid, Box } from '@mui/material';
-import { LOCKER_LOCATION } from '../../utils/textTemplates.js';
-import { addSignShekel } from '../../utils/converting.js';
+import SharedTypography from '../shared/Text/SharedTypography.jsx';
 
 const Cart = ({
-  items,
-  total,
-  onContinue,
-  handleItemRemove,
-  isLoading = false,
-  isError = false,
-  isLoggedIn = true,
-}) => {
+                items,
+                total,
+                onContinue,
+                handleItemRemove,
+                isLoading = false,
+                isError = false,
+                isLoggedIn = true,
+              }) => {
   const validItems = Array.isArray(items) ? items : [];
   const isCartEmpty = validItems.length === 0;
   const canPurchase = !isCartEmpty && total > 0;
@@ -56,14 +52,15 @@ const Cart = ({
 
   return (
     <CartContainer>
-      <SharedTypography variant={TEXT_VARIANTS.DEFAULT} style={cartTypograghy}>
+      <SharedTypography variant={TEXT_VARIANTS.DEFAULT}>
         {CART_TEXT.CART_TITLE}
       </SharedTypography>
-      <CartGridContainer container spacing={3}>
+
+      <Grid container spacing={3}>
         {validItems.map(({ id, images, name, price, rating, lockerId }) => (
-          <Grid item xs={12} md={6} key={id}>
+          <Grid key={id} size={12}>
             <CartItemWrapper elevation={2}>
-              <ProductCard 
+              <ProductCard
                 id={id}
                 images={images}
                 name={name}
@@ -72,14 +69,12 @@ const Cart = ({
                 onSelect={() => {}}
                 disabled
               />
-
-              <SharedTypography variant={TEXT_VARIANTS.DEFAULT} style={LockerTextStyle} >
+              <SharedTypography variant={TEXT_VARIANTS.DEFAULT}>
                 {LOCKER_LOCATION.LOCKER_LABEL(
                   lockerId?.lockerNumber ?? '',
                   lockerId?.location ?? '',
                 )}
               </SharedTypography>
-
               <RemoveButtonWrapper>
                 <ActionButton
                   onClick={() => handleItemRemove(id)}
@@ -92,28 +87,26 @@ const Cart = ({
             </CartItemWrapper>
           </Grid>
         ))}
-      </CartGridContainer>
+      </Grid>
 
-      <Divider style={dividerStyle} />
+      <Divider />
 
-      <TotalSection>
-        <Box>
-          <SharedTypography variant={TEXT_VARIANTS.DEFAULT}>
-            {CART_TEXT.CART_TOTAL}
-          </SharedTypography>
-          <SharedTypography variant={TEXT_VARIANTS.DEFAULT}>
-            {addSignShekel(total)}
-          </SharedTypography>
-        </Box>
+      <Grid size={12}>
+        <SharedTypography variant={TEXT_VARIANTS.DEFAULT}>
+          {CART_TEXT.CART_TOTAL}
+        </SharedTypography>
+        <SharedTypography variant={TEXT_VARIANTS.DEFAULT}>
+          {addSignShekel(total)}
+        </SharedTypography>
+      </Grid>
 
-        <ActionButton
-          onClick={onContinue}
-          disabled={!canPurchase}
-          styleType={BUTTON_VARIANTS.FILLED}
-        >
-          {CART_TEXT.CART_CONTINUE}
-        </ActionButton>
-      </TotalSection>
+      <ActionButton
+        onClick={onContinue}
+        disabled={!canPurchase}
+        styleType={BUTTON_VARIANTS.FILLED}
+      >
+        {CART_TEXT.CART_CONTINUE}
+      </ActionButton>
 
       {!isLoggedIn && (
         <SharedTypography variant={TEXT_VARIANTS.DEFAULT} sx={{ mt: 2 }}>

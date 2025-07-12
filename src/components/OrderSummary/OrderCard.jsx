@@ -1,24 +1,23 @@
 import React from 'react';
-import { Grid, Divider } from '@mui/material';
+
+ import { Divider } from '@mui/material';
+ import Grid from '@mui/material/Grid'
 
 import {
   OrderCardContainer,
   ItemCard,
   SharedFlexBox,
-  dividerStyle,
+
   ImageStyle,
   InfoBox,
-  ItemsContainerGrid,
-  SummaryGrid,
 } from './OrderCard.styles';
-
 import { ERROR_MESSAGES } from '../../constants/errorMessages.js';
 import { CART_TEXT } from '../../constants/hardText.js';
+import { TEXT_VARIANTS } from '../../constants/types.js';
 import { addSignShekel } from '../../utils/converting';
+import { LOCKER_LOCATION } from '../../utils/textTemplates.js';
 import { SharedImage } from '../shared/Image/SharedImage';
 import SharedTypography from '../shared/Text/SharedTypography.jsx';
-import { LOCKER_LOCATION } from '../../utils/textTemplates.js';
-import { TEXT_VARIANTS } from '../../constants/types.js';
 
 const OrderCard = ({ items = [], total = 0 }) => {
   if (items.length === 0) {
@@ -33,11 +32,11 @@ const OrderCard = ({ items = [], total = 0 }) => {
 
   return (
     <OrderCardContainer>
-      <ItemsContainerGrid container>
-        {items.map(({ _id, images, name, price, lockerId }) => {
+      <Grid container spacing={3}>
+        {items.map(({ id, images, name, price, lockerId }) => {
           const shekelPrice = addSignShekel(price);
           return (
-            <Grid key={_id}>
+            <Grid key={id} size={12}>
               <ItemCard>
                 <SharedFlexBox>
                   <SharedImage src={images} alt={name} style={ImageStyle} />
@@ -64,18 +63,18 @@ const OrderCard = ({ items = [], total = 0 }) => {
             </Grid>
           );
         })}
-      </ItemsContainerGrid>
+      </Grid>
 
-      <Divider style={dividerStyle} />
+      <Divider />
 
-      <SummaryGrid container>
+      <Grid size={12}>
         <SharedTypography variant={TEXT_VARIANTS.DEFAULT}>
           {CART_TEXT.CART_TOTAL}
         </SharedTypography>
         <SharedTypography variant={TEXT_VARIANTS.DEFAULT}>
           {addSignShekel(total.toFixed(2))}
         </SharedTypography>
-      </SummaryGrid>
+      </Grid>
     </OrderCardContainer>
   );
 };
