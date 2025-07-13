@@ -1,25 +1,5 @@
+import { Card, Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { Card, Typography, Box } from '@mui/material';
-import theme from '../../theme/theme';
-
-export const SharedTypography = {
-  color: (theme) => theme.palette.text.primary,
-  ...(props) =>
-    props.variant === 'subtitle1' && {
-      fontWeight: 'bold',
-      whiteSpace: 'nowrap',
-    },
-};
-
-export const StyledSharedTypography = styled(Typography)(
-  ({ theme, variant }) => ({
-    color: theme.palette.text.primary,
-    ...(variant === 'subtitle1' && {
-      fontWeight: 'bold',
-      whiteSpace: 'nowrap',
-    }),
-  }),
-);
 
 export const StyledCard = styled(Card)(({ theme, unavailable }) => ({
   width: '15rem',

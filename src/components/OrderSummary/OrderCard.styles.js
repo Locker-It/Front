@@ -1,5 +1,6 @@
 import { Paper, Grid, Box } from '@mui/material';
 import { styled } from '@mui/system';
+
 import theme from '../../theme/theme';
 
 export const OrderCardContainer = styled(Box)(({ theme }) => ({
@@ -8,12 +9,9 @@ export const OrderCardContainer = styled(Box)(({ theme }) => ({
   marginTop: theme.spacing(5),
   paddingLeft: theme.spacing(2),
   paddingRight: theme.spacing(2),
+  gap: theme.spacing(3),
 }));
 
-export const ItemsContainerGrid = styled(Grid)({
-  flexDirection: 'column',
-    gap: theme.spacing(2),
-});
 
 export const ItemCard = styled(Paper)(({ theme }) => ({
   display: 'flex',
@@ -41,18 +39,9 @@ export const SharedFlexBox = styled(Box)(({ theme }) => ({
   gap: theme.spacing(12),
 }));
 
-export const dividerStyle = {
-  margin: '1rem 0',
-};
-
 export const InfoBox = styled(Box)(() => ({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
   gap: theme.spacing(1),
 }));
-
-export const SummaryGrid = styled(Grid)({
-  justifyContent: 'space-between',
-  alignItems: 'center',
-});

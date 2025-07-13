@@ -1,5 +1,5 @@
+import { Paper, Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { Typography, Paper, Box, Grid } from '@mui/material';
 
 export const EmptyCartContainer = styled(Box)(({ theme }) => ({
   maxWidth: '30rem',
@@ -22,46 +22,25 @@ export const CartContainer = styled(Box)(({ theme }) => ({
   margin: '2rem auto',
   maxWidth: '62.5rem',
   width: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '2rem',
 }));
 
 export const CartItemWrapper = styled(Paper)(({ theme }) => ({
   padding: '1rem',
   borderRadius: '0.75rem',
-  height: '100%',
   display: 'flex',
   flexDirection: 'column',
+  alignItems: 'center',
   boxShadow: theme.shadows[1],
-  alignItems: 'center', 
+  width: '80%',
+  margin: '0 auto',
+
+
 }));
 
-export const RemoveButtonWrapper = styled(Box)(({ theme }) => ({
+export const RemoveButtonWrapper = styled(Box)(() => ({
   width: '100%',
   marginTop: '1rem',
 }));
-
-export const LockerTextStyle = {
-  fontSize: '0.875rem',
-  marginTop: '1rem',
-};
-
-export const TotalSection = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  flexWrap: 'wrap',
-  gap: '1rem',
-}));
-
-export const CartGridContainer = styled(Grid)(({ theme }) => ({
-  justifyContent: 'center',
-  marginTop: theme.spacing(2),
-}));
-
-export const cartTypograghy = {
-  display: 'flex',
-  justifyContent: 'center',
-};
-
-export const dividerStyle = {
-  margin: '2rem 0',
-};
