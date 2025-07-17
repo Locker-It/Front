@@ -8,7 +8,7 @@ RUN npm install
 COPY .env.production .env.production
 
 COPY . .
-RUN npm run build
+RUN npm run build -- --mode production
 
 FROM node:18 as serve
 
