@@ -1,0 +1,37 @@
+name: Deploy Frontend to EC2
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+
+      - name: Build Docker image
+        run: docker build --pull -t ${{ secrets.DOCKERHUB_USERNAME }}/lockerit-frontend .
+
+      - name: Push Docker image
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/lockerit-frontend
+
+      - name: Deploy on EC2
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_PEM }}
+          script: |
+            docker stop lockerit-frontend || true
+            docker rm lockerit-frontend || true
+            docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/lockerit-frontend || true
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/lockerit-frontend
+            docker run -d -p 5173:5173 --name lockerit-frontend --restart=always ${{ secrets.DOCKERHUB_USERNAME }}/lockerit-frontend
+            echo "🔍 Checking running containers..."
+            docker ps | grep lockerit-frontend || (echo "❌ lockerit-frontend is not running!" && exit 1)
