@@ -14,7 +14,7 @@ export default function AuthBootstrap() {
   const { data: user, isLoading, isError } = useGetCurrentUserQuery();
 
   useEffect(() => {
-    if (user)  {
+    if (user) {
       dispatch(loginSuccess({ user }));
     } else if (isError) {
       dispatch(logout());
