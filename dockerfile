@@ -2,10 +2,11 @@ FROM node:18 as build
 
 WORKDIR /app
 
+ARG VITE_BASE_SERVER_URL
+ENV VITE_BASE_SERVER_URL=$VITE_BASE_SERVER_URL
+
 COPY package*.json ./
 RUN npm install
-
-COPY .env.production .env.production
 
 COPY . .
 RUN npm run build -- --mode production
