@@ -12,7 +12,7 @@ docker compose up --build -d
 
 ---
 
-## 🔄 Live Code Sync
+## 🔄 Live Code Sync 
 
 Changes in your local files are reflected immediately inside the container via volume mapping.
 
