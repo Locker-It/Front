@@ -32,12 +32,15 @@ export const CART_TEXT = {
   CART_TITLE: 'Shopping Cart',
   CART_EMPTY: 'Your cart is empty',
   CART_TOTAL: 'Total',
+  SUBTOTAL: 'Subtotal',
   CART_CONTINUE: 'Continue to Purchase',
   ADD_TO_CART: 'Add to Cart',
   CART_LOADING: 'Loading...',
   CART_LOGIN_REQUIRED: 'Please log in to continue your purchase.',
   CART_ERROR: 'Error loading cart. Please try again.',
   CART_REMOVE: 'Remove from Cart',
+  ORDER_SUMMARY: 'Order Summary',
+  CONTINUE_TO_PURCHASE: 'CONTINUE TO PURCHASE',
 };
 
 export const PLACEHOLDERS = {
@@ -60,4 +63,5 @@ export const TIMER = {
 
 export const STATUSES = {
   NOT_AVAILABLE: 'Not Available',
+  UNAVAILABLE: 'unavailable',
 };

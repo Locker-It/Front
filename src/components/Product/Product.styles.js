@@ -1,6 +1,10 @@
 import { Card, Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
+import { getTextStyles } from '../shared/Text/textVariants';
+
+const defaultTextColor = getTextStyles().DEFAULT.color;
+
 export const StyledCard = styled(Card)(({ theme, unavailable }) => ({
   width: '15rem',
   height: '17rem',
@@ -17,7 +21,7 @@ export const StyledCard = styled(Card)(({ theme, unavailable }) => ({
       },
 }));
 
-export const UnavailableOverlay = styled(Box)(({ theme }) => ({
+export const UnavailableOverlay = styled(Box)(() => ({
   position: 'absolute',
   inset: 0,
   zIndex: 2,
@@ -30,7 +34,7 @@ export const UnavailableOverlay = styled(Box)(({ theme }) => ({
 
 export const NotAvailableBadge = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.disabledCard.background,
-  color: theme.palette.disabledCard.text,
+  color: defaultTextColor,
   padding: `${theme.spacing(1 / 2)} ${theme.spacing(1)}`,
   borderRadius: '1.25rem',
   fontWeight: theme.typography.fontWeightBold,

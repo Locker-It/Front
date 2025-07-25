@@ -19,6 +19,14 @@ export const TEXT_VARIANTS = {
   WHITE_TITLE: 'WHITE_TITLE',
   GREY_TITLE: 'GREY_TITLE',
   DEFAULT: 'DEFAULT',
+  PAGE_TITLE: 'PAGE_TITLE',
+  STATUS_TEXT: 'STATUS_TEXT',
+  PRODUCT_TITLE: 'PRODUCT_TITLE',
+  PRODUCT_PRICE: 'PRODUCT_PRICE',
+  PRODUCT_LOCATION: 'PRODUCT_LOCATION',
+  SECTION_TITLE: 'SECTION_TITLE',
+  SUMMARY_ROW: 'SUMMARY_ROW',
+  SECTION_TOTAL: 'SECTION_TOTAL',
 };
 export const BUTTON_VARIANTS = {
   FILLED: 'filled',
@@ -48,5 +56,4 @@ export const MODAL_TYPES = {
   LOGOUT_SUCCESS_MESSAGE: 'Hope to see you again soon!',
   PRODUCT_ADDED: 'Product Added successfully',
   PRODUCT_ADDED_MESSAGE: 'The product has been saved to the system.',
-
 };
